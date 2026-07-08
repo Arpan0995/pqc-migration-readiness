@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.pqcreadiness.auditor.model.Category;
 import org.pqcreadiness.auditor.model.Confidence;
+import org.pqcreadiness.auditor.model.EffortTier;
 import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
 import org.pqcreadiness.auditor.model.ReadinessReport;
@@ -56,6 +57,7 @@ class ScoringEngineTest {
         assertEquals(150, top.loc());
         // 2 findings * base 2 = 4, spread(2 files) = 1 + 0.1*log2(3) ~= 1.1585 -> ~4.63
         assertTrue(top.score() > 4.0 && top.score() < 5.0, "score was " + top.score());
+        assertEquals(EffortTier.LOW, top.tier());
 
         ModuleReport second = report.modules().get(1);
         assertEquals("mod-b", second.name());

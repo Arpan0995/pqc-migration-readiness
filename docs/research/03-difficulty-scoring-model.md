@@ -72,7 +72,7 @@ LOC correlates with everything (more code → more findings → more effort). Do
 {
   "codebase": "...", "auditorVersion": "...", "scoreModel": "v0",
   "modules": [{
-    "name": "...", "loc": 0, "score": 0.0, "urgency": 0.0, "baselineCount": 0,
+    "name": "...", "loc": 0, "score": 0.0, "tier": "MEDIUM", "urgency": 0.0, "baselineCount": 0,
     "files": [{
       "path": "...",
       "findings": [{
@@ -87,3 +87,12 @@ LOC correlates with everything (more code → more findings → more effort). Do
 ```
 
 Human-readable report (markdown) renders from this JSON: ranked hotspot list with file:line, matched rule, *why it is expensive* (the fragility indicators in plain language), and suggested migration action (e.g., "replace fixed 256-byte signature buffer with length-prefixed framing").
+
+## 8. Project phasing: estimation now, validation later
+
+The original plan (this document, doc 04, doc 05) was written as a single validated study: freeze the score, migrate real codebases, measure actual effort, correlate. That full plan is **deferred**, not abandoned, because real migrations (whether we perform them or mine a project's history) are a significant, separate effort. The project now runs in two phases:
+
+- **Phase 1 (current)** — the *estimation* phase. The auditor runs against real public codebases and produces the score `S`, the naive baseline `B0`, and a derived qualitative **effort tier** (`EffortTier`: `NONE < LOW < MEDIUM < HIGH < CRITICAL`, thresholds at score 0 / 0.01 / 10 / 40 / 120 — see `auditor/.../model/EffortTier.java`). This is a transparent, structured heuristic informed by the fragility indicators in doc 02, comparable in spirit to how CBOM-style tools already rank findings. **It is not a validated prediction.** There is deliberately no "N engineer-days" figure anywhere in the tool, because no conversion factor from score to hours has been tested against anything — publishing one would imply a precision we don't have.
+- **Phase 2 (deferred)** — the *validation* phase, unchanged from doc 04/05: real or mined migrations, measured effort, correlation of `S` against effort, `S` vs. baseline `B0` comparison. Doc 04 and doc 05 stay as-written as the protocol for when this phase starts; nothing in them needs to change.
+
+Consequence for how to read any report this tool produces in Phase 1: the module ranking and hotspot list are useful for **triage and prioritization** (which modules and sites look expensive, and why, per the fragility indicators) — but a claim like "score correlates with real effort" or "tier X means Y engineer-days" is not yet substantiated. Report language reflects this (see the caveat banner in the Markdown report and this section).

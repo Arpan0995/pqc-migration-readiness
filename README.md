@@ -28,6 +28,15 @@ coupling — predicts measured migration effort **better than naively counting
 crypto call sites**. The validated scoring methodology is the research
 contribution; the tool is the instrument. A negative result is a result.
 
+**Current phase:** the project runs in two phases (see
+[doc 03 §8](docs/research/03-difficulty-scoring-model.md)). **Phase 1
+(now)** runs the auditor against real public codebases and produces a
+score-derived effort **estimate** — a transparent heuristic, not yet a
+validated prediction. **Phase 2 (deferred)** performs the actual
+correlation study against measured migration effort (doc 04/05, unchanged,
+just not started). Read every score/tier in this repo today as Phase 1
+output.
+
 ## How
 
 1. **Detect** (`auditor`): JavaParser-based scan for quantum-vulnerable JCA/JCE
@@ -46,13 +55,17 @@ contribution; the tool is the instrument. A negative result is a result.
 
 ## Expected outputs
 
-- Per-codebase **readiness report**: module scores + ranked hotspots with
-  file:line and *why each is expensive*.
-- **Correlation figure**: predicted difficulty vs. measured migration effort —
-  the key result.
-- **Precision/recall table** for the detector.
+**Phase 1 (now):**
+- Per-codebase **readiness report**: module scores, a qualitative **effort
+  tier** (`NONE`/`LOW`/`MEDIUM`/`HIGH`/`CRITICAL`), and ranked hotspots with
+  file:line and *why each is expensive* — an estimation aid, not a validated
+  prediction (see [doc 03 §8](docs/research/03-difficulty-scoring-model.md)).
 - **Benchmark tables**: agility-layer overhead across modes, incl. JVM-specific
   effects (GC/allocation pressure from multi-KB PQC artifacts).
+
+**Phase 2 (deferred):**
+- **Correlation figure**: predicted difficulty vs. measured migration effort.
+- **Precision/recall table** for the detector, against hand-labeled ground truth.
 
 ## Modules
 
@@ -108,21 +121,37 @@ python3 analysis/correlate.py --report <report.json> --effort <effort.csv>
 
 ## Status
 
+**Phase 1 — estimation (current focus):**
 - [x] Multi-module scaffolding, build-verified on JDK 21 (JMH runs end-to-end)
 - [x] Research phase: standards verified (2026-07-08), detection catalog,
-      pre-registered scoring model v0, case-study & validation plans
-- [x] `auditor` wave-1 scanner (Cipher / KeyPairGenerator, literal algorithms)
-- [x] `auditor` wave-2 detection (KeyFactory, KeyAgreement, Signature, F4 type
-      coupling), scoring engine (score v0), JSON + Markdown reports, CLI
-- [x] Step-4 analysis harness (Spearman/Kendall, bootstrap Δρ vs baseline;
-      synthetic self-test only — real case-study data pending)
-- [ ] Detection wave 3 (dataflow fragility indicators F1/F2/F3/F6/F8), TLS/JOSE surface
-- [ ] `agility-provider` + JMH benchmark matrix
-- [ ] Case-study migrations & the correlation figure (needs human-in-the-loop
-      migration effort logs — see `docs/research/04`)
+      pre-registered scoring model v0
+- [x] `auditor` detection waves 1–3: JCA entry points (Cipher, KeyPairGenerator,
+      KeyFactory, KeyAgreement, Signature) and structural fragility indicators
+      F1 (fixed buffers), F3 (TLS/protocol pinning), F4 (type coupling), F6
+      (persisted key material)
+- [x] Scoring engine (score v0), qualitative effort tier, JSON + Markdown
+      reports, CLI — build-verified end-to-end
+- [x] `agility-provider`: negotiation core (suites, policy, capability
+      negotiation, audit log) + BC-backed hybrid primitives (KEM combiner,
+      dual signature), 20 tests
+- [x] JMH benchmark matrix (key establishment, signatures, negotiation) —
+      builds and registers; full campaign not yet run
+- [ ] Remaining detection: F2 (fixed-width persistence), F8 (third-party API
+      boundary), JOSE/JWT surface
+- [ ] Run the auditor against selected real public codebases and publish
+      Phase 1 estimation reports
+
+**Phase 2 — validation (deferred, not started):**
+- [ ] Case-study migrations (real or mined) and effort logging (`docs/research/04`)
+- [ ] Correlation analysis: score vs. measured effort (`docs/research/05`) —
+      `analysis/correlate.py` exists and is validated against synthetic data
+      only; real case-study data is what's missing
+- [ ] Precision/recall against hand-labeled ground truth
 
 > Research prototype. Not production crypto software. The auditor's detection is
 > syntactic (no classpath required); its accuracy is to be measured, not assumed.
+> Every score/tier currently produced is a Phase 1 estimate, not a validated
+> prediction.
 
 ## License
 

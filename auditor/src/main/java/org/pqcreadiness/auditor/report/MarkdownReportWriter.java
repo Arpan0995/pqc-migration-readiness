@@ -33,10 +33,12 @@ public final class MarkdownReportWriter {
         }
         md.append("\n\n");
 
-        md.append("> Difficulty score **S** predicts relative migration effort; the naive "
-                + "baseline **B0** is a raw count of vulnerable call sites. Urgency **U** is a "
-                + "separate axis (harvest-now-decrypt-later risk), not part of the difficulty "
-                + "claim. See `docs/research/03-difficulty-scoring-model.md`.\n\n");
+        md.append("> Difficulty score **S** and effort **tier** are a heuristic estimate, "
+                + "not yet a validated prediction of migration effort (see "
+                + "`docs/research/03-difficulty-scoring-model.md` §8 for the estimation-vs-"
+                + "validation phasing). The naive baseline **B0** is a raw count of vulnerable "
+                + "call sites. Urgency **U** is a separate axis (harvest-now-decrypt-later risk), "
+                + "not part of the difficulty estimate.\n\n");
 
         appendModuleRanking(md, report.modules());
         for (ModuleReport module : report.modules()) {
@@ -54,11 +56,12 @@ public final class MarkdownReportWriter {
 
     private void appendModuleRanking(StringBuilder md, List<ModuleReport> modules) {
         md.append("## Module ranking\n\n");
-        md.append("| Rank | Module | Score S | Urgency U | Baseline B0 | LOC |\n");
-        md.append("|---:|---|---:|---:|---:|---:|\n");
+        md.append("| Rank | Module | Tier | Score S | Urgency U | Baseline B0 | LOC |\n");
+        md.append("|---:|---|---|---:|---:|---:|---:|\n");
         int rank = 1;
         for (ModuleReport m : modules) {
             md.append("| ").append(rank++).append(" | `").append(m.name()).append("` | ")
+                    .append(m.tier()).append(" | ")
                     .append(m.score()).append(" | ").append(m.urgency()).append(" | ")
                     .append(m.baselineCount()).append(" | ").append(m.loc()).append(" |\n");
         }
@@ -67,7 +70,8 @@ public final class MarkdownReportWriter {
 
     private void appendModuleDetail(StringBuilder md, ModuleReport module) {
         md.append("## Module: `").append(module.name()).append("`\n\n");
-        md.append("Score **").append(module.score()).append("**, urgency ")
+        md.append("Effort tier **").append(module.tier()).append("** (score ")
+                .append(module.score()).append("), urgency ")
                 .append(module.urgency()).append(", ").append(module.baselineCount())
                 .append(" vulnerable call sites, ").append(module.loc()).append(" LOC.\n\n");
 

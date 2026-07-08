@@ -1,5 +1,6 @@
 package org.pqcreadiness.auditor.score;
 
+import org.pqcreadiness.auditor.model.EffortTier;
 import org.pqcreadiness.auditor.model.FileReport;
 import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
@@ -83,7 +84,9 @@ public final class ScoringEngine {
                 .thenComparing(FileReport::path));
 
         double score = summedDifficulty * ScoreModel.spread(byFile.size());
-        return new ModuleReport(module, loc, round(score), round(urgency), baselineCount, files);
+        double rounded = round(score);
+        return new ModuleReport(module, loc, rounded, EffortTier.forScore(rounded),
+                round(urgency), baselineCount, files);
     }
 
     private static double round(double value) {
