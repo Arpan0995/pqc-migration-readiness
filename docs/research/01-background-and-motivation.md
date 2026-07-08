@@ -2,6 +2,13 @@
 
 Status of facts verified: **2026-07-08** (web-checked; this is a fast-moving area — re-verify before citing in a paper).
 
+> **Project phasing note:** the research question and hypothesis below describe
+> the project's full intended arc. The project currently runs **Phase 1
+> (estimation) only** — Phase 2 (the actual validation against measured
+> migration effort) is deferred, not started. See
+> [doc 03 §8](03-difficulty-scoring-model.md#8-project-phasing-estimation-now-validation-later)
+> for what's active now vs. deferred.
+
 ## 1. Threat model
 
 - **Shor's algorithm** on a cryptographically relevant quantum computer (CRQC) breaks all deployed public-key cryptography based on integer factorization and discrete logs: **RSA, DSA, DH, ECDH, ECDSA, EdDSA/Ed25519/Ed448, X25519/X448, ECIES, ECMQV**. Every elliptic-curve algorithm is in scope — a common blind spot is assuming "modern" Ed25519/X25519 are safe; they are not.

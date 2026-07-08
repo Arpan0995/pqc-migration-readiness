@@ -43,11 +43,12 @@ output.
    usage, validated by precision/recall against hand-labeled ground truth.
 2. **Score** (`auditor`): pre-registered difficulty model (weights frozen
    *before* effort data is collected) per module/file.
-3. **Validate**: migrate real open-source codebases to hybrid crypto and
-   measure actual effort (files touched, LOC, breakages, time) — plus a second
-   track mining projects that already migrated for real (e.g., Apache Mina
-   SSHD's ML-KEM hybrid adoption). Correlate predicted score vs. measured
-   effort (Spearman ρ), against the naive-count baseline.
+3. **Validate** *(Phase 2, deferred — not currently active)*: migrate real
+   open-source codebases to hybrid crypto and measure actual effort (files
+   touched, LOC, breakages, time) — plus a second track mining projects that
+   already migrated for real (e.g., Apache Mina SSHD's ML-KEM hybrid
+   adoption). Correlate predicted score vs. measured effort (Spearman ρ),
+   against the naive-count baseline.
 4. **Provide agility** (`agility-provider`): a policy-driven runtime layer over
    JCA/JCE for classical / hybrid / PQC-only modes with capability negotiation
    and audit logging, benchmarked (`benchmarks`, JMH) to answer the standard

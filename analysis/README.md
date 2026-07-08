@@ -1,4 +1,8 @@
-# Analysis harness (step 4)
+# Analysis harness (Phase 2 — deferred, not currently active)
+
+This harness exists and is unit-tested, but the project is currently in
+Phase 1 (estimation only); nothing here runs against real data yet. See
+[doc 03 §8](../docs/research/03-difficulty-scoring-model.md#8-project-phasing-estimation-now-validation-later).
 
 Tests the core research claim: does the auditor's difficulty score **S** predict
 measured migration effort better than the naive baseline **B0** (count of vulnerable

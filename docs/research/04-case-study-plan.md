@@ -1,5 +1,12 @@
 # 04 — Case-Study Plan
 
+> **Phase 2 — deferred, not currently active.** The project is currently in
+> Phase 1 (estimation only, no migration); this document describes the
+> validation protocol for when Phase 2 starts. See
+> [doc 03 §8](03-difficulty-scoring-model.md#8-project-phasing-estimation-now-validation-later).
+> For what Phase 1 case-study selection actually looks like right now, see
+> [`case-studies/README.md`](../../case-studies/README.md).
+
 ## 1. Two validation tracks
 
 **Track A — controlled self-migrations.** We migrate 3–4 codebases to hybrid crypto ourselves, logging effort precisely (including wall-clock time). Full control, but single-rater realism limits.

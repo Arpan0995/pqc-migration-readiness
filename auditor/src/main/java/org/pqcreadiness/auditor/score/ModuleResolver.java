@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 /**
  * Maps a scanned source file to the module it belongs to.
  *
- * <p>A "module" is the unit validated against migration effort (doc 05). We resolve
+ * <p>A "module" is the unit the Phase 1 report is scored per, and the unit Phase 2
+ * will eventually validate against measured migration effort (doc 05). We resolve
  * it by locating build descriptors ({@code pom.xml}, {@code build.gradle(.kts)}) under
  * the scan root: a file belongs to the nearest enclosing directory that has one. When
  * a codebase has no build descriptors, we fall back to the file's top-level directory,

@@ -1,5 +1,10 @@
 # 05 — Validation & Benchmark Plan
 
+> **§§1–3 (detector accuracy, score validity, threats to validity) are Phase 2
+> — deferred, not currently active.** §4 (agility-layer JMH benchmarks) is
+> independent of migration validation and can run in Phase 1. See
+> [doc 03 §8](03-difficulty-scoring-model.md#8-project-phasing-estimation-now-validation-later).
+
 This is the step-4 playbook: what gets measured, how it is analyzed, and what each outcome would mean.
 
 ## 1. Detector accuracy (plan §4a)
