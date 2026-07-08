@@ -1,0 +1,6 @@
+codebase,module,files_touched,lines_changed,build_breakages,test_failures,minutes,pain_tags
+# One row per migrated module. codebase+module must match the auditor report JSON.
+# Fill from git diff stats and migration notes per docs/research/04-case-study-plan.md.
+# pain_tags: pipe-separated from {serialization|buffer-size|protocol-pinning|third-party-api|type-coupling|keystore|test-brittleness|other}
+# Example (remove before real data):
+# example-app,service-vault,4,180,2,3,95,buffer-size|protocol-pinning

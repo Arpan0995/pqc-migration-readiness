@@ -34,6 +34,13 @@ Thumbs.db
 # Claude Code local settings
 .claude/settings.local.json
 
+# Auditor output
+audit-out/
+
+# Python (analysis harness)
+__pycache__/
+*.pyc
+
 # Logs
 *.log
 

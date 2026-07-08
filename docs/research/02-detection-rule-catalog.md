@@ -58,7 +58,8 @@ Sentinel constants for fragility detection: `32, 64, 65, 70, 72, 91, 128, 256, 2
 
 ## 5. Implementation notes (JavaParser)
 
-- Symbol resolution (`javaparser-symbol-solver`) needed from wave 2 onward: resolve static-final constants for F5, resolve types for F4, distinguish `java.security.Signature` from unrelated `Signature` classes.
-- Confidence levels on every finding: `HIGH` (literal), `MEDIUM` (constant-propagated), `LOW` (dynamic expression — reported as "unresolved algorithm selection", which is itself an F5 *credit* signal).
+- **Detection is syntactic, by design** (decided during implementation, deviating from the earlier "symbol resolution from wave 2" plan). Entry points are matched by the receiver's trailing type name and algorithms must be string literals. Rationale: JavaParser's symbol solver needs the target's **full compiled classpath**, which we will not have when scanning arbitrary case-study codebases we do not build. A purely syntactic matcher runs on any source tree and never aborts a scan. Constant propagation and optional symbol resolution (when a classpath *is* available) remain future refinements, not prerequisites.
+- Consequence: current confidence levels are `HIGH` (string literal at the call site) and `MEDIUM` (type-coupling sites). `LOW`/unresolved-argument handling (an F5 *credit* signal) is deferred with constant propagation. This is an accuracy trade-off to measure in the precision/recall evaluation (doc 05 §1), not a silent gap.
 - Source-level scanning confirmed as the right default (readable file:line for reports); ASM fallback remains deferred until a case study lacks source.
-- Every rule carries a machine-readable ID (`JCA-KPG-RSA`, `FRAG-F1-BUF`, …) — the report and the ground-truth labels join on these IDs (doc 05).
+- Every rule carries a machine-readable ID (`JCA-KPG-RSA`, `JCA-SIG-ECDSA`, `FRAG-F4-RSAPublicKey`, …) — the report and the ground-truth labels join on these IDs (doc 05).
+- **Implemented so far**: wave 1 (Cipher, KeyPairGenerator) and wave 2 (KeyFactory, KeyAgreement, Signature, plus F4 concrete key-type coupling). Waves 2's TLS/JOSE surface and wave 3's dataflow fragility indicators (F1/F2/F3/F6/F8) are specified here but not yet built; the scoring engine already applies their multipliers once findings carry the indicators.

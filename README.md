@@ -86,18 +86,43 @@ Design decisions and methodology live in [`docs/research/`](docs/research/):
 mvn clean install
 ```
 
+## Run the auditor
+
+```
+mvn -pl auditor dependency:build-classpath -Dmdep.outputFile=target/cp.txt
+java -cp "auditor/target/classes:$(cat auditor/target/cp.txt)" \
+    org.pqcreadiness.auditor.cli.AuditorCli <source-root> --out audit-out --name <label>
+```
+
+Produces `audit-out/readiness-report.json` (machine-readable, feeds the analysis
+harness) and `audit-out/readiness-report.md` (ranked hotspots with reasons).
+
+## Analyse results
+
+Correlation harness (pure-stdlib Python) lives in [`analysis/`](analysis/):
+
+```
+python3 analysis/correlate.py --selftest          # validate the statistics
+python3 analysis/correlate.py --report <report.json> --effort <effort.csv>
+```
+
 ## Status
 
-- [x] Multi-module scaffolding
+- [x] Multi-module scaffolding, build-verified on JDK 21 (JMH runs end-to-end)
 - [x] Research phase: standards verified (2026-07-08), detection catalog,
       pre-registered scoring model v0, case-study & validation plans
-- [ ] `auditor` wave-1 scanner (Cipher / KeyPairGenerator, literal algorithms)
-- [ ] Detection waves 2–3, scoring engine
-- [ ] `agility-provider` + benchmarks
-- [ ] Case-study migrations & correlation analysis
+- [x] `auditor` wave-1 scanner (Cipher / KeyPairGenerator, literal algorithms)
+- [x] `auditor` wave-2 detection (KeyFactory, KeyAgreement, Signature, F4 type
+      coupling), scoring engine (score v0), JSON + Markdown reports, CLI
+- [x] Step-4 analysis harness (Spearman/Kendall, bootstrap Δρ vs baseline;
+      synthetic self-test only — real case-study data pending)
+- [ ] Detection wave 3 (dataflow fragility indicators F1/F2/F3/F6/F8), TLS/JOSE surface
+- [ ] `agility-provider` + JMH benchmark matrix
+- [ ] Case-study migrations & the correlation figure (needs human-in-the-loop
+      migration effort logs — see `docs/research/04`)
 
-> Research prototype. Not production crypto software. The build is not yet
-> CI-verified (no local JDK 21 toolchain at scaffold time).
+> Research prototype. Not production crypto software. The auditor's detection is
+> syntactic (no classpath required); its accuracy is to be measured, not assumed.
 
 ## License
 
