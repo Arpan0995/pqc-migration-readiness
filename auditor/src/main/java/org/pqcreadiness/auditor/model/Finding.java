@@ -37,4 +37,10 @@ public record Finding(
     public Finding {
         fragility = fragility == null ? List.of() : List.copyOf(fragility);
     }
+
+    /** Return a copy of this finding with its fragility indicator list replaced. */
+    public Finding withFragility(List<String> merged) {
+        return new Finding(ruleId, file, line, column, api, algorithm,
+                category, confidence, merged, snippet);
+    }
 }

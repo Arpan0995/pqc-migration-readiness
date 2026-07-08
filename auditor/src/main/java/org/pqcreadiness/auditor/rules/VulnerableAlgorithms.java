@@ -72,7 +72,7 @@ public final class VulnerableAlgorithms {
         if (a.contains("WITHECDSA") || a.equals("ECDSA")) {
             return Optional.of("ECDSA");
         }
-        if (a.contains("WITHRSA") || a.equals("RSASSA-PSS") || a.contains("WITHRSAANDMGF1")) {
+        if (a.contains("WITHRSA") || a.equals("RSASSA-PSS")) {
             return Optional.of("RSA");
         }
         if (a.contains("WITHDSA") || a.equals("DSA")) {

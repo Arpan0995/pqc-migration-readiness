@@ -16,10 +16,10 @@ import java.util.Map;
  * as data, not as knobs to adjust casually.
  *
  * <p>Base category weights live on {@link Category}. Fragility multipliers are applied
- * from each finding's {@code fragility} list. Note that as of the current detection
- * waves only F4 (type coupling) is populated automatically; the remaining multipliers
- * are implemented and ready but stay latent until wave-3 dataflow detection attaches
- * their indicators to findings.
+ * from each finding's {@code fragility} list. The scanner now populates F1 (fixed-size
+ * buffers), F3 (protocol/suite pinning), F4 (type coupling), and F6 (persisted key
+ * material) automatically; the remaining multipliers (F2, F5, F8) are implemented and
+ * ready but stay latent until detection attaches their indicators to findings.
  */
 public final class ScoreModel {
 

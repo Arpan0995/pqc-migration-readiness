@@ -15,6 +15,8 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Stream;
 
 /**
@@ -61,8 +63,36 @@ public final class Scanner {
             unparseable.add(source);
             return;
         }
-        ScanContext ctx = new ScanContext(relative, findings);
-        result.getResult().get().accept(new CryptoUsageVisitor(), ctx);
+
+        List<ScanContext.ScopedFinding> scoped = new ArrayList<>();
+        List<ScanContext.Signal> signals = new ArrayList<>();
+        ScanContext ctx = new ScanContext(relative, scoped, signals);
+        result.getResult().get().accept(new DetectionVisitor(), ctx);
+        merge(scoped, signals, findings);
+    }
+
+    /**
+     * Attach fragility indicators to the crypto findings they qualify: a finding
+     * takes every indicator signalled within its enclosing scope, provided its
+     * category accepts fragility tags (primary crypto usages, not structural findings).
+     */
+    private static void merge(List<ScanContext.ScopedFinding> scoped,
+                              List<ScanContext.Signal> signals, List<Finding> out) {
+        Map<String, Set<String>> byScope = new LinkedHashMap<>();
+        for (ScanContext.Signal signal : signals) {
+            byScope.computeIfAbsent(signal.scopeKey(), k -> new TreeSet<>()).add(signal.indicator());
+        }
+        for (ScanContext.ScopedFinding sf : scoped) {
+            Finding finding = sf.finding();
+            Set<String> inScope = byScope.get(sf.scopeKey());
+            if (finding.category().acceptsFragilityTags() && inScope != null && !inScope.isEmpty()) {
+                Set<String> merged = new TreeSet<>(finding.fragility());
+                merged.addAll(inScope);
+                out.add(finding.withFragility(List.copyOf(merged)));
+            } else {
+                out.add(finding);
+            }
+        }
     }
 
     private static int nonBlankLines(Path source) throws IOException {

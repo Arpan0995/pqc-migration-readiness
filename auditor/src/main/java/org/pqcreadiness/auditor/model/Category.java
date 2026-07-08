@@ -45,6 +45,17 @@ public enum Category {
         return baseWeight > 0;
     }
 
+    /**
+     * Whether co-located fragility indicators (F1/F3/F6/...) should be attached to
+     * findings in this category as scoring multipliers. Only primary crypto usages
+     * qualify; structural findings that are themselves a fragility signal
+     * ({@link #TYPE_COUPLING}, {@link #TLS_CONFIG}) do not, to avoid double counting.
+     */
+    public boolean acceptsFragilityTags() {
+        return this == KEY_ESTABLISHMENT || this == SIGNATURE
+                || this == KEYGEN || this == JOSE;
+    }
+
     /** Urgency axis, kept orthogonal to difficulty so score validation stays clean. */
     public enum UrgencyClass {
         /** Harvest-now-decrypt-later: urgent now. */
