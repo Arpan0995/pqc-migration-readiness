@@ -1,0 +1,12 @@
+[submodule "case-studies/jjwt/repo"]
+	path = case-studies/jjwt/repo
+	url = https://github.com/jwtk/jjwt.git
+[submodule "case-studies/mina-sshd/repo"]
+	path = case-studies/mina-sshd/repo
+	url = https://github.com/apache/mina-sshd.git
+[submodule "case-studies/californium/repo"]
+	path = case-studies/californium/repo
+	url = https://github.com/eclipse-californium/californium.git
+[submodule "case-studies/shiro/repo"]
+	path = case-studies/shiro/repo
+	url = https://github.com/apache/shiro.git

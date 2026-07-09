@@ -11,19 +11,25 @@ two phases (see [`docs/research/03-difficulty-scoring-model.md` §8](../docs/res
   validate the score against measured effort — see
   [`docs/research/04-case-study-plan.md`](../docs/research/04-case-study-plan.md).
 
-This directory is currently a stub. Case-study codebases are added as git
-submodules (`git submodule add <repo-url> case-studies/<name>`), pinned to a
-specific commit, so the exact code a report describes is always reproducible
-— even though Phase 1 doesn't modify that code at all.
+Case-study codebases are added as git submodules (`git submodule add <repo-url>
+case-studies/<name>/repo`), pinned to a specific commit, so the exact code a
+report describes is always reproducible — even though Phase 1 doesn't modify that
+code at all. (The submodule lives in `repo/`, not `target/`, because the standard
+Java `.gitignore` excludes `target/`.)
 
-Planned structure:
+Structure (populated in Phase 1):
 
 ```
 case-studies/
-├── pre-scan.md                        (candidate shortlist + selection rationale)
+├── pre-scan.md                        (selection rationale + pinned commits)
+├── phase1-findings.md                 (cross-repo estimation synthesis)
 └── <codebase-name>/
-    ├── target/                        (git submodule, pinned to a specific commit)
+    ├── repo/                          (git submodule, pinned to a specific commit)
     ├── readiness-report.json          (Phase 1: auditor output)
     ├── readiness-report.md            (Phase 1: auditor output)
     └── effort-log.md                  (Phase 2 only, once that phase starts)
 ```
+
+Current case studies: **jjwt**, **mina-sshd**, **californium**, **shiro** — see
+[`pre-scan.md`](pre-scan.md) for pins and [`phase1-findings.md`](phase1-findings.md)
+for the analysis.

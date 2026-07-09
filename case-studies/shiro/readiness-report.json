@@ -1,0 +1,10 @@
+{
+  "codebase" : "shiro-shiro-root-2.2.1",
+  "auditorVersion" : "0.1.0-SNAPSHOT",
+  "scoreModel" : "v0",
+  "generatedAt" : "2026-07-09T05:08:34.496600Z",
+  "totalFindings" : 0,
+  "filesScanned" : 790,
+  "filesSkipped" : 0,
+  "modules" : [ ]
+}

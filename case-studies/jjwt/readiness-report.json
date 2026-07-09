@@ -1,0 +1,2273 @@
+{
+  "codebase" : "jjwt-0.13.0",
+  "auditorVersion" : "0.1.0-SNAPSHOT",
+  "scoreModel" : "v0",
+  "generatedAt" : "2026-07-09T05:03:48.199993Z",
+  "totalFindings" : 193,
+  "filesScanned" : 408,
+  "filesSkipped" : 0,
+  "modules" : [ {
+    "name" : "impl",
+    "loc" : 20389,
+    "score" : 213.72,
+    "tier" : "CRITICAL",
+    "urgency" : 300.0,
+    "baselineCount" : 0,
+    "files" : [ {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+      "score" : 31.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 47,
+        "column" : 61,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 56,
+        "column" : 87,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 59,
+        "column" : 21,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 66,
+        "column" : 47,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 75,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 76,
+        "column" : 22,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 74,
+        "column" : 49,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 86,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 90,
+        "column" : 33,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 94,
+        "column" : 29,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 92,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 90,
+        "column" : 85,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 85,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 85,
+        "column" : 56,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 106,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 107,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 111,
+        "column" : 48,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 123,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 132,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 133,
+        "column" : 38,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateCrtKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 133,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateCrtKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateCrtKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 104,
+        "column" : 57,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 166,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 168,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 211,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 158,
+        "column" : 60,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 221,
+        "column" : 25,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 220,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 218,
+        "column" : 65,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 217,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPrivateJwkFactory.java",
+        "line" : 217,
+        "column" : 57,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+      "score" : 24.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 63,
+        "column" : 36,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 68,
+        "column" : 37,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 73,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 78,
+        "column" : 36,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 90,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 92,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 93,
+        "column" : 62,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 91,
+        "column" : 62,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 107,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 109,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 110,
+        "column" : 60,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 108,
+        "column" : 60,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 145,
+        "column" : 55,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 145,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 154,
+        "column" : 54,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 154,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 181,
+        "column" : 50,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 181,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 182,
+        "column" : 52,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 182,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 188,
+        "column" : 49,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 188,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 189,
+        "column" : 51,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultDynamicJwkBuilder.java",
+        "line" : 189,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+      "score" : 22.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 36,
+        "column" : 56,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 38,
+        "column" : 89,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 44,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 54,
+        "column" : 17,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 53,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 58,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 59,
+        "column" : 33,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 61,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 59,
+        "column" : 84,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 57,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 57,
+        "column" : 57,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 76,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 77,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 81,
+        "column" : 47,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 93,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 74,
+        "column" : 56,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 116,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 124,
+        "column" : 25,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 123,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 121,
+        "column" : 77,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 121,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPrivateJwkFactory.java",
+        "line" : 107,
+        "column" : 65,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+      "score" : 16.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 180,
+        "column" : 45,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 180,
+        "column" : 59,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 183,
+        "column" : 47,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 188,
+        "column" : 69,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 194,
+        "column" : 45,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 194,
+        "column" : 58,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 196,
+        "column" : 46,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 201,
+        "column" : 68,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 222,
+        "column" : 46,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 222,
+        "column" : 61,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 224,
+        "column" : 48,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 228,
+        "column" : 78,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 234,
+        "column" : 46,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 234,
+        "column" : 60,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 236,
+        "column" : 47,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractAsymmetricJwkBuilder.java",
+        "line" : 240,
+        "column" : 76,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+      "score" : 11.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 63,
+        "column" : 41,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 78,
+        "column" : 30,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 81,
+        "column" : 24,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 81,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 88,
+        "column" : 45,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 89,
+        "column" : 32,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 89,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 98,
+        "column" : 42,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 131,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 132,
+        "column" : 32,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ECCurve.java",
+        "line" : 132,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+      "score" : 9.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 34,
+        "column" : 55,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 41,
+        "column" : 15,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 70,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 68,
+        "column" : 55,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 113,
+        "column" : 25,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 112,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 110,
+        "column" : 76,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 110,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcPublicJwkFactory.java",
+        "line" : 94,
+        "column" : 64,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+      "score" : 9.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 28,
+        "column" : 60,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 33,
+        "column" : 47,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 38,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 37,
+        "column" : 56,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 54,
+        "column" : 25,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 53,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 51,
+        "column" : 77,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 51,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/RsaPublicJwkFactory.java",
+        "line" : 45,
+        "column" : 59,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+      "score" : 6.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 128,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 131,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 132,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 132,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 129,
+        "column" : 30,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeysBridge.java",
+        "line" : 129,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPrivateJwk.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPrivateJwk.java",
+        "line" : 32,
+        "column" : 54,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPrivateJwk.java",
+        "line" : 32,
+        "column" : 68,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPrivateJwk.java",
+        "line" : 40,
+        "column" : 36,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPrivateJwk.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPrivateJwk.java",
+        "line" : 35,
+        "column" : 55,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPrivateJwk.java",
+        "line" : 35,
+        "column" : 70,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPrivateJwk.java",
+        "line" : 54,
+        "column" : 37,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcSignatureAlgorithm.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcSignatureAlgorithm.java",
+        "line" : 176,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcSignatureAlgorithm.java",
+        "line" : 177,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcSignatureAlgorithm.java",
+        "line" : 177,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/ProvidedPrivateKeyBuilder.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ProvidedPrivateKeyBuilder.java",
+        "line" : 50,
+        "column" : 30,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ProvidedPrivateKeyBuilder.java",
+        "line" : 51,
+        "column" : 43,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/ProvidedPrivateKeyBuilder.java",
+        "line" : 52,
+        "column" : 43,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPublicJwk.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPublicJwk.java",
+        "line" : 30,
+        "column" : 52,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultEcPublicJwk.java",
+        "line" : 44,
+        "column" : 35,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPublicJwk.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPublicJwk.java",
+        "line" : 30,
+        "column" : 53,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/DefaultRsaPublicJwk.java",
+        "line" : 40,
+        "column" : 36,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcdhKeyAlgorithm.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcdhKeyAlgorithm.java",
+        "line" : 154,
+        "column" : 52,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/EcdhKeyAlgorithm.java",
+        "line" : 152,
+        "column" : 72,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeyPairs.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeyPairs.java",
+        "line" : 33,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/KeyPairs.java",
+        "line" : 35,
+        "column" : 20,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractEcJwkFactory.java",
+      "score" : 1.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/AbstractEcJwkFactory.java",
+        "line" : 31,
+        "column" : 53,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "impl/src/main/java/io/jsonwebtoken/impl/security/PrivateECKey.java",
+      "score" : 1.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "impl/src/main/java/io/jsonwebtoken/impl/security/PrivateECKey.java",
+        "line" : 28,
+        "column" : 50,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    } ]
+  }, {
+    "name" : "api",
+    "loc" : 17937,
+    "score" : 41.72,
+    "tier" : "HIGH",
+    "urgency" : 62.0,
+    "baselineCount" : 0,
+    "files" : [ {
+      "path" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+      "score" : 13.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 424,
+        "column" : 38,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 429,
+        "column" : 34,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 429,
+        "column" : 17,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 403,
+        "column" : 38,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 408,
+        "column" : 32,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 408,
+        "column" : 17,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 568,
+        "column" : 63,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 568,
+        "column" : 87,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 594,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 596,
+        "column" : 30,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 596,
+        "column" : 13,
+        "api" : "key-type",
+        "algorithm" : "RSAKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 620,
+        "column" : 24,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java",
+        "line" : 620,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/DynamicJwkBuilder.java",
+      "score" : 4.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/DynamicJwkBuilder.java",
+        "line" : 96,
+        "column" : 29,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/DynamicJwkBuilder.java",
+        "line" : 109,
+        "column" : 30,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/DynamicJwkBuilder.java",
+        "line" : 117,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/DynamicJwkBuilder.java",
+        "line" : 130,
+        "column" : 29,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwk.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwk.java",
+        "line" : 42,
+        "column" : 50,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwk.java",
+        "line" : 42,
+        "column" : 64,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwkBuilder.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwkBuilder.java",
+        "line" : 26,
+        "column" : 64,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPrivateJwkBuilder.java",
+        "line" : 26,
+        "column" : 78,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/EcPublicJwkBuilder.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPublicJwkBuilder.java",
+        "line" : 26,
+        "column" : 62,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPublicJwkBuilder.java",
+        "line" : 26,
+        "column" : 75,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwk.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwk.java",
+        "line" : 42,
+        "column" : 51,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwk.java",
+        "line" : 42,
+        "column" : 66,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwkBuilder.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwkBuilder.java",
+        "line" : 26,
+        "column" : 65,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPrivateJwkBuilder.java",
+        "line" : 26,
+        "column" : 80,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/RsaPublicJwkBuilder.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPublicJwkBuilder.java",
+        "line" : 26,
+        "column" : 63,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPublicJwkBuilder.java",
+        "line" : 26,
+        "column" : 77,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/EcPublicJwk.java",
+      "score" : 1.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/EcPublicJwk.java",
+        "line" : 41,
+        "column" : 48,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "api/src/main/java/io/jsonwebtoken/security/RsaPublicJwk.java",
+      "score" : 1.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "api/src/main/java/io/jsonwebtoken/security/RsaPublicJwk.java",
+        "line" : 41,
+        "column" : 49,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    } ]
+  }, {
+    "name" : "tdjar",
+    "loc" : 375,
+    "score" : 13.2,
+    "tier" : "MEDIUM",
+    "urgency" : 24.0,
+    "baselineCount" : 0,
+    "files" : [ {
+      "path" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+      "score" : 12.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 352,
+        "column" : 29,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 352,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 368,
+        "column" : 32,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 368,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 369,
+        "column" : 34,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPrivateKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 369,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 388,
+        "column" : 28,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 388,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 404,
+        "column" : 31,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 404,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 405,
+        "column" : 33,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPrivateKey",
+        "file" : "tdjar/src/test/java/io/jsonwebtoken/all/JavaReadmeTest.java",
+        "line" : 405,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPrivateKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPrivateKey"
+      } ]
+    } ]
+  } ]
+}
