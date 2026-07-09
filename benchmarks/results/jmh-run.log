@@ -1,0 +1,2435 @@
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate
+# Parameters: (suiteId = KE-CLASSICAL-X25519)
+
+# Run progress: 0.00% complete, ETA 00:06:40
+# Fork: 1 of 2
+# Warmup Iteration   1: 67.564 us/op
+# Warmup Iteration   2: 65.663 us/op
+# Warmup Iteration   3: 65.597 us/op
+# Warmup Iteration   4: 73.661 us/op
+# Warmup Iteration   5: 78.109 us/op
+Iteration   1: 66.073 us/op
+                 gc.alloc.rate:      68.346 MB/sec
+                 gc.alloc.rate.norm: 4736.477 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 61.897 us/op
+                 gc.alloc.rate:      72.964 MB/sec
+                 gc.alloc.rate.norm: 4736.432 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 61.488 us/op
+                 gc.alloc.rate:      73.452 MB/sec
+                 gc.alloc.rate.norm: 4736.443 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 62.721 us/op
+                 gc.alloc.rate:      72.009 MB/sec
+                 gc.alloc.rate.norm: 4736.453 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   5: 61.946 us/op
+                 gc.alloc.rate:      72.893 MB/sec
+                 gc.alloc.rate.norm: 4736.424 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 2.50% complete, ETA 00:06:53
+# Fork: 2 of 2
+# Warmup Iteration   1: 62.865 us/op
+# Warmup Iteration   2: 60.593 us/op
+# Warmup Iteration   3: 60.174 us/op
+# Warmup Iteration   4: 61.558 us/op
+# Warmup Iteration   5: 61.204 us/op
+Iteration   1: 61.969 us/op
+                 gc.alloc.rate:      72.883 MB/sec
+                 gc.alloc.rate.norm: 4736.447 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   2: 61.185 us/op
+                 gc.alloc.rate:      73.846 MB/sec
+                 gc.alloc.rate.norm: 4738.449 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 62.159 us/op
+                 gc.alloc.rate:      72.659 MB/sec
+                 gc.alloc.rate.norm: 4736.448 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 61.703 us/op
+                 gc.alloc.rate:      73.197 MB/sec
+                 gc.alloc.rate.norm: 4736.445 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 61.954 us/op
+                 gc.alloc.rate:      72.894 MB/sec
+                 gc.alloc.rate.norm: 4736.447 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate":
+  62.309 ±(99.9%) 2.090 us/op [Average]
+  (min, avg, max) = (61.185, 62.309, 66.073), stdev = 1.383
+  CI (99.9%): [60.219, 64.400] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate":
+  72.514 ±(99.9%) 2.331 MB/sec [Average]
+  (min, avg, max) = (68.346, 72.514, 73.846), stdev = 1.542
+  CI (99.9%): [70.183, 74.845] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm":
+  4736.647 ±(99.9%) 0.958 B/op [Average]
+  (min, avg, max) = (4736.424, 4736.647, 4738.449), stdev = 0.634
+  CI (99.9%): [4735.689, 4737.605] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.count":
+  8.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.800, 1.000), stdev = 0.422
+  CI (99.9%): [8.000, 8.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.time":
+  14.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.400, 4.000), stdev = 1.174
+  CI (99.9%): [14.000, 14.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate
+# Parameters: (suiteId = KE-HYBRID-X25519-MLKEM768)
+
+# Run progress: 5.00% complete, ETA 00:06:42
+# Fork: 1 of 2
+# Warmup Iteration   1: 111.360 us/op
+# Warmup Iteration   2: 102.942 us/op
+# Warmup Iteration   3: 101.487 us/op
+# Warmup Iteration   4: 102.146 us/op
+# Warmup Iteration   5: 101.175 us/op
+Iteration   1: 101.496 us/op
+                 gc.alloc.rate:      325.155 MB/sec
+                 gc.alloc.rate.norm: 34608.885 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 101.028 us/op
+                 gc.alloc.rate:      326.664 MB/sec
+                 gc.alloc.rate.norm: 34608.927 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 101.329 us/op
+                 gc.alloc.rate:      325.665 MB/sec
+                 gc.alloc.rate.norm: 34608.884 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 101.441 us/op
+                 gc.alloc.rate:      325.332 MB/sec
+                 gc.alloc.rate.norm: 34608.931 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 101.110 us/op
+                 gc.alloc.rate:      326.386 MB/sec
+                 gc.alloc.rate.norm: 34608.882 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 7.50% complete, ETA 00:06:30
+# Fork: 2 of 2
+# Warmup Iteration   1: 110.990 us/op
+# Warmup Iteration   2: 102.337 us/op
+# Warmup Iteration   3: 100.781 us/op
+# Warmup Iteration   4: 101.187 us/op
+# Warmup Iteration   5: 100.906 us/op
+Iteration   1: 101.600 us/op
+                 gc.alloc.rate:      324.598 MB/sec
+                 gc.alloc.rate.norm: 34584.886 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 101.468 us/op
+                 gc.alloc.rate:      325.023 MB/sec
+                 gc.alloc.rate.norm: 34584.928 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 100.630 us/op
+                 gc.alloc.rate:      327.692 MB/sec
+                 gc.alloc.rate.norm: 34584.881 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 100.602 us/op
+                 gc.alloc.rate:      327.816 MB/sec
+                 gc.alloc.rate.norm: 34584.923 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 101.028 us/op
+                 gc.alloc.rate:      326.423 MB/sec
+                 gc.alloc.rate.norm: 34584.881 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate":
+  101.173 ±(99.9%) 0.537 us/op [Average]
+  (min, avg, max) = (100.602, 101.173, 101.600), stdev = 0.355
+  CI (99.9%): [100.636, 101.711] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate":
+  326.076 ±(99.9%) 1.676 MB/sec [Average]
+  (min, avg, max) = (324.598, 326.076, 327.816), stdev = 1.109
+  CI (99.9%): [324.399, 327.752] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm":
+  34596.901 ±(99.9%) 19.125 B/op [Average]
+  (min, avg, max) = (34584.881, 34596.901, 34608.931), stdev = 12.650
+  CI (99.9%): [34577.776, 34616.026] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.count":
+  44.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (4.000, 4.400, 5.000), stdev = 0.516
+  CI (99.9%): [44.000, 44.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.time":
+  20.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 2.000, 2.000), stdev = 0.001
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate
+# Parameters: (suiteId = KE-PQC-MLKEM768)
+
+# Run progress: 10.00% complete, ETA 00:06:19
+# Fork: 1 of 2
+# Warmup Iteration   1: 48.171 us/op
+# Warmup Iteration   2: 43.862 us/op
+# Warmup Iteration   3: 42.970 us/op
+# Warmup Iteration   4: 43.007 us/op
+# Warmup Iteration   5: 45.415 us/op
+Iteration   1: 42.867 us/op
+                 gc.alloc.rate:      722.694 MB/sec
+                 gc.alloc.rate.norm: 32488.342 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 42.832 us/op
+                 gc.alloc.rate:      723.280 MB/sec
+                 gc.alloc.rate.norm: 32488.335 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 42.732 us/op
+                 gc.alloc.rate:      724.918 MB/sec
+                 gc.alloc.rate.norm: 32488.340 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 42.856 us/op
+                 gc.alloc.rate:      722.882 MB/sec
+                 gc.alloc.rate.norm: 32488.334 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 43.273 us/op
+                 gc.alloc.rate:      715.868 MB/sec
+                 gc.alloc.rate.norm: 32488.337 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 12.50% complete, ETA 00:06:08
+# Fork: 2 of 2
+# Warmup Iteration   1: 46.672 us/op
+# Warmup Iteration   2: 42.620 us/op
+# Warmup Iteration   3: 42.583 us/op
+# Warmup Iteration   4: 42.007 us/op
+# Warmup Iteration   5: 41.933 us/op
+Iteration   1: 41.971 us/op
+                 gc.alloc.rate:      736.832 MB/sec
+                 gc.alloc.rate.norm: 32432.327 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 41.936 us/op
+                 gc.alloc.rate:      737.381 MB/sec
+                 gc.alloc.rate.norm: 32432.336 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 41.762 us/op
+                 gc.alloc.rate:      740.457 MB/sec
+                 gc.alloc.rate.norm: 32432.326 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 41.906 us/op
+                 gc.alloc.rate:      737.984 MB/sec
+                 gc.alloc.rate.norm: 32432.333 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 41.976 us/op
+                 gc.alloc.rate:      736.715 MB/sec
+                 gc.alloc.rate.norm: 32432.328 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate":
+  42.411 ±(99.9%) 0.830 us/op [Average]
+  (min, avg, max) = (41.762, 42.411, 43.273), stdev = 0.549
+  CI (99.9%): [41.581, 43.241] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate":
+  729.901 ±(99.9%) 13.276 MB/sec [Average]
+  (min, avg, max) = (715.868, 729.901, 740.457), stdev = 8.781
+  CI (99.9%): [716.625, 743.177] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm":
+  32460.334 ±(99.9%) 44.628 B/op [Average]
+  (min, avg, max) = (32432.326, 32460.334, 32488.342), stdev = 29.519
+  CI (99.9%): [32415.706, 32504.962] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.count":
+  64.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (6.000, 6.400, 7.000), stdev = 0.516
+  CI (99.9%): [64.000, 64.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.decapsulate:gc.time":
+  28.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 2.800, 4.000), stdev = 0.632
+  CI (99.9%): [28.000, 28.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate
+# Parameters: (suiteId = KE-CLASSICAL-X25519)
+
+# Run progress: 15.00% complete, ETA 00:05:57
+# Fork: 1 of 2
+# Warmup Iteration   1: 108.828 us/op
+# Warmup Iteration   2: 106.078 us/op
+# Warmup Iteration   3: 107.804 us/op
+# Warmup Iteration   4: 105.223 us/op
+# Warmup Iteration   5: 108.150 us/op
+Iteration   1: 106.549 us/op
+                 gc.alloc.rate:      74.898 MB/sec
+                 gc.alloc.rate.norm: 8368.988 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 108.825 us/op
+                 gc.alloc.rate:      73.331 MB/sec
+                 gc.alloc.rate.norm: 8368.782 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 106.949 us/op
+                 gc.alloc.rate:      74.613 MB/sec
+                 gc.alloc.rate.norm: 8368.772 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 106.719 us/op
+                 gc.alloc.rate:      74.776 MB/sec
+                 gc.alloc.rate.norm: 8368.770 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 108.430 us/op
+                 gc.alloc.rate:      73.595 MB/sec
+                 gc.alloc.rate.norm: 8368.783 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 17.50% complete, ETA 00:05:46
+# Fork: 2 of 2
+# Warmup Iteration   1: 108.195 us/op
+# Warmup Iteration   2: 106.461 us/op
+# Warmup Iteration   3: 106.949 us/op
+# Warmup Iteration   4: 106.935 us/op
+# Warmup Iteration   5: 108.006 us/op
+Iteration   1: 107.594 us/op
+                 gc.alloc.rate:      74.950 MB/sec
+                 gc.alloc.rate.norm: 8456.996 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 107.040 us/op
+                 gc.alloc.rate:      75.336 MB/sec
+                 gc.alloc.rate.norm: 8456.772 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 107.123 us/op
+                 gc.alloc.rate:      75.268 MB/sec
+                 gc.alloc.rate.norm: 8456.773 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 108.616 us/op
+                 gc.alloc.rate:      74.241 MB/sec
+                 gc.alloc.rate.norm: 8456.786 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 111.894 us/op
+                 gc.alloc.rate:      72.061 MB/sec
+                 gc.alloc.rate.norm: 8456.804 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate":
+  107.974 ±(99.9%) 2.423 us/op [Average]
+  (min, avg, max) = (106.549, 107.974, 111.894), stdev = 1.602
+  CI (99.9%): [105.551, 110.396] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate":
+  74.307 ±(99.9%) 1.559 MB/sec [Average]
+  (min, avg, max) = (72.061, 74.307, 75.336), stdev = 1.031
+  CI (99.9%): [72.748, 75.866] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm":
+  8412.823 ±(99.9%) 70.126 B/op [Average]
+  (min, avg, max) = (8368.770, 8412.823, 8456.996), stdev = 46.384
+  CI (99.9%): [8342.697, 8482.948] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.count":
+  10.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (1.000, 1.000, 1.000), stdev = 0.001
+  CI (99.9%): [10.000, 10.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.time":
+  18.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (1.000, 1.800, 2.000), stdev = 0.422
+  CI (99.9%): [18.000, 18.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate
+# Parameters: (suiteId = KE-HYBRID-X25519-MLKEM768)
+
+# Run progress: 20.00% complete, ETA 00:05:36
+# Fork: 1 of 2
+# Warmup Iteration   1: 154.604 us/op
+# Warmup Iteration   2: 139.868 us/op
+# Warmup Iteration   3: 137.839 us/op
+# Warmup Iteration   4: 138.039 us/op
+# Warmup Iteration   5: 141.587 us/op
+Iteration   1: 139.058 us/op
+                 gc.alloc.rate:      251.965 MB/sec
+                 gc.alloc.rate.norm: 36745.211 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 140.832 us/op
+                 gc.alloc.rate:      248.774 MB/sec
+                 gc.alloc.rate.norm: 36745.168 B/op
+                 gc.count:           3.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 138.354 us/op
+                 gc.alloc.rate:      253.241 MB/sec
+                 gc.alloc.rate.norm: 36745.142 B/op
+                 gc.count:           3.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 139.693 us/op
+                 gc.alloc.rate:      250.833 MB/sec
+                 gc.alloc.rate.norm: 36745.790 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 138.410 us/op
+                 gc.alloc.rate:      253.149 MB/sec
+                 gc.alloc.rate.norm: 36745.148 B/op
+                 gc.count:           3.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 22.50% complete, ETA 00:05:25
+# Fork: 2 of 2
+# Warmup Iteration   1: 152.226 us/op
+# Warmup Iteration   2: 137.688 us/op
+# Warmup Iteration   3: 137.472 us/op
+# Warmup Iteration   4: 137.239 us/op
+# Warmup Iteration   5: 137.938 us/op
+Iteration   1: 135.695 us/op
+                 gc.alloc.rate:      257.762 MB/sec
+                 gc.alloc.rate.norm: 36681.182 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 137.061 us/op
+                 gc.alloc.rate:      255.183 MB/sec
+                 gc.alloc.rate.norm: 36681.136 B/op
+                 gc.count:           3.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 135.842 us/op
+                 gc.alloc.rate:      257.477 MB/sec
+                 gc.alloc.rate.norm: 36681.181 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 136.382 us/op
+                 gc.alloc.rate:      256.471 MB/sec
+                 gc.alloc.rate.norm: 36681.686 B/op
+                 gc.count:           3.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 140.688 us/op
+                 gc.alloc.rate:      248.614 MB/sec
+                 gc.alloc.rate.norm: 36681.228 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate":
+  138.202 ±(99.9%) 2.877 us/op [Average]
+  (min, avg, max) = (135.695, 138.202, 140.832), stdev = 1.903
+  CI (99.9%): [135.325, 141.078] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate":
+  253.347 ±(99.9%) 5.072 MB/sec [Average]
+  (min, avg, max) = (248.614, 253.347, 257.762), stdev = 3.355
+  CI (99.9%): [248.275, 258.418] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm":
+  36713.287 ±(99.9%) 51.005 B/op [Average]
+  (min, avg, max) = (36681.136, 36713.287, 36745.790), stdev = 33.737
+  CI (99.9%): [36662.282, 36764.292] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.count":
+  35.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (3.000, 3.500, 4.000), stdev = 0.527
+  CI (99.9%): [35.000, 35.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.time":
+  18.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (1.000, 1.800, 2.000), stdev = 0.422
+  CI (99.9%): [18.000, 18.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate
+# Parameters: (suiteId = KE-PQC-MLKEM768)
+
+# Run progress: 25.00% complete, ETA 00:05:14
+# Fork: 1 of 2
+# Warmup Iteration   1: 39.760 us/op
+# Warmup Iteration   2: 35.888 us/op
+# Warmup Iteration   3: 35.646 us/op
+# Warmup Iteration   4: 35.541 us/op
+# Warmup Iteration   5: 35.895 us/op
+Iteration   1: 35.376 us/op
+                 gc.alloc.rate:      836.048 MB/sec
+                 gc.alloc.rate.norm: 31016.288 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 35.337 us/op
+                 gc.alloc.rate:      836.948 MB/sec
+                 gc.alloc.rate.norm: 31016.283 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 35.232 us/op
+                 gc.alloc.rate:      839.446 MB/sec
+                 gc.alloc.rate.norm: 31016.285 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 35.524 us/op
+                 gc.alloc.rate:      832.553 MB/sec
+                 gc.alloc.rate.norm: 31016.573 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 35.743 us/op
+                 gc.alloc.rate:      827.457 MB/sec
+                 gc.alloc.rate.norm: 31016.290 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+
+# Run progress: 27.50% complete, ETA 00:05:04
+# Fork: 2 of 2
+# Warmup Iteration   1: 40.725 us/op
+# Warmup Iteration   2: 37.031 us/op
+# Warmup Iteration   3: 36.800 us/op
+# Warmup Iteration   4: 36.543 us/op
+# Warmup Iteration   5: 36.606 us/op
+Iteration   1: 36.687 us/op
+                 gc.alloc.rate:      807.847 MB/sec
+                 gc.alloc.rate.norm: 31080.292 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 36.563 us/op
+                 gc.alloc.rate:      810.554 MB/sec
+                 gc.alloc.rate.norm: 31080.293 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 36.625 us/op
+                 gc.alloc.rate:      809.118 MB/sec
+                 gc.alloc.rate.norm: 31080.291 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 36.728 us/op
+                 gc.alloc.rate:      806.929 MB/sec
+                 gc.alloc.rate.norm: 31080.297 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 37.074 us/op
+                 gc.alloc.rate:      799.387 MB/sec
+                 gc.alloc.rate.norm: 31080.601 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate":
+  36.089 ±(99.9%) 1.068 us/op [Average]
+  (min, avg, max) = (35.232, 36.089, 37.074), stdev = 0.707
+  CI (99.9%): [35.021, 37.157] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate":
+  820.629 ±(99.9%) 23.002 MB/sec [Average]
+  (min, avg, max) = (799.387, 820.629, 839.446), stdev = 15.214
+  CI (99.9%): [797.627, 843.631] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm":
+  31048.349 ±(99.9%) 51.006 B/op [Average]
+  (min, avg, max) = (31016.283, 31048.349, 31080.601), stdev = 33.737
+  CI (99.9%): [30997.344, 31099.355] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.count":
+  74.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (7.000, 7.400, 8.000), stdev = 0.516
+  CI (99.9%): [74.000, 74.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.encapsulate:gc.time":
+  32.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.200, 4.000), stdev = 0.422
+  CI (99.9%): [32.000, 32.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen
+# Parameters: (suiteId = KE-CLASSICAL-X25519)
+
+# Run progress: 30.00% complete, ETA 00:04:53
+# Fork: 1 of 2
+# Warmup Iteration   1: 43.749 us/op
+# Warmup Iteration   2: 42.825 us/op
+# Warmup Iteration   3: 42.884 us/op
+# Warmup Iteration   4: 43.594 us/op
+# Warmup Iteration   5: 44.002 us/op
+Iteration   1: 43.786 us/op
+                 gc.alloc.rate:      81.715 MB/sec
+                 gc.alloc.rate.norm: 3752.488 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 43.613 us/op
+                 gc.alloc.rate:      82.039 MB/sec
+                 gc.alloc.rate.norm: 3752.309 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 42.617 us/op
+                 gc.alloc.rate:      83.954 MB/sec
+                 gc.alloc.rate.norm: 3752.300 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 43.315 us/op
+                 gc.alloc.rate:      82.602 MB/sec
+                 gc.alloc.rate.norm: 3752.307 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 42.747 us/op
+                 gc.alloc.rate:      83.702 MB/sec
+                 gc.alloc.rate.norm: 3752.310 B/op
+                 gc.count:           2.000 counts
+                 gc.time:            3.000 ms
+
+
+# Run progress: 32.50% complete, ETA 00:04:43
+# Fork: 2 of 2
+# Warmup Iteration   1: 43.434 us/op
+# Warmup Iteration   2: 42.968 us/op
+# Warmup Iteration   3: 43.552 us/op
+# Warmup Iteration   4: 43.636 us/op
+# Warmup Iteration   5: 43.783 us/op
+Iteration   1: 44.618 us/op
+                 gc.alloc.rate:      78.828 MB/sec
+                 gc.alloc.rate.norm: 3688.497 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 43.926 us/op
+                 gc.alloc.rate:      80.061 MB/sec
+                 gc.alloc.rate.norm: 3688.309 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 43.824 us/op
+                 gc.alloc.rate:      80.251 MB/sec
+                 gc.alloc.rate.norm: 3688.309 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 43.469 us/op
+                 gc.alloc.rate:      80.898 MB/sec
+                 gc.alloc.rate.norm: 3688.305 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 44.026 us/op
+                 gc.alloc.rate:      79.882 MB/sec
+                 gc.alloc.rate.norm: 3688.310 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen":
+  43.594 ±(99.9%) 0.901 us/op [Average]
+  (min, avg, max) = (42.617, 43.594, 44.618), stdev = 0.596
+  CI (99.9%): [42.693, 44.496] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate":
+  81.393 ±(99.9%) 2.573 MB/sec [Average]
+  (min, avg, max) = (78.828, 81.393, 83.954), stdev = 1.702
+  CI (99.9%): [78.821, 83.966] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm":
+  3720.345 ±(99.9%) 50.994 B/op [Average]
+  (min, avg, max) = (3688.305, 3720.345, 3752.488), stdev = 33.729
+  CI (99.9%): [3669.351, 3771.338] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.count":
+  11.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (1.000, 1.100, 2.000), stdev = 0.316
+  CI (99.9%): [11.000, 11.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.time":
+  19.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (1.000, 1.900, 3.000), stdev = 0.568
+  CI (99.9%): [19.000, 19.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen
+# Parameters: (suiteId = KE-HYBRID-X25519-MLKEM768)
+
+# Run progress: 35.00% complete, ETA 00:04:32
+# Fork: 1 of 2
+# Warmup Iteration   1: 156.062 us/op
+# Warmup Iteration   2: 114.911 us/op
+# Warmup Iteration   3: 103.337 us/op
+# Warmup Iteration   4: 99.356 us/op
+# Warmup Iteration   5: 100.669 us/op
+Iteration   1: 102.387 us/op
+                 gc.alloc.rate:      438.413 MB/sec
+                 gc.alloc.rate.norm: 47072.941 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 102.889 us/op
+                 gc.alloc.rate:      436.232 MB/sec
+                 gc.alloc.rate.norm: 47073.114 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 101.562 us/op
+                 gc.alloc.rate:      441.947 MB/sec
+                 gc.alloc.rate.norm: 47072.934 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 100.760 us/op
+                 gc.alloc.rate:      445.497 MB/sec
+                 gc.alloc.rate.norm: 47072.925 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 101.123 us/op
+                 gc.alloc.rate:      443.882 MB/sec
+                 gc.alloc.rate.norm: 47072.881 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            1.000 ms
+
+
+# Run progress: 37.50% complete, ETA 00:04:22
+# Fork: 2 of 2
+# Warmup Iteration   1: 164.474 us/op
+# Warmup Iteration   2: 121.126 us/op
+# Warmup Iteration   3: 105.415 us/op
+# Warmup Iteration   4: 103.806 us/op
+# Warmup Iteration   5: 102.920 us/op
+Iteration   1: 102.736 us/op
+                 gc.alloc.rate:      436.911 MB/sec
+                 gc.alloc.rate.norm: 47072.900 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 102.625 us/op
+                 gc.alloc.rate:      437.386 MB/sec
+                 gc.alloc.rate.norm: 47073.151 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 103.807 us/op
+                 gc.alloc.rate:      432.387 MB/sec
+                 gc.alloc.rate.norm: 47072.956 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 102.906 us/op
+                 gc.alloc.rate:      436.197 MB/sec
+                 gc.alloc.rate.norm: 47072.902 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   5: 103.224 us/op
+                 gc.alloc.rate:      434.837 MB/sec
+                 gc.alloc.rate.norm: 47072.946 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen":
+  102.402 ±(99.9%) 1.456 us/op [Average]
+  (min, avg, max) = (100.760, 102.402, 103.807), stdev = 0.963
+  CI (99.9%): [100.946, 103.857] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate":
+  438.369 ±(99.9%) 6.267 MB/sec [Average]
+  (min, avg, max) = (432.387, 438.369, 445.497), stdev = 4.145
+  CI (99.9%): [432.102, 444.636] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm":
+  47072.965 ±(99.9%) 0.139 B/op [Average]
+  (min, avg, max) = (47072.881, 47072.965, 47073.151), stdev = 0.092
+  CI (99.9%): [47072.826, 47073.103] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.count":
+  46.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (4.000, 4.600, 5.000), stdev = 0.516
+  CI (99.9%): [46.000, 46.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.time":
+  20.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (1.000, 2.000, 3.000), stdev = 0.471
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen
+# Parameters: (suiteId = KE-PQC-MLKEM768)
+
+# Run progress: 40.00% complete, ETA 00:04:11
+# Fork: 1 of 2
+# Warmup Iteration   1: 88.912 us/op
+# Warmup Iteration   2: 63.411 us/op
+# Warmup Iteration   3: 57.152 us/op
+# Warmup Iteration   4: 55.652 us/op
+# Warmup Iteration   5: 55.657 us/op
+Iteration   1: 55.175 us/op
+                 gc.alloc.rate:      748.691 MB/sec
+                 gc.alloc.rate.norm: 43320.516 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 56.707 us/op
+                 gc.alloc.rate:      728.467 MB/sec
+                 gc.alloc.rate.norm: 43320.535 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 55.384 us/op
+                 gc.alloc.rate:      745.854 MB/sec
+                 gc.alloc.rate.norm: 43320.517 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 55.349 us/op
+                 gc.alloc.rate:      746.340 MB/sec
+                 gc.alloc.rate.norm: 43320.516 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 55.468 us/op
+                 gc.alloc.rate:      744.728 MB/sec
+                 gc.alloc.rate.norm: 43320.517 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 42.50% complete, ETA 00:04:01
+# Fork: 2 of 2
+# Warmup Iteration   1: 84.614 us/op
+# Warmup Iteration   2: 62.253 us/op
+# Warmup Iteration   3: 56.463 us/op
+# Warmup Iteration   4: 55.671 us/op
+# Warmup Iteration   5: 55.512 us/op
+Iteration   1: 55.607 us/op
+                 gc.alloc.rate:      742.818 MB/sec
+                 gc.alloc.rate.norm: 43320.521 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 55.502 us/op
+                 gc.alloc.rate:      744.256 MB/sec
+                 gc.alloc.rate.norm: 43320.523 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 55.665 us/op
+                 gc.alloc.rate:      742.094 MB/sec
+                 gc.alloc.rate.norm: 43320.518 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 55.715 us/op
+                 gc.alloc.rate:      741.439 MB/sec
+                 gc.alloc.rate.norm: 43320.520 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 55.571 us/op
+                 gc.alloc.rate:      743.340 MB/sec
+                 gc.alloc.rate.norm: 43320.518 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen":
+  55.614 ±(99.9%) 0.629 us/op [Average]
+  (min, avg, max) = (55.175, 55.614, 56.707), stdev = 0.416
+  CI (99.9%): [54.985, 56.243] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate":
+  742.803 ±(99.9%) 8.288 MB/sec [Average]
+  (min, avg, max) = (728.467, 742.803, 748.691), stdev = 5.482
+  CI (99.9%): [734.515, 751.091] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm":
+  43320.520 ±(99.9%) 0.009 B/op [Average]
+  (min, avg, max) = (43320.516, 43320.520, 43320.535), stdev = 0.006
+  CI (99.9%): [43320.512, 43320.529] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.count":
+  80.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.000, 8.000), stdev = 0.001
+  CI (99.9%): [80.000, 80.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.KeyEstablishmentBenchmark.keygen:gc.time":
+  36.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.600, 4.000), stdev = 0.516
+  CI (99.9%): [36.000, 36.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate
+# Parameters: (peerScenario = HYBRID_CAPABLE)
+
+# Run progress: 45.00% complete, ETA 00:03:50
+# Fork: 1 of 2
+# Warmup Iteration   1: 7.034 ns/op
+# Warmup Iteration   2: 7.019 ns/op
+# Warmup Iteration   3: 6.357 ns/op
+# Warmup Iteration   4: 6.425 ns/op
+# Warmup Iteration   5: 6.474 ns/op
+Iteration   1: 6.409 ns/op
+                 gc.alloc.rate:      3570.858 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           24.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   2: 6.490 ns/op
+                 gc.alloc.rate:      3526.486 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           24.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   3: 6.471 ns/op
+                 gc.alloc.rate:      3536.663 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           24.000 counts
+                 gc.time:            8.000 ms
+
+Iteration   4: 6.483 ns/op
+                 gc.alloc.rate:      3530.006 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           24.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   5: 6.479 ns/op
+                 gc.alloc.rate:      3532.065 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           24.000 counts
+                 gc.time:            7.000 ms
+
+
+# Run progress: 47.50% complete, ETA 00:03:40
+# Fork: 2 of 2
+# Warmup Iteration   1: 7.808 ns/op
+# Warmup Iteration   2: 7.271 ns/op
+# Warmup Iteration   3: 6.496 ns/op
+# Warmup Iteration   4: 6.460 ns/op
+# Warmup Iteration   5: 6.413 ns/op
+Iteration   1: 6.406 ns/op
+                 gc.alloc.rate:      3572.703 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           25.000 counts
+                 gc.time:            8.000 ms
+
+Iteration   2: 6.425 ns/op
+                 gc.alloc.rate:      3561.937 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           26.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   3: 6.427 ns/op
+                 gc.alloc.rate:      3560.853 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           25.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   4: 6.433 ns/op
+                 gc.alloc.rate:      3557.731 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           26.000 counts
+                 gc.time:            8.000 ms
+
+Iteration   5: 6.400 ns/op
+                 gc.alloc.rate:      3575.887 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           25.000 counts
+                 gc.time:            7.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate":
+  6.442 ±(99.9%) 0.053 ns/op [Average]
+  (min, avg, max) = (6.400, 6.442, 6.490), stdev = 0.035
+  CI (99.9%): [6.389, 6.495] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.alloc.rate":
+  3552.519 ±(99.9%) 29.079 MB/sec [Average]
+  (min, avg, max) = (3526.486, 3552.519, 3575.887), stdev = 19.234
+  CI (99.9%): [3523.440, 3581.597] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.alloc.rate.norm":
+  24.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (24.000, 24.000, 24.000), stdev = 0.001
+  CI (99.9%): [24.000, 24.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.count":
+  247.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (24.000, 24.700, 26.000), stdev = 0.823
+  CI (99.9%): [247.000, 247.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.time":
+  73.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (7.000, 7.300, 8.000), stdev = 0.483
+  CI (99.9%): [73.000, 73.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate
+# Parameters: (peerScenario = CLASSICAL_ONLY)
+
+# Run progress: 50.00% complete, ETA 00:03:29
+# Fork: 1 of 2
+# Warmup Iteration   1: 9.241 ns/op
+# Warmup Iteration   2: 9.429 ns/op
+# Warmup Iteration   3: 9.284 ns/op
+# Warmup Iteration   4: 8.910 ns/op
+# Warmup Iteration   5: 8.925 ns/op
+Iteration   1: 8.908 ns/op
+                 gc.alloc.rate:      2569.137 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   2: 8.915 ns/op
+                 gc.alloc.rate:      2567.040 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   3: 8.984 ns/op
+                 gc.alloc.rate:      2547.176 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 8.900 ns/op
+                 gc.alloc.rate:      2571.455 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   5: 8.926 ns/op
+                 gc.alloc.rate:      2563.879 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           20.000 counts
+                 gc.time:            6.000 ms
+
+
+# Run progress: 52.50% complete, ETA 00:03:18
+# Fork: 2 of 2
+# Warmup Iteration   1: 9.335 ns/op
+# Warmup Iteration   2: 9.062 ns/op
+# Warmup Iteration   3: 9.005 ns/op
+# Warmup Iteration   4: 8.903 ns/op
+# Warmup Iteration   5: 8.915 ns/op
+Iteration   1: 8.909 ns/op
+                 gc.alloc.rate:      2568.896 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   2: 9.047 ns/op
+                 gc.alloc.rate:      2529.514 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 9.086 ns/op
+                 gc.alloc.rate:      2518.650 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   4: 9.103 ns/op
+                 gc.alloc.rate:      2514.070 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   5: 8.993 ns/op
+                 gc.alloc.rate:      2544.758 MB/sec
+                 gc.alloc.rate.norm: 24.000 B/op
+                 gc.count:           19.000 counts
+                 gc.time:            5.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate":
+  8.977 ±(99.9%) 0.118 ns/op [Average]
+  (min, avg, max) = (8.900, 8.977, 9.103), stdev = 0.078
+  CI (99.9%): [8.859, 9.095] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.alloc.rate":
+  2549.458 ±(99.9%) 33.400 MB/sec [Average]
+  (min, avg, max) = (2514.070, 2549.458, 2571.455), stdev = 22.092
+  CI (99.9%): [2516.058, 2582.858] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.alloc.rate.norm":
+  24.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (24.000, 24.000, 24.000), stdev = 0.001
+  CI (99.9%): [24.000, 24.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.count":
+  191.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (19.000, 19.100, 20.000), stdev = 0.316
+  CI (99.9%): [191.000, 191.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.NegotiationBenchmark.negotiate:gc.time":
+  56.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (5.000, 5.600, 6.000), stdev = 0.516
+  CI (99.9%): [56.000, 56.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.keygen
+# Parameters: (suiteId = SIG-CLASSICAL-ECDSAP256)
+
+# Run progress: 55.00% complete, ETA 00:03:08
+# Fork: 1 of 2
+# Warmup Iteration   1: 98.507 us/op
+# Warmup Iteration   2: 78.831 us/op
+# Warmup Iteration   3: 67.676 us/op
+# Warmup Iteration   4: 65.042 us/op
+# Warmup Iteration   5: 63.655 us/op
+Iteration   1: 63.547 us/op
+                 gc.alloc.rate:      786.052 MB/sec
+                 gc.alloc.rate.norm: 52384.840 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 63.741 us/op
+                 gc.alloc.rate:      783.665 MB/sec
+                 gc.alloc.rate.norm: 52385.193 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 64.193 us/op
+                 gc.alloc.rate:      778.138 MB/sec
+                 gc.alloc.rate.norm: 52385.182 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 64.740 us/op
+                 gc.alloc.rate:      771.564 MB/sec
+                 gc.alloc.rate.norm: 52385.543 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 64.283 us/op
+                 gc.alloc.rate:      777.038 MB/sec
+                 gc.alloc.rate.norm: 52384.203 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 57.50% complete, ETA 00:02:57
+# Fork: 2 of 2
+# Warmup Iteration   1: 103.099 us/op
+# Warmup Iteration   2: 91.733 us/op
+# Warmup Iteration   3: 74.979 us/op
+# Warmup Iteration   4: 71.543 us/op
+# Warmup Iteration   5: 71.957 us/op
+Iteration   1: 70.238 us/op
+                 gc.alloc.rate:      711.310 MB/sec
+                 gc.alloc.rate.norm: 52393.378 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 70.216 us/op
+                 gc.alloc.rate:      711.507 MB/sec
+                 gc.alloc.rate.norm: 52393.033 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 69.171 us/op
+                 gc.alloc.rate:      722.270 MB/sec
+                 gc.alloc.rate.norm: 52392.904 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 69.502 us/op
+                 gc.alloc.rate:      718.796 MB/sec
+                 gc.alloc.rate.norm: 52392.233 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 69.476 us/op
+                 gc.alloc.rate:      719.096 MB/sec
+                 gc.alloc.rate.norm: 52393.684 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen":
+  66.911 ±(99.9%) 4.529 us/op [Average]
+  (min, avg, max) = (63.547, 66.911, 70.238), stdev = 2.996
+  CI (99.9%): [62.382, 71.440] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate":
+  747.944 ±(99.9%) 50.533 MB/sec [Average]
+  (min, avg, max) = (711.310, 747.944, 786.052), stdev = 33.425
+  CI (99.9%): [697.410, 798.477] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate.norm":
+  52389.019 ±(99.9%) 6.462 B/op [Average]
+  (min, avg, max) = (52384.203, 52389.019, 52393.684), stdev = 4.274
+  CI (99.9%): [52382.557, 52395.481] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.count":
+  72.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (6.000, 7.200, 8.000), stdev = 0.632
+  CI (99.9%): [72.000, 72.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.time":
+  34.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.400, 4.000), stdev = 0.516
+  CI (99.9%): [34.000, 34.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.keygen
+# Parameters: (suiteId = SIG-DUAL-ECDSAP256-MLDSA65)
+
+# Run progress: 60.00% complete, ETA 00:02:47
+# Fork: 1 of 2
+# Warmup Iteration   1: 295.914 us/op
+# Warmup Iteration   2: 237.101 us/op
+# Warmup Iteration   3: 215.008 us/op
+# Warmup Iteration   4: 200.393 us/op
+# Warmup Iteration   5: 188.144 us/op
+Iteration   1: 188.275 us/op
+                 gc.alloc.rate:      960.853 MB/sec
+                 gc.alloc.rate.norm: 189714.399 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 187.575 us/op
+                 gc.alloc.rate:      964.407 MB/sec
+                 gc.alloc.rate.norm: 189713.736 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 187.950 us/op
+                 gc.alloc.rate:      962.522 MB/sec
+                 gc.alloc.rate.norm: 189714.678 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 183.142 us/op
+                 gc.alloc.rate:      987.787 MB/sec
+                 gc.alloc.rate.norm: 189714.819 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 187.824 us/op
+                 gc.alloc.rate:      963.143 MB/sec
+                 gc.alloc.rate.norm: 189714.634 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 62.50% complete, ETA 00:02:36
+# Fork: 2 of 2
+# Warmup Iteration   1: 316.518 us/op
+# Warmup Iteration   2: 234.910 us/op
+# Warmup Iteration   3: 224.082 us/op
+# Warmup Iteration   4: 209.741 us/op
+# Warmup Iteration   5: 193.683 us/op
+Iteration   1: 192.257 us/op
+                 gc.alloc.rate:      940.722 MB/sec
+                 gc.alloc.rate.norm: 189665.700 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 192.108 us/op
+                 gc.alloc.rate:      941.425 MB/sec
+                 gc.alloc.rate.norm: 189666.148 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 188.142 us/op
+                 gc.alloc.rate:      961.278 MB/sec
+                 gc.alloc.rate.norm: 189667.376 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 184.758 us/op
+                 gc.alloc.rate:      978.906 MB/sec
+                 gc.alloc.rate.norm: 189666.749 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 185.043 us/op
+                 gc.alloc.rate:      977.366 MB/sec
+                 gc.alloc.rate.norm: 189667.658 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen":
+  187.708 ±(99.9%) 4.431 us/op [Average]
+  (min, avg, max) = (183.142, 187.708, 192.257), stdev = 2.931
+  CI (99.9%): [183.276, 192.139] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate":
+  963.841 ±(99.9%) 22.752 MB/sec [Average]
+  (min, avg, max) = (940.722, 963.841, 987.787), stdev = 15.049
+  CI (99.9%): [941.089, 986.593] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate.norm":
+  189690.590 ±(99.9%) 38.041 B/op [Average]
+  (min, avg, max) = (189665.700, 189690.590, 189714.819), stdev = 25.162
+  CI (99.9%): [189652.549, 189728.631] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.count":
+  86.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (8.000, 8.600, 9.000), stdev = 0.516
+  CI (99.9%): [86.000, 86.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.time":
+  36.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 3.600, 4.000), stdev = 0.516
+  CI (99.9%): [36.000, 36.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.keygen
+# Parameters: (suiteId = SIG-MLDSA65)
+
+# Run progress: 65.00% complete, ETA 00:02:26
+# Fork: 1 of 2
+# Warmup Iteration   1: 166.274 us/op
+# Warmup Iteration   2: 135.234 us/op
+# Warmup Iteration   3: 122.738 us/op
+# Warmup Iteration   4: 122.170 us/op
+# Warmup Iteration   5: 122.510 us/op
+Iteration   1: 121.793 us/op
+                 gc.alloc.rate:      1074.650 MB/sec
+                 gc.alloc.rate.norm: 137257.176 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 121.694 us/op
+                 gc.alloc.rate:      1075.468 MB/sec
+                 gc.alloc.rate.norm: 137257.209 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 121.123 us/op
+                 gc.alloc.rate:      1080.579 MB/sec
+                 gc.alloc.rate.norm: 137257.203 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 121.031 us/op
+                 gc.alloc.rate:      1081.377 MB/sec
+                 gc.alloc.rate.norm: 137257.203 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 119.964 us/op
+                 gc.alloc.rate:      1091.004 MB/sec
+                 gc.alloc.rate.norm: 137257.192 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            3.000 ms
+
+
+# Run progress: 67.50% complete, ETA 00:02:15
+# Fork: 2 of 2
+# Warmup Iteration   1: 172.501 us/op
+# Warmup Iteration   2: 138.796 us/op
+# Warmup Iteration   3: 123.133 us/op
+# Warmup Iteration   4: 121.569 us/op
+# Warmup Iteration   5: 121.966 us/op
+Iteration   1: 122.086 us/op
+                 gc.alloc.rate:      1072.041 MB/sec
+                 gc.alloc.rate.norm: 137257.216 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 120.655 us/op
+                 gc.alloc.rate:      1084.760 MB/sec
+                 gc.alloc.rate.norm: 137257.199 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 120.553 us/op
+                 gc.alloc.rate:      1085.689 MB/sec
+                 gc.alloc.rate.norm: 137257.161 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 117.417 us/op
+                 gc.alloc.rate:      1114.707 MB/sec
+                 gc.alloc.rate.norm: 137257.166 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 117.804 us/op
+                 gc.alloc.rate:      1111.009 MB/sec
+                 gc.alloc.rate.norm: 137257.170 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen":
+  120.412 ±(99.9%) 2.433 us/op [Average]
+  (min, avg, max) = (117.417, 120.412, 122.086), stdev = 1.609
+  CI (99.9%): [117.980, 122.845] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate":
+  1087.129 ±(99.9%) 22.247 MB/sec [Average]
+  (min, avg, max) = (1072.041, 1087.129, 1114.707), stdev = 14.715
+  CI (99.9%): [1064.881, 1109.376] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.alloc.rate.norm":
+  137257.190 ±(99.9%) 0.030 B/op [Average]
+  (min, avg, max) = (137257.161, 137257.190, 137257.216), stdev = 0.020
+  CI (99.9%): [137257.160, 137257.219] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.count":
+  98.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (9.000, 9.800, 10.000), stdev = 0.422
+  CI (99.9%): [98.000, 98.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.keygen:gc.time":
+  35.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 3.500, 5.000), stdev = 0.850
+  CI (99.9%): [35.000, 35.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.sign
+# Parameters: (suiteId = SIG-CLASSICAL-ECDSAP256)
+
+# Run progress: 70.00% complete, ETA 00:02:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 91.569 us/op
+# Warmup Iteration   2: 75.558 us/op
+# Warmup Iteration   3: 68.228 us/op
+# Warmup Iteration   4: 66.703 us/op
+# Warmup Iteration   5: 65.994 us/op
+Iteration   1: 65.906 us/op
+                 gc.alloc.rate:      761.478 MB/sec
+                 gc.alloc.rate.norm: 52632.778 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 66.427 us/op
+                 gc.alloc.rate:      755.502 MB/sec
+                 gc.alloc.rate.norm: 52632.752 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 64.996 us/op
+                 gc.alloc.rate:      772.226 MB/sec
+                 gc.alloc.rate.norm: 52637.506 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 65.418 us/op
+                 gc.alloc.rate:      767.195 MB/sec
+                 gc.alloc.rate.norm: 52633.285 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 66.221 us/op
+                 gc.alloc.rate:      757.860 MB/sec
+                 gc.alloc.rate.norm: 52632.740 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 72.50% complete, ETA 00:01:55
+# Fork: 2 of 2
+# Warmup Iteration   1: 90.615 us/op
+# Warmup Iteration   2: 75.573 us/op
+# Warmup Iteration   3: 68.809 us/op
+# Warmup Iteration   4: 66.864 us/op
+# Warmup Iteration   5: 65.862 us/op
+Iteration   1: 65.029 us/op
+                 gc.alloc.rate:      771.782 MB/sec
+                 gc.alloc.rate.norm: 52632.909 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 65.360 us/op
+                 gc.alloc.rate:      767.834 MB/sec
+                 gc.alloc.rate.norm: 52632.842 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 65.883 us/op
+                 gc.alloc.rate:      761.756 MB/sec
+                 gc.alloc.rate.norm: 52632.738 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 65.366 us/op
+                 gc.alloc.rate:      767.815 MB/sec
+                 gc.alloc.rate.norm: 52633.415 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 65.642 us/op
+                 gc.alloc.rate:      764.556 MB/sec
+                 gc.alloc.rate.norm: 52632.776 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign":
+  65.625 ±(99.9%) 0.726 us/op [Average]
+  (min, avg, max) = (64.996, 65.625, 66.427), stdev = 0.480
+  CI (99.9%): [64.899, 66.351] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate":
+  764.800 ±(99.9%) 8.476 MB/sec [Average]
+  (min, avg, max) = (755.502, 764.800, 772.226), stdev = 5.607
+  CI (99.9%): [756.324, 773.277] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate.norm":
+  52633.374 ±(99.9%) 2.225 B/op [Average]
+  (min, avg, max) = (52632.738, 52633.374, 52637.506), stdev = 1.471
+  CI (99.9%): [52631.150, 52635.599] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.count":
+  74.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (6.000, 7.400, 9.000), stdev = 0.966
+  CI (99.9%): [74.000, 74.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.time":
+  34.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 3.400, 4.000), stdev = 0.699
+  CI (99.9%): [34.000, 34.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.sign
+# Parameters: (suiteId = SIG-DUAL-ECDSAP256-MLDSA65)
+
+# Run progress: 75.00% complete, ETA 00:01:44
+# Fork: 1 of 2
+# Warmup Iteration   1: 455.278 us/op
+# Warmup Iteration   2: 378.522 us/op
+# Warmup Iteration   3: 412.257 us/op
+# Warmup Iteration   4: 469.327 us/op
+# Warmup Iteration   5: 443.749 us/op
+Iteration   1: 439.452 us/op
+                 gc.alloc.rate:      639.316 MB/sec
+                 gc.alloc.rate.norm: 294628.139 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 437.434 us/op
+                 gc.alloc.rate:      642.228 MB/sec
+                 gc.alloc.rate.norm: 294627.724 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 434.171 us/op
+                 gc.alloc.rate:      647.074 MB/sec
+                 gc.alloc.rate.norm: 294627.788 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 434.643 us/op
+                 gc.alloc.rate:      646.366 MB/sec
+                 gc.alloc.rate.norm: 294627.836 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 433.698 us/op
+                 gc.alloc.rate:      647.775 MB/sec
+                 gc.alloc.rate.norm: 294627.929 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 77.50% complete, ETA 00:01:34
+# Fork: 2 of 2
+# Warmup Iteration   1: 328.540 us/op
+# Warmup Iteration   2: 264.897 us/op
+# Warmup Iteration   3: 277.646 us/op
+# Warmup Iteration   4: 281.551 us/op
+# Warmup Iteration   5: 274.503 us/op
+Iteration   1: 275.234 us/op
+                 gc.alloc.rate:      823.966 MB/sec
+                 gc.alloc.rate.norm: 237826.821 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 276.634 us/op
+                 gc.alloc.rate:      819.786 MB/sec
+                 gc.alloc.rate.norm: 237826.979 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 277.314 us/op
+                 gc.alloc.rate:      817.789 MB/sec
+                 gc.alloc.rate.norm: 237827.370 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 276.929 us/op
+                 gc.alloc.rate:      818.914 MB/sec
+                 gc.alloc.rate.norm: 237826.895 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 273.219 us/op
+                 gc.alloc.rate:      830.018 MB/sec
+                 gc.alloc.rate.norm: 237826.566 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign":
+  355.873 ±(99.9%) 127.537 us/op [Average]
+  (min, avg, max) = (273.219, 355.873, 439.452), stdev = 84.358
+  CI (99.9%): [228.335, 483.410] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate":
+  733.323 ±(99.9%) 141.607 MB/sec [Average]
+  (min, avg, max) = (639.316, 733.323, 830.018), stdev = 93.664
+  CI (99.9%): [591.716, 874.930] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate.norm":
+  266227.405 ±(99.9%) 45260.068 B/op [Average]
+  (min, avg, max) = (237826.566, 266227.405, 294628.139), stdev = 29936.733
+  CI (99.9%): [220967.336, 311487.473] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.count":
+  64.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (5.000, 6.400, 8.000), stdev = 0.966
+  CI (99.9%): [64.000, 64.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.time":
+  27.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 2.700, 3.000), stdev = 0.483
+  CI (99.9%): [27.000, 27.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.sign
+# Parameters: (suiteId = SIG-MLDSA65)
+
+# Run progress: 80.00% complete, ETA 00:01:23
+# Fork: 1 of 2
+# Warmup Iteration   1: 396.877 us/op
+# Warmup Iteration   2: 378.311 us/op
+# Warmup Iteration   3: 473.935 us/op
+# Warmup Iteration   4: 458.108 us/op
+# Warmup Iteration   5: 454.497 us/op
+Iteration   1: 454.423 us/op
+                 gc.alloc.rate:      580.224 MB/sec
+                 gc.alloc.rate.norm: 276515.570 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 455.512 us/op
+                 gc.alloc.rate:      578.842 MB/sec
+                 gc.alloc.rate.norm: 276515.491 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 454.916 us/op
+                 gc.alloc.rate:      579.615 MB/sec
+                 gc.alloc.rate.norm: 276515.471 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   4: 454.462 us/op
+                 gc.alloc.rate:      580.182 MB/sec
+                 gc.alloc.rate.norm: 276515.558 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 452.775 us/op
+                 gc.alloc.rate:      582.335 MB/sec
+                 gc.alloc.rate.norm: 276515.470 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 82.50% complete, ETA 00:01:13
+# Fork: 2 of 2
+# Warmup Iteration   1: 687.464 us/op
+# Warmup Iteration   2: 607.503 us/op
+# Warmup Iteration   3: 588.102 us/op
+# Warmup Iteration   4: 588.847 us/op
+# Warmup Iteration   5: 587.598 us/op
+Iteration   1: 569.976 us/op
+                 gc.alloc.rate:      681.403 MB/sec
+                 gc.alloc.rate.norm: 407300.540 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 567.929 us/op
+                 gc.alloc.rate:      683.850 MB/sec
+                 gc.alloc.rate.norm: 407300.524 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 577.527 us/op
+                 gc.alloc.rate:      672.500 MB/sec
+                 gc.alloc.rate.norm: 407300.592 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 575.334 us/op
+                 gc.alloc.rate:      675.046 MB/sec
+                 gc.alloc.rate.norm: 407300.602 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 574.536 us/op
+                 gc.alloc.rate:      675.951 MB/sec
+                 gc.alloc.rate.norm: 407300.576 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            3.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign":
+  513.739 ±(99.9%) 94.627 us/op [Average]
+  (min, avg, max) = (452.775, 513.739, 577.527), stdev = 62.590
+  CI (99.9%): [419.112, 608.366] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate":
+  628.995 ±(99.9%) 77.854 MB/sec [Average]
+  (min, avg, max) = (578.842, 628.995, 683.850), stdev = 51.495
+  CI (99.9%): [551.141, 706.849] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.alloc.rate.norm":
+  341908.039 ±(99.9%) 104211.986 B/op [Average]
+  (min, avg, max) = (276515.470, 341908.039, 407300.602), stdev = 68929.776
+  CI (99.9%): [237696.054, 446120.025] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.count":
+  63.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (5.000, 6.300, 8.000), stdev = 1.059
+  CI (99.9%): [63.000, 63.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.sign:gc.time":
+  26.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (2.000, 2.600, 3.000), stdev = 0.516
+  CI (99.9%): [26.000, 26.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.verify
+# Parameters: (suiteId = SIG-CLASSICAL-ECDSAP256)
+
+# Run progress: 85.00% complete, ETA 00:01:02
+# Fork: 1 of 2
+# Warmup Iteration   1: 100.319 us/op
+# Warmup Iteration   2: 80.331 us/op
+# Warmup Iteration   3: 73.977 us/op
+# Warmup Iteration   4: 73.370 us/op
+# Warmup Iteration   5: 71.277 us/op
+Iteration   1: 71.593 us/op
+                 gc.alloc.rate:      1088.708 MB/sec
+                 gc.alloc.rate.norm: 81784.590 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   2: 71.382 us/op
+                 gc.alloc.rate:      1092.486 MB/sec
+                 gc.alloc.rate.norm: 81784.603 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 71.192 us/op
+                 gc.alloc.rate:      1095.424 MB/sec
+                 gc.alloc.rate.norm: 81784.607 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 71.253 us/op
+                 gc.alloc.rate:      1094.434 MB/sec
+                 gc.alloc.rate.norm: 81784.600 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 72.290 us/op
+                 gc.alloc.rate:      1078.768 MB/sec
+                 gc.alloc.rate.norm: 81784.598 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 87.50% complete, ETA 00:00:52
+# Fork: 2 of 2
+# Warmup Iteration   1: 93.275 us/op
+# Warmup Iteration   2: 77.896 us/op
+# Warmup Iteration   3: 71.579 us/op
+# Warmup Iteration   4: 71.381 us/op
+# Warmup Iteration   5: 72.223 us/op
+Iteration   1: 72.039 us/op
+                 gc.alloc.rate:      1082.452 MB/sec
+                 gc.alloc.rate.norm: 81776.597 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 71.719 us/op
+                 gc.alloc.rate:      1087.250 MB/sec
+                 gc.alloc.rate.norm: 81776.604 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 71.541 us/op
+                 gc.alloc.rate:      1089.945 MB/sec
+                 gc.alloc.rate.norm: 81776.599 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   4: 76.832 us/op
+                 gc.alloc.rate:      1014.894 MB/sec
+                 gc.alloc.rate.norm: 81775.384 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 73.511 us/op
+                 gc.alloc.rate:      1060.744 MB/sec
+                 gc.alloc.rate.norm: 81776.606 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify":
+  72.335 ±(99.9%) 2.601 us/op [Average]
+  (min, avg, max) = (71.192, 72.335, 76.832), stdev = 1.720
+  CI (99.9%): [69.734, 74.936] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate":
+  1078.511 ±(99.9%) 37.116 MB/sec [Average]
+  (min, avg, max) = (1014.894, 1078.511, 1095.424), stdev = 24.550
+  CI (99.9%): [1041.394, 1115.627] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate.norm":
+  81780.479 ±(99.9%) 6.590 B/op [Average]
+  (min, avg, max) = (81775.384, 81780.479, 81784.607), stdev = 4.359
+  CI (99.9%): [81773.889, 81787.069] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.count":
+  94.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (9.000, 9.400, 10.000), stdev = 0.516
+  CI (99.9%): [94.000, 94.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.time":
+  42.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 4.200, 5.000), stdev = 0.632
+  CI (99.9%): [42.000, 42.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.verify
+# Parameters: (suiteId = SIG-DUAL-ECDSAP256-MLDSA65)
+
+# Run progress: 90.00% complete, ETA 00:00:41
+# Fork: 1 of 2
+# Warmup Iteration   1: 218.918 us/op
+# Warmup Iteration   2: 192.321 us/op
+# Warmup Iteration   3: 181.305 us/op
+# Warmup Iteration   4: 170.978 us/op
+# Warmup Iteration   5: 171.029 us/op
+Iteration   1: 169.057 us/op
+                 gc.alloc.rate:      1167.854 MB/sec
+                 gc.alloc.rate.norm: 207049.679 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 169.663 us/op
+                 gc.alloc.rate:      1163.638 MB/sec
+                 gc.alloc.rate.norm: 207049.737 B/op
+                 gc.count:           11.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 169.611 us/op
+                 gc.alloc.rate:      1164.046 MB/sec
+                 gc.alloc.rate.norm: 207049.687 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 169.672 us/op
+                 gc.alloc.rate:      1163.633 MB/sec
+                 gc.alloc.rate.norm: 207049.737 B/op
+                 gc.count:           11.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 170.649 us/op
+                 gc.alloc.rate:      1156.940 MB/sec
+                 gc.alloc.rate.norm: 207049.695 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 92.50% complete, ETA 00:00:31
+# Fork: 2 of 2
+# Warmup Iteration   1: 241.127 us/op
+# Warmup Iteration   2: 202.090 us/op
+# Warmup Iteration   3: 189.855 us/op
+# Warmup Iteration   4: 178.874 us/op
+# Warmup Iteration   5: 176.944 us/op
+Iteration   1: 173.575 us/op
+                 gc.alloc.rate:      1137.077 MB/sec
+                 gc.alloc.rate.norm: 206977.724 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 174.586 us/op
+                 gc.alloc.rate:      1130.422 MB/sec
+                 gc.alloc.rate.norm: 206977.734 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 173.247 us/op
+                 gc.alloc.rate:      1139.214 MB/sec
+                 gc.alloc.rate.norm: 206977.718 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 173.220 us/op
+                 gc.alloc.rate:      1139.369 MB/sec
+                 gc.alloc.rate.norm: 206977.720 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   5: 173.222 us/op
+                 gc.alloc.rate:      1139.353 MB/sec
+                 gc.alloc.rate.norm: 206977.725 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify":
+  171.650 ±(99.9%) 3.170 us/op [Average]
+  (min, avg, max) = (169.057, 171.650, 174.586), stdev = 2.097
+  CI (99.9%): [168.480, 174.820] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate":
+  1150.155 ±(99.9%) 21.552 MB/sec [Average]
+  (min, avg, max) = (1130.422, 1150.155, 1167.854), stdev = 14.255
+  CI (99.9%): [1128.603, 1171.706] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate.norm":
+  207013.716 ±(99.9%) 57.357 B/op [Average]
+  (min, avg, max) = (206977.718, 207013.716, 207049.737), stdev = 37.938
+  CI (99.9%): [206956.359, 207071.073] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.count":
+  102.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (10.000, 10.200, 11.000), stdev = 0.422
+  CI (99.9%): [102.000, 102.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.time":
+  45.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (4.000, 4.500, 5.000), stdev = 0.527
+  CI (99.9%): [45.000, 45.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.11, OpenJDK 64-Bit Server VM, 21.0.11
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: <none>
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.pqcreadiness.benchmarks.SignatureBenchmark.verify
+# Parameters: (suiteId = SIG-MLDSA65)
+
+# Run progress: 95.00% complete, ETA 00:00:20
+# Fork: 1 of 2
+# Warmup Iteration   1: 134.351 us/op
+# Warmup Iteration   2: 119.044 us/op
+# Warmup Iteration   3: 106.145 us/op
+# Warmup Iteration   4: 104.509 us/op
+# Warmup Iteration   5: 103.016 us/op
+Iteration   1: 104.115 us/op
+                 gc.alloc.rate:      1147.429 MB/sec
+                 gc.alloc.rate.norm: 125288.877 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 105.608 us/op
+                 gc.alloc.rate:      1131.219 MB/sec
+                 gc.alloc.rate.norm: 125288.889 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 108.109 us/op
+                 gc.alloc.rate:      1105.057 MB/sec
+                 gc.alloc.rate.norm: 125288.910 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 107.219 us/op
+                 gc.alloc.rate:      1114.275 MB/sec
+                 gc.alloc.rate.norm: 125288.887 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   5: 107.662 us/op
+                 gc.alloc.rate:      1109.665 MB/sec
+                 gc.alloc.rate.norm: 125288.907 B/op
+                 gc.count:           10.000 counts
+                 gc.time:            4.000 ms
+
+
+# Run progress: 97.50% complete, ETA 00:00:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 131.440 us/op
+# Warmup Iteration   2: 112.946 us/op
+# Warmup Iteration   3: 105.005 us/op
+# Warmup Iteration   4: 104.002 us/op
+# Warmup Iteration   5: 108.049 us/op
+Iteration   1: 124.564 us/op
+                 gc.alloc.rate:      958.738 MB/sec
+                 gc.alloc.rate.norm: 125241.030 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   2: 135.150 us/op
+                 gc.alloc.rate:      883.577 MB/sec
+                 gc.alloc.rate.norm: 125241.098 B/op
+                 gc.count:           8.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 165.719 us/op
+                 gc.alloc.rate:      719.703 MB/sec
+                 gc.alloc.rate.norm: 125241.303 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   4: 125.020 us/op
+                 gc.alloc.rate:      955.210 MB/sec
+                 gc.alloc.rate.norm: 125241.034 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   5: 116.036 us/op
+                 gc.alloc.rate:      1029.119 MB/sec
+                 gc.alloc.rate.norm: 125240.960 B/op
+                 gc.count:           9.000 counts
+                 gc.time:            4.000 ms
+
+
+
+Result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify":
+  119.920 ±(99.9%) 28.941 us/op [Average]
+  (min, avg, max) = (104.115, 119.920, 165.719), stdev = 19.142
+  CI (99.9%): [90.980, 148.861] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate":
+  1015.399 ±(99.9%) 207.407 MB/sec [Average]
+  (min, avg, max) = (719.703, 1015.399, 1147.429), stdev = 137.187
+  CI (99.9%): [807.992, 1222.806] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.alloc.rate.norm":
+  125264.989 ±(99.9%) 38.095 B/op [Average]
+  (min, avg, max) = (125240.960, 125264.989, 125288.910), stdev = 25.198
+  CI (99.9%): [125226.894, 125303.085] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.count":
+  90.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (6.000, 9.000, 10.000), stdev = 1.247
+  CI (99.9%): [90.000, 90.000] (assumes normal distribution)
+
+Secondary result "org.pqcreadiness.benchmarks.SignatureBenchmark.verify:gc.time":
+  42.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (3.000, 4.200, 5.000), stdev = 0.632
+  CI (99.9%): [42.000, 42.000] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:06:58
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                 (peerScenario)                   (suiteId)  Mode  Cnt       Score        Error   Units
+KeyEstablishmentBenchmark.decapsulate                                N/A         KE-CLASSICAL-X25519  avgt   10      62.309 ±      2.090   us/op
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate                  N/A         KE-CLASSICAL-X25519  avgt   10      72.514 ±      2.331  MB/sec
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm             N/A         KE-CLASSICAL-X25519  avgt   10    4736.647 ±      0.958    B/op
+KeyEstablishmentBenchmark.decapsulate:gc.count                       N/A         KE-CLASSICAL-X25519  avgt   10       8.000               counts
+KeyEstablishmentBenchmark.decapsulate:gc.time                        N/A         KE-CLASSICAL-X25519  avgt   10      14.000                   ms
+KeyEstablishmentBenchmark.decapsulate                                N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     101.173 ±      0.537   us/op
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate                  N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     326.076 ±      1.676  MB/sec
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm             N/A   KE-HYBRID-X25519-MLKEM768  avgt   10   34596.901 ±     19.125    B/op
+KeyEstablishmentBenchmark.decapsulate:gc.count                       N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      44.000               counts
+KeyEstablishmentBenchmark.decapsulate:gc.time                        N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      20.000                   ms
+KeyEstablishmentBenchmark.decapsulate                                N/A             KE-PQC-MLKEM768  avgt   10      42.411 ±      0.830   us/op
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate                  N/A             KE-PQC-MLKEM768  avgt   10     729.901 ±     13.276  MB/sec
+KeyEstablishmentBenchmark.decapsulate:gc.alloc.rate.norm             N/A             KE-PQC-MLKEM768  avgt   10   32460.334 ±     44.628    B/op
+KeyEstablishmentBenchmark.decapsulate:gc.count                       N/A             KE-PQC-MLKEM768  avgt   10      64.000               counts
+KeyEstablishmentBenchmark.decapsulate:gc.time                        N/A             KE-PQC-MLKEM768  avgt   10      28.000                   ms
+KeyEstablishmentBenchmark.encapsulate                                N/A         KE-CLASSICAL-X25519  avgt   10     107.974 ±      2.423   us/op
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate                  N/A         KE-CLASSICAL-X25519  avgt   10      74.307 ±      1.559  MB/sec
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm             N/A         KE-CLASSICAL-X25519  avgt   10    8412.823 ±     70.126    B/op
+KeyEstablishmentBenchmark.encapsulate:gc.count                       N/A         KE-CLASSICAL-X25519  avgt   10      10.000               counts
+KeyEstablishmentBenchmark.encapsulate:gc.time                        N/A         KE-CLASSICAL-X25519  avgt   10      18.000                   ms
+KeyEstablishmentBenchmark.encapsulate                                N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     138.202 ±      2.877   us/op
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate                  N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     253.347 ±      5.072  MB/sec
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm             N/A   KE-HYBRID-X25519-MLKEM768  avgt   10   36713.287 ±     51.005    B/op
+KeyEstablishmentBenchmark.encapsulate:gc.count                       N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      35.000               counts
+KeyEstablishmentBenchmark.encapsulate:gc.time                        N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      18.000                   ms
+KeyEstablishmentBenchmark.encapsulate                                N/A             KE-PQC-MLKEM768  avgt   10      36.089 ±      1.068   us/op
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate                  N/A             KE-PQC-MLKEM768  avgt   10     820.629 ±     23.002  MB/sec
+KeyEstablishmentBenchmark.encapsulate:gc.alloc.rate.norm             N/A             KE-PQC-MLKEM768  avgt   10   31048.349 ±     51.006    B/op
+KeyEstablishmentBenchmark.encapsulate:gc.count                       N/A             KE-PQC-MLKEM768  avgt   10      74.000               counts
+KeyEstablishmentBenchmark.encapsulate:gc.time                        N/A             KE-PQC-MLKEM768  avgt   10      32.000                   ms
+KeyEstablishmentBenchmark.keygen                                     N/A         KE-CLASSICAL-X25519  avgt   10      43.594 ±      0.901   us/op
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate                       N/A         KE-CLASSICAL-X25519  avgt   10      81.393 ±      2.573  MB/sec
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm                  N/A         KE-CLASSICAL-X25519  avgt   10    3720.345 ±     50.994    B/op
+KeyEstablishmentBenchmark.keygen:gc.count                            N/A         KE-CLASSICAL-X25519  avgt   10      11.000               counts
+KeyEstablishmentBenchmark.keygen:gc.time                             N/A         KE-CLASSICAL-X25519  avgt   10      19.000                   ms
+KeyEstablishmentBenchmark.keygen                                     N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     102.402 ±      1.456   us/op
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate                       N/A   KE-HYBRID-X25519-MLKEM768  avgt   10     438.369 ±      6.267  MB/sec
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm                  N/A   KE-HYBRID-X25519-MLKEM768  avgt   10   47072.965 ±      0.139    B/op
+KeyEstablishmentBenchmark.keygen:gc.count                            N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      46.000               counts
+KeyEstablishmentBenchmark.keygen:gc.time                             N/A   KE-HYBRID-X25519-MLKEM768  avgt   10      20.000                   ms
+KeyEstablishmentBenchmark.keygen                                     N/A             KE-PQC-MLKEM768  avgt   10      55.614 ±      0.629   us/op
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate                       N/A             KE-PQC-MLKEM768  avgt   10     742.803 ±      8.288  MB/sec
+KeyEstablishmentBenchmark.keygen:gc.alloc.rate.norm                  N/A             KE-PQC-MLKEM768  avgt   10   43320.520 ±      0.009    B/op
+KeyEstablishmentBenchmark.keygen:gc.count                            N/A             KE-PQC-MLKEM768  avgt   10      80.000               counts
+KeyEstablishmentBenchmark.keygen:gc.time                             N/A             KE-PQC-MLKEM768  avgt   10      36.000                   ms
+NegotiationBenchmark.negotiate                            HYBRID_CAPABLE                         N/A  avgt   10       6.442 ±      0.053   ns/op
+NegotiationBenchmark.negotiate:gc.alloc.rate              HYBRID_CAPABLE                         N/A  avgt   10    3552.519 ±     29.079  MB/sec
+NegotiationBenchmark.negotiate:gc.alloc.rate.norm         HYBRID_CAPABLE                         N/A  avgt   10      24.000 ±      0.001    B/op
+NegotiationBenchmark.negotiate:gc.count                   HYBRID_CAPABLE                         N/A  avgt   10     247.000               counts
+NegotiationBenchmark.negotiate:gc.time                    HYBRID_CAPABLE                         N/A  avgt   10      73.000                   ms
+NegotiationBenchmark.negotiate                            CLASSICAL_ONLY                         N/A  avgt   10       8.977 ±      0.118   ns/op
+NegotiationBenchmark.negotiate:gc.alloc.rate              CLASSICAL_ONLY                         N/A  avgt   10    2549.458 ±     33.400  MB/sec
+NegotiationBenchmark.negotiate:gc.alloc.rate.norm         CLASSICAL_ONLY                         N/A  avgt   10      24.000 ±      0.001    B/op
+NegotiationBenchmark.negotiate:gc.count                   CLASSICAL_ONLY                         N/A  avgt   10     191.000               counts
+NegotiationBenchmark.negotiate:gc.time                    CLASSICAL_ONLY                         N/A  avgt   10      56.000                   ms
+SignatureBenchmark.keygen                                            N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      66.911 ±      4.529   us/op
+SignatureBenchmark.keygen:gc.alloc.rate                              N/A     SIG-CLASSICAL-ECDSAP256  avgt   10     747.944 ±     50.533  MB/sec
+SignatureBenchmark.keygen:gc.alloc.rate.norm                         N/A     SIG-CLASSICAL-ECDSAP256  avgt   10   52389.019 ±      6.462    B/op
+SignatureBenchmark.keygen:gc.count                                   N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      72.000               counts
+SignatureBenchmark.keygen:gc.time                                    N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      34.000                   ms
+SignatureBenchmark.keygen                                            N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     187.708 ±      4.431   us/op
+SignatureBenchmark.keygen:gc.alloc.rate                              N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     963.841 ±     22.752  MB/sec
+SignatureBenchmark.keygen:gc.alloc.rate.norm                         N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10  189690.590 ±     38.041    B/op
+SignatureBenchmark.keygen:gc.count                                   N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10      86.000               counts
+SignatureBenchmark.keygen:gc.time                                    N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10      36.000                   ms
+SignatureBenchmark.keygen                                            N/A                 SIG-MLDSA65  avgt   10     120.412 ±      2.433   us/op
+SignatureBenchmark.keygen:gc.alloc.rate                              N/A                 SIG-MLDSA65  avgt   10    1087.129 ±     22.247  MB/sec
+SignatureBenchmark.keygen:gc.alloc.rate.norm                         N/A                 SIG-MLDSA65  avgt   10  137257.190 ±      0.030    B/op
+SignatureBenchmark.keygen:gc.count                                   N/A                 SIG-MLDSA65  avgt   10      98.000               counts
+SignatureBenchmark.keygen:gc.time                                    N/A                 SIG-MLDSA65  avgt   10      35.000                   ms
+SignatureBenchmark.sign                                              N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      65.625 ±      0.726   us/op
+SignatureBenchmark.sign:gc.alloc.rate                                N/A     SIG-CLASSICAL-ECDSAP256  avgt   10     764.800 ±      8.476  MB/sec
+SignatureBenchmark.sign:gc.alloc.rate.norm                           N/A     SIG-CLASSICAL-ECDSAP256  avgt   10   52633.374 ±      2.225    B/op
+SignatureBenchmark.sign:gc.count                                     N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      74.000               counts
+SignatureBenchmark.sign:gc.time                                      N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      34.000                   ms
+SignatureBenchmark.sign                                              N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     355.873 ±    127.537   us/op
+SignatureBenchmark.sign:gc.alloc.rate                                N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     733.323 ±    141.607  MB/sec
+SignatureBenchmark.sign:gc.alloc.rate.norm                           N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10  266227.405 ±  45260.068    B/op
+SignatureBenchmark.sign:gc.count                                     N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10      64.000               counts
+SignatureBenchmark.sign:gc.time                                      N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10      27.000                   ms
+SignatureBenchmark.sign                                              N/A                 SIG-MLDSA65  avgt   10     513.739 ±     94.627   us/op
+SignatureBenchmark.sign:gc.alloc.rate                                N/A                 SIG-MLDSA65  avgt   10     628.995 ±     77.854  MB/sec
+SignatureBenchmark.sign:gc.alloc.rate.norm                           N/A                 SIG-MLDSA65  avgt   10  341908.039 ± 104211.986    B/op
+SignatureBenchmark.sign:gc.count                                     N/A                 SIG-MLDSA65  avgt   10      63.000               counts
+SignatureBenchmark.sign:gc.time                                      N/A                 SIG-MLDSA65  avgt   10      26.000                   ms
+SignatureBenchmark.verify                                            N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      72.335 ±      2.601   us/op
+SignatureBenchmark.verify:gc.alloc.rate                              N/A     SIG-CLASSICAL-ECDSAP256  avgt   10    1078.511 ±     37.116  MB/sec
+SignatureBenchmark.verify:gc.alloc.rate.norm                         N/A     SIG-CLASSICAL-ECDSAP256  avgt   10   81780.479 ±      6.590    B/op
+SignatureBenchmark.verify:gc.count                                   N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      94.000               counts
+SignatureBenchmark.verify:gc.time                                    N/A     SIG-CLASSICAL-ECDSAP256  avgt   10      42.000                   ms
+SignatureBenchmark.verify                                            N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     171.650 ±      3.170   us/op
+SignatureBenchmark.verify:gc.alloc.rate                              N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10    1150.155 ±     21.552  MB/sec
+SignatureBenchmark.verify:gc.alloc.rate.norm                         N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10  207013.716 ±     57.357    B/op
+SignatureBenchmark.verify:gc.count                                   N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10     102.000               counts
+SignatureBenchmark.verify:gc.time                                    N/A  SIG-DUAL-ECDSAP256-MLDSA65  avgt   10      45.000                   ms
+SignatureBenchmark.verify                                            N/A                 SIG-MLDSA65  avgt   10     119.920 ±     28.941   us/op
+SignatureBenchmark.verify:gc.alloc.rate                              N/A                 SIG-MLDSA65  avgt   10    1015.399 ±    207.407  MB/sec
+SignatureBenchmark.verify:gc.alloc.rate.norm                         N/A                 SIG-MLDSA65  avgt   10  125264.989 ±     38.095    B/op
+SignatureBenchmark.verify:gc.count                                   N/A                 SIG-MLDSA65  avgt   10      90.000               counts
+SignatureBenchmark.verify:gc.time                                    N/A                 SIG-MLDSA65  avgt   10      42.000                   ms
+
+Benchmark result is saved to benchmarks/results/jmh-results.json
