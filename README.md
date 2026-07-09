@@ -80,6 +80,9 @@ output.
 
 ## Research documentation
 
+[`docs/PROJECT.md`](docs/PROJECT.md) is the authoritative project overview and current-state
+document (what's built, key results, deviations from the original plan, what remains).
+
 Design decisions and methodology live in [`docs/research/`](docs/research/):
 
 1. [Background & motivation](docs/research/01-background-and-motivation.md) — threat model, verified standards status, the gap
