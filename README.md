@@ -135,12 +135,15 @@ python3 analysis/correlate.py --report <report.json> --effort <effort.csv>
 - [x] `agility-provider`: negotiation core (suites, policy, capability
       negotiation, audit log) + BC-backed hybrid primitives (KEM combiner,
       dual signature), 20 tests
-- [x] JMH benchmark matrix (key establishment, signatures, negotiation) —
-      builds and registers; full campaign not yet run
-- [ ] Remaining detection: F2 (fixed-width persistence), F8 (third-party API
-      boundary), JOSE/JWT surface
-- [ ] Run the auditor against selected real public codebases and publish
-      Phase 1 estimation reports
+- [x] Auditor detection: intra- and cross-file constant propagation
+      (`getInstance(Type.FIELD)` resolved without a classpath)
+- [x] JMH benchmark **campaign run** across classical/hybrid/PQC — results and
+      interpretation in [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md)
+      (negotiation overhead ~6–9 ns; PQC allocation 4–13× classical)
+- [x] Auditor run against 4 real public codebases — Phase 1 estimation reports +
+      synthesis in [`case-studies/`](case-studies/)
+- [ ] Remaining detection (optional): F2 (fixed-width persistence), F8 (third-party
+      API boundary), JOSE/JWT surface, enum/registry & dynamic algorithm selection
 
 **Phase 2 — validation (deferred, not started):**
 - [ ] Case-study migrations (real or mined) and effort logging (`docs/research/04`)

@@ -24,8 +24,10 @@ import java.util.concurrent.TimeUnit;
  * wants is the relative overhead of hybrid/PQC over classical for keygen, encapsulate,
  * and decapsulate — the standard "abstraction is too slow" objection, answered with data.
  *
- * <p>Run: {@code java -jar benchmarks/target/benchmarks.jar KeyEstablishment}. Running
- * and interpreting the campaign is a step-4 analysis activity; this class only defines it.
+ * <p>Run from the module <em>classpath</em>, not the shaded jar — BC ships ML-KEM in a
+ * multi-release jar that the shade plugin flattens, so the uber-jar loses ML-KEM
+ * registration (see {@code benchmarks/results/RESULTS.md}). Results and interpretation
+ * are in that file.
  */
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
