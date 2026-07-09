@@ -62,7 +62,8 @@ output.
   file:line and *why each is expensive* — an estimation aid, not a validated
   prediction (see [doc 03 §8](docs/research/03-difficulty-scoring-model.md)).
 - **Benchmark tables**: agility-layer overhead across modes, incl. JVM-specific
-  effects (GC/allocation pressure from multi-KB PQC artifacts).
+  effects (GC/allocation pressure from multi-KB PQC artifacts) — **done**, see
+  [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md).
 
 **Phase 2 (deferred):**
 - **Correlation figure**: predicted difficulty vs. measured migration effort.
@@ -119,6 +120,34 @@ Correlation harness (pure-stdlib Python) lives in [`analysis/`](analysis/):
 python3 analysis/correlate.py --selftest          # validate the statistics
 python3 analysis/correlate.py --report <report.json> --effort <effort.csv>
 ```
+
+## Agility-layer benchmark results
+
+Full JMH campaign (Apple M2, JDK 21.0.11, BC 1.84, `@Fork(2)`/`@Warmup(5)`/
+`@Measurement(5)`, `-prof gc`) across classical / hybrid / PQC postures. Full tables,
+methodology, and raw data in [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md).
+Headlines:
+
+- **Negotiation overhead is negligible** — capability negotiation costs **~6–9 ns** and
+  24 B/op, ~7 orders of magnitude below the crypto it selects. The "abstraction layer is
+  too slow" objection does not survive the data.
+- **PQC is not uniformly slower** — ML-KEM encapsulate/decapsulate are *faster* than
+  X25519 (0.3× / 0.7×); the cost moves to keygen. ML-DSA signing is the expensive
+  operation (**7.8× ECDSA**; dual-sign 5.4×), while verification stays modest (1.5–1.7×).
+- **The JVM-specific cost is allocation** — hybrid/PQC operations allocate **4–13× more
+  per op** (hybrid KE keygen 47 KB/op vs 3.7 KB classical; ML-DSA sign 342 KB/op vs
+  53 KB), i.e. sustained GC pressure the C/Rust-heavy PQC literature does not surface.
+
+| Operation | Classical | Hybrid | PQC-only |
+|---|--:|--:|--:|
+| KEM keygen | 43.6 µs | 102.4 µs (2.3×) | 55.6 µs (1.3×) |
+| KEM encapsulate | 108.0 µs | 138.2 µs (1.3×) | 36.1 µs (0.3×) |
+| Signature sign | 65.6 µs | 355.9 µs (5.4×) | 513.7 µs (7.8×) |
+| Signature verify | 72.3 µs | 171.7 µs (2.4×) | 119.9 µs (1.7×) |
+
+> Read the ratios, not the absolute µs — microbenchmarks on one machine. Reproduce on
+> target hardware before quoting figures. Must be run from the module classpath, not the
+> shaded jar (BC's ML-KEM is a multi-release jar the shade plugin flattens — see RESULTS.md).
 
 ## Status
 
