@@ -5,7 +5,7 @@ is the entry point; the detailed methodology lives in [`docs/research/`](researc
 document records **what the project is, what has been built, and what remains** — updated
 to reflect actual state (not the original design-phase plan).
 
-_Last updated: 2026-07-09 (HEAD `c6140aa`)._
+_Version: **1.0.0** (Phase 1 release). Last updated: 2026-07-09._
 
 ## 1. What this is
 
