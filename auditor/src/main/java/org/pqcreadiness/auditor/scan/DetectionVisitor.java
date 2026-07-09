@@ -6,7 +6,6 @@ import com.github.javaparser.ast.expr.IntegerLiteralExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
-import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.expr.ArrayCreationExpr;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
@@ -55,31 +54,35 @@ final class DetectionVisitor extends VoidVisitorAdapter<ScanContext> {
             byteBufferAllocation(call, receiver, ctx);
             return;
         }
-        Optional<String> literal = stringLiteral(call.getArgument(0));
-        if (literal.isEmpty() || receiver.isEmpty()) {
+        // Resolve the algorithm argument, following intra- and cross-file constant propagation.
+        Optional<ConstantResolver.Resolved> resolved =
+                ConstantResolver.resolve(call.getArgument(0), ctx.constants());
+        if (resolved.isEmpty() || receiver.isEmpty()) {
             return;
         }
+        String algorithm = resolved.get().value();
+        Confidence confidence = resolved.get().confidence();
         String recv = receiver.get();
 
         Optional<EntryPoint> entryPoint = EntryPoint.forReceiver(recv);
         if (entryPoint.isPresent()) {
             EntryPoint ep = entryPoint.get();
-            ep.match(literal.get()).ifPresent(family ->
+            ep.match(algorithm).ifPresent(family ->
                     add(ctx, call, ep.ruleId(family), ep.receiverType(), family,
-                            ep.category(), Confidence.HIGH, List.of()));
+                            ep.category(), confidence, List.of()));
             return;
         }
         // F3: SSLContext.getInstance("TLSv1.2") and similar legacy version pins.
         if (FragilityRules.TLS_CONTEXT_RECEIVERS.contains(recv)
-                && FragilityRules.isPinnedTlsVersion(literal.get())) {
-            String version = VulnerableAlgorithms.normalize(literal.get());
+                && FragilityRules.isPinnedTlsVersion(algorithm)) {
+            String version = VulnerableAlgorithms.normalize(algorithm);
             add(ctx, call, "TLS-PIN-" + version, recv, version,
-                    Category.TLS_CONFIG, Confidence.HIGH, List.of("F3"));
+                    Category.TLS_CONFIG, confidence, List.of("F3"));
             ctx.addSignal("F3", Scopes.keyFor(call));
             return;
         }
         // F6: persisted key material via a keystore type.
-        if (recv.equals(KEY_STORE) && FragilityRules.isKeystoreType(literal.get())) {
+        if (recv.equals(KEY_STORE) && FragilityRules.isKeystoreType(algorithm)) {
             ctx.addSignal("F6", Scopes.keyFor(call));
         }
     }
@@ -156,9 +159,5 @@ final class DetectionVisitor extends VoidVisitorAdapter<ScanContext> {
             return Optional.of(field.getNameAsString());
         }
         return Optional.empty();
-    }
-
-    private static Optional<String> stringLiteral(Expression arg) {
-        return arg instanceof StringLiteralExpr s ? Optional.of(s.getValue()) : Optional.empty();
     }
 }

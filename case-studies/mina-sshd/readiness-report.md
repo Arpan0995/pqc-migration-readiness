@@ -2,8 +2,8 @@
 
 - Auditor version: `0.1.0-SNAPSHOT`
 - Score model: `v0`
-- Generated: 2026-07-09T05:08:30.078867Z
-- Findings: 321 across 1365 files
+- Generated: 2026-07-09T05:30:03.551745Z
+- Findings: 323 across 1365 files
 
 > Difficulty score **S** and effort **tier** are a heuristic estimate, not yet a validated prediction of migration effort (see `docs/research/03-difficulty-scoring-model.md` §8 for the estimation-vs-validation phasing). The naive baseline **B0** is a raw count of vulnerable call sites. Urgency **U** is a separate axis (harvest-now-decrypt-later risk), not part of the difficulty estimate.
 
@@ -12,9 +12,9 @@
 | Rank | Module | Tier | Score S | Urgency U | Baseline B0 | LOC |
 |---:|---|---|---:|---:|---:|---:|
 | 1 | `sshd-common` | CRITICAL | 369.03 | 504.0 | 0 | 62941 |
-| 2 | `sshd-cli` | MEDIUM | 23.1 | 42.0 | 0 | 5659 |
-| 3 | `sshd-openpgp` | MEDIUM | 20.85 | 36.0 | 0 | 1944 |
-| 4 | `sshd-core` | MEDIUM | 20.14 | 32.0 | 5 | 70779 |
+| 2 | `sshd-core` | MEDIUM | 25.61 | 40.0 | 7 | 70779 |
+| 3 | `sshd-cli` | MEDIUM | 23.1 | 42.0 | 0 | 5659 |
+| 4 | `sshd-openpgp` | MEDIUM | 20.85 | 36.0 | 0 | 1944 |
 | 5 | `sshd-putty` | MEDIUM | 14.4 | 24.0 | 0 | 1255 |
 | 6 | `sshd-contrib` | LOW | 7.7 | 14.0 | 0 | 3167 |
 
@@ -41,6 +41,26 @@ Effort tier **CRITICAL** (score 369.03), urgency 504.0, 0 vulnerable call sites,
 | `sshd-common/src/main/java/org/apache/sshd/common/config/keys/KeyUtils.java:1068` | `FRAG-F4-DSAPublicKey` | 1.0 | Couples code to the concrete key type DSAPublicKey; a migration propagates through every caller of this API. |
 
 _237 more finding(s) not shown._
+
+## Module: `sshd-core`
+
+Effort tier **MEDIUM** (score 25.61), urgency 40.0, 7 vulnerable call sites, 70779 LOC.
+
+| Site | Rule | Difficulty | Why it is expensive |
+|---|---|---:|---|
+| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:227` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:287` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:347` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:413` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/client/auth/pubkey/InvalidRsaKeyAuthTest.java:57` | `JCA-KPG-EC` | 2.0 | Generates a quantum-vulnerable key pair (EC); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/client/auth/pubkey/InvalidRsaKeyAuthTest.java:90` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java:69` | `FRAG-F4-DHPublicKey` | 1.0 | Couples code to the concrete key type DHPublicKey; a migration propagates through every caller of this API. |
+| `sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java:69` | `FRAG-F4-DHPublicKey` | 1.0 | Couples code to the concrete key type DHPublicKey; a migration propagates through every caller of this API. |
+| `sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java:77` | `FRAG-F4-ECPublicKey` | 1.0 | Couples code to the concrete key type ECPublicKey; a migration propagates through every caller of this API. |
+| `sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java:77` | `FRAG-F4-ECPublicKey` | 1.0 | Couples code to the concrete key type ECPublicKey; a migration propagates through every caller of this API. |
+| `sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java:61` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
+| `sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java:66` | `FRAG-F4-RSAPublicKey` | 1.0 | Couples code to the concrete key type RSAPublicKey; a migration propagates through every caller of this API. |
+| `sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java:66` | `FRAG-F4-RSAPublicKey` | 1.0 | Couples code to the concrete key type RSAPublicKey; a migration propagates through every caller of this API. |
 
 ## Module: `sshd-cli`
 
@@ -89,24 +109,6 @@ Effort tier **MEDIUM** (score 20.85), urgency 36.0, 0 vulnerable call sites, 194
 | `sshd-openpgp/src/main/java/org/apache/sshd/openpgp/PGPPublicKeyExtractor.java:142` | `FRAG-F4-ECPublicKey` | 1.0 | Couples code to the concrete key type ECPublicKey; a migration propagates through every caller of this API. |
 
 _3 more finding(s) not shown._
-
-## Module: `sshd-core`
-
-Effort tier **MEDIUM** (score 20.14), urgency 32.0, 5 vulnerable call sites, 70779 LOC.
-
-| Site | Rule | Difficulty | Why it is expensive |
-|---|---|---:|---|
-| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:227` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
-| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:287` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
-| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:347` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
-| `sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java:413` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
-| `sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java:69` | `FRAG-F4-DHPublicKey` | 1.0 | Couples code to the concrete key type DHPublicKey; a migration propagates through every caller of this API. |
-| `sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java:69` | `FRAG-F4-DHPublicKey` | 1.0 | Couples code to the concrete key type DHPublicKey; a migration propagates through every caller of this API. |
-| `sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java:77` | `FRAG-F4-ECPublicKey` | 1.0 | Couples code to the concrete key type ECPublicKey; a migration propagates through every caller of this API. |
-| `sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java:77` | `FRAG-F4-ECPublicKey` | 1.0 | Couples code to the concrete key type ECPublicKey; a migration propagates through every caller of this API. |
-| `sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java:61` | `JCA-KPG-RSA` | 2.0 | Generates a quantum-vulnerable key pair (RSA); the algorithm choice must move to a PQC or hybrid scheme. |
-| `sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java:66` | `FRAG-F4-RSAPublicKey` | 1.0 | Couples code to the concrete key type RSAPublicKey; a migration propagates through every caller of this API. |
-| `sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java:66` | `FRAG-F4-RSAPublicKey` | 1.0 | Couples code to the concrete key type RSAPublicKey; a migration propagates through every caller of this API. |
 
 ## Module: `sshd-putty`
 

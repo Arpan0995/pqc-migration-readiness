@@ -22,15 +22,22 @@ final class ScanContext {
     private final String file;
     private final List<ScopedFinding> findings;
     private final List<Signal> signals;
+    private final ConstantIndex constants;
 
-    ScanContext(String file, List<ScopedFinding> findings, List<Signal> signals) {
+    ScanContext(String file, List<ScopedFinding> findings, List<Signal> signals, ConstantIndex constants) {
         this.file = file;
         this.findings = findings;
         this.signals = signals;
+        this.constants = constants;
     }
 
     String file() {
         return file;
+    }
+
+    /** Project-wide constant table for cross-file algorithm-argument resolution. */
+    ConstantIndex constants() {
+        return constants;
     }
 
     void addFinding(Finding finding, String scopeKey) {

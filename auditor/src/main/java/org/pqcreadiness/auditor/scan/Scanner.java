@@ -35,20 +35,37 @@ public final class Scanner {
                 .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_21);
     }
 
-    /** Scan a single source root (file or directory). */
+    /**
+     * Scan a single source root (file or directory) in two passes: parse every file and
+     * build the project-wide constant table, then run detection with that table
+     * available so cross-file algorithm constants ({@code Type.FIELD}) resolve.
+     */
     public ScanResult scan(Path root) {
         List<Path> sources = javaSources(root);
-        List<Finding> findings = new ArrayList<>();
         Map<String, Integer> lineCounts = new LinkedHashMap<>();
         List<Path> unparseable = new ArrayList<>();
+
+        // Pass 1: parse all files, keeping the successfully parsed units.
+        List<ParsedFile> parsed = new ArrayList<>();
         for (Path source : sources) {
-            scanFile(root, source, findings, lineCounts, unparseable);
+            parseFile(root, source, parsed, lineCounts, unparseable);
+        }
+        ConstantIndex constants = ConstantIndex.build(
+                parsed.stream().map(ParsedFile::unit).toList());
+
+        // Pass 2: detect, resolving arguments against the project-wide constant table.
+        List<Finding> findings = new ArrayList<>();
+        for (ParsedFile file : parsed) {
+            visitFile(file, constants, findings);
         }
         return new ScanResult(findings, lineCounts, unparseable);
     }
 
-    private void scanFile(Path root, Path source, List<Finding> findings,
-                          Map<String, Integer> lineCounts, List<Path> unparseable) {
+    private record ParsedFile(String relativePath, CompilationUnit unit) {
+    }
+
+    private void parseFile(Path root, Path source, List<ParsedFile> parsed,
+                           Map<String, Integer> lineCounts, List<Path> unparseable) {
         String relative = relativize(root, source);
         JavaParser parser = new JavaParser(configuration);
         ParseResult<CompilationUnit> result;
@@ -63,11 +80,14 @@ public final class Scanner {
             unparseable.add(source);
             return;
         }
+        parsed.add(new ParsedFile(relative, result.getResult().get()));
+    }
 
+    private void visitFile(ParsedFile file, ConstantIndex constants, List<Finding> findings) {
         List<ScanContext.ScopedFinding> scoped = new ArrayList<>();
         List<ScanContext.Signal> signals = new ArrayList<>();
-        ScanContext ctx = new ScanContext(relative, scoped, signals);
-        result.getResult().get().accept(new DetectionVisitor(), ctx);
+        ScanContext ctx = new ScanContext(file.relativePath(), scoped, signals, constants);
+        file.unit().accept(new DetectionVisitor(), ctx);
         merge(scoped, signals, findings);
     }
 

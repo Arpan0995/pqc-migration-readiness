@@ -2,8 +2,8 @@
   "codebase" : "mina-sshd-sshd-2.13.1",
   "auditorVersion" : "0.1.0-SNAPSHOT",
   "scoreModel" : "v0",
-  "generatedAt" : "2026-07-09T05:08:30.078867Z",
-  "totalFindings" : 321,
+  "generatedAt" : "2026-07-09T05:30:03.551745Z",
+  "totalFindings" : 323,
   "filesScanned" : 1365,
   "filesSkipped" : 0,
   "modules" : [ {
@@ -2883,6 +2883,181 @@
       } ]
     } ]
   }, {
+    "name" : "sshd-core",
+    "loc" : 70779,
+    "score" : 25.61,
+    "tier" : "MEDIUM",
+    "urgency" : 40.0,
+    "baselineCount" : 7,
+    "files" : [ {
+      "path" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
+      "score" : 8.0,
+      "findings" : [ {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
+        "line" : 227,
+        "column" : 26,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
+      }, {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
+        "line" : 287,
+        "column" : 26,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
+      }, {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
+        "line" : 347,
+        "column" : 26,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
+      }, {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
+        "line" : 413,
+        "column" : 26,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
+      } ]
+    }, {
+      "path" : "sshd-core/src/test/java/org/apache/sshd/client/auth/pubkey/InvalidRsaKeyAuthTest.java",
+      "score" : 4.0,
+      "findings" : [ {
+        "ruleId" : "JCA-KPG-EC",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/auth/pubkey/InvalidRsaKeyAuthTest.java",
+        "line" : 57,
+        "column" : 38,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(KeyUtils.EC_ALGORITHM)"
+      }, {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/client/auth/pubkey/InvalidRsaKeyAuthTest.java",
+        "line" : 90,
+        "column" : 38,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(KeyUtils.RSA_ALGORITHM)"
+      } ]
+    }, {
+      "path" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-DHPublicKey",
+        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
+        "line" : 69,
+        "column" : 31,
+        "api" : "key-type",
+        "algorithm" : "DHPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "DHPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-DHPublicKey",
+        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
+        "line" : 69,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "DHPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "DHPublicKey"
+      } ]
+    }, {
+      "path" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
+        "line" : 77,
+        "column" : 31,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-ECPublicKey",
+        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
+        "line" : 77,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "ECPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "ECPublicKey"
+      } ]
+    }, {
+      "path" : "sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "JCA-KPG-RSA",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java",
+        "line" : 61,
+        "column" : 15,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
+      } ]
+    }, {
+      "path" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
+      "score" : 2.0,
+      "findings" : [ {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
+        "line" : 66,
+        "column" : 41,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      }, {
+        "ruleId" : "FRAG-F4-RSAPublicKey",
+        "file" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
+        "line" : 66,
+        "column" : 9,
+        "api" : "key-type",
+        "algorithm" : "RSAPublicKey",
+        "category" : "TYPE_COUPLING",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F4" ],
+        "snippet" : "RSAPublicKey"
+      } ]
+    } ]
+  }, {
     "name" : "sshd-cli",
     "loc" : 5659,
     "score" : 23.1,
@@ -3337,155 +3512,6 @@
         "confidence" : "MEDIUM",
         "fragility" : [ "F4" ],
         "snippet" : "DSAPublicKey"
-      } ]
-    } ]
-  }, {
-    "name" : "sshd-core",
-    "loc" : 70779,
-    "score" : 20.14,
-    "tier" : "MEDIUM",
-    "urgency" : 32.0,
-    "baselineCount" : 5,
-    "files" : [ {
-      "path" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
-      "score" : 8.0,
-      "findings" : [ {
-        "ruleId" : "JCA-KPG-RSA",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
-        "line" : 227,
-        "column" : 26,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "RSA",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
-      }, {
-        "ruleId" : "JCA-KPG-RSA",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
-        "line" : 287,
-        "column" : 26,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "RSA",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
-      }, {
-        "ruleId" : "JCA-KPG-RSA",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
-        "line" : 347,
-        "column" : 26,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "RSA",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
-      }, {
-        "ruleId" : "JCA-KPG-RSA",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/client/ProxyTest.java",
-        "line" : 413,
-        "column" : 26,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "RSA",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
-      } ]
-    }, {
-      "path" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
-      "score" : 2.0,
-      "findings" : [ {
-        "ruleId" : "FRAG-F4-DHPublicKey",
-        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
-        "line" : 69,
-        "column" : 31,
-        "api" : "key-type",
-        "algorithm" : "DHPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "DHPublicKey"
-      }, {
-        "ruleId" : "FRAG-F4-DHPublicKey",
-        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/DHG.java",
-        "line" : 69,
-        "column" : 9,
-        "api" : "key-type",
-        "algorithm" : "DHPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "DHPublicKey"
-      } ]
-    }, {
-      "path" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
-      "score" : 2.0,
-      "findings" : [ {
-        "ruleId" : "FRAG-F4-ECPublicKey",
-        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
-        "line" : 77,
-        "column" : 31,
-        "api" : "key-type",
-        "algorithm" : "ECPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "ECPublicKey"
-      }, {
-        "ruleId" : "FRAG-F4-ECPublicKey",
-        "file" : "sshd-core/src/main/java/org/apache/sshd/common/kex/ECDH.java",
-        "line" : 77,
-        "column" : 9,
-        "api" : "key-type",
-        "algorithm" : "ECPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "ECPublicKey"
-      } ]
-    }, {
-      "path" : "sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java",
-      "score" : 2.0,
-      "findings" : [ {
-        "ruleId" : "JCA-KPG-RSA",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/common/global/OpenSshHostKeysHandlerTest.java",
-        "line" : 61,
-        "column" : 15,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "RSA",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"RSA\")"
-      } ]
-    }, {
-      "path" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
-      "score" : 2.0,
-      "findings" : [ {
-        "ruleId" : "FRAG-F4-RSAPublicKey",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
-        "line" : 66,
-        "column" : 41,
-        "api" : "key-type",
-        "algorithm" : "RSAPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "RSAPublicKey"
-      }, {
-        "ruleId" : "FRAG-F4-RSAPublicKey",
-        "file" : "sshd-core/src/test/java/org/apache/sshd/server/PublickeyAuthenticatorTest.java",
-        "line" : 66,
-        "column" : 9,
-        "api" : "key-type",
-        "algorithm" : "RSAPublicKey",
-        "category" : "TYPE_COUPLING",
-        "confidence" : "MEDIUM",
-        "fragility" : [ "F4" ],
-        "snippet" : "RSAPublicKey"
       } ]
     } ]
   }, {

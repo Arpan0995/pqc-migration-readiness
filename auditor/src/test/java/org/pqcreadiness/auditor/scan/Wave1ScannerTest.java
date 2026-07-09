@@ -107,10 +107,13 @@ class Wave1ScannerTest {
     }
 
     @Test
-    void doesNotFlagNonLiteralArgumentInWave1() throws IOException {
+    void resolvesLocalConstantArgument() throws IOException {
+        // Constant propagation now resolves a local variable assigned a literal.
+        // (Detailed confidence/edge-case coverage lives in ConstantPropagationTest.)
         List<Finding> findings = scan("I",
                 "        String alg = \"RSA\";\n        KeyPairGenerator.getInstance(alg);");
-        assertTrue(findings.isEmpty(), "wave 1 is literal-only; constant propagation is wave 2");
+        assertEquals(1, findings.size());
+        assertEquals("JCA-KPG-RSA", findings.get(0).ruleId());
     }
 
     @Test

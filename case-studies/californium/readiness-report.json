@@ -2,21 +2,157 @@
   "codebase" : "californium-3.14.0",
   "auditorVersion" : "0.1.0-SNAPSHOT",
   "scoreModel" : "v0",
-  "generatedAt" : "2026-07-09T05:08:32.957674Z",
-  "totalFindings" : 20,
+  "generatedAt" : "2026-07-09T05:30:07.172687Z",
+  "totalFindings" : 34,
   "filesScanned" : 1001,
   "filesSkipped" : 0,
   "modules" : [ {
     "name" : "element-connector",
     "loc" : 35472,
-    "score" : 19.72,
-    "tier" : "MEDIUM",
-    "urgency" : 26.0,
-    "baselineCount" : 4,
+    "score" : 46.82,
+    "tier" : "HIGH",
+    "urgency" : 70.0,
+    "baselineCount" : 15,
     "files" : [ {
-      "path" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
-      "score" : 5.0,
+      "path" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+      "score" : 19.0,
       "findings" : [ {
+        "ruleId" : "JCA-KF-EDDSA",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 342,
+        "column" : 25,
+        "api" : "KeyFactory",
+        "algorithm" : "EDDSA",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EDDSA)"
+      }, {
+        "ruleId" : "JCA-KF-EDDSA",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 360,
+        "column" : 7,
+        "api" : "KeyFactory",
+        "algorithm" : "EDDSA",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EDDSA, newProvider)"
+      }, {
+        "ruleId" : "JCA-KF-EDDSA",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 405,
+        "column" : 7,
+        "api" : "KeyFactory",
+        "algorithm" : "EDDSA",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EDDSA, newProvider)"
+      }, {
+        "ruleId" : "JCA-KF-RSA",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 433,
+        "column" : 4,
+        "api" : "KeyFactory",
+        "algorithm" : "RSA",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.RSA)"
+      }, {
+        "ruleId" : "JCA-KF-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 439,
+        "column" : 4,
+        "api" : "KeyFactory",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EC)"
+      }, {
+        "ruleId" : "JCA-SIG-ECDSA",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 449,
+        "column" : 28,
+        "api" : "Signature",
+        "algorithm" : "ECDSA",
+        "category" : "SIGNATURE",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "Signature.getInstance(\"SHA256withECDSA\")"
+      }, {
+        "ruleId" : "JCA-KPG-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 450,
+        "column" : 42,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "HIGH",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(\"EC\")"
+      }, {
+        "ruleId" : "JCA-KF-ED25519",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 483,
+        "column" : 5,
+        "api" : "KeyFactory",
+        "algorithm" : "ED25519",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.ED25519)"
+      }, {
+        "ruleId" : "JCA-KF-ED448",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
+        "line" : 488,
+        "column" : 5,
+        "api" : "KeyFactory",
+        "algorithm" : "ED448",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.ED448)"
+      } ]
+    }, {
+      "path" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
+      "score" : 13.0,
+      "findings" : [ {
+        "ruleId" : "JCA-KF-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
+        "line" : 822,
+        "column" : 24,
+        "api" : "KeyFactory",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EC)"
+      }, {
+        "ruleId" : "JCA-KF-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
+        "line" : 882,
+        "column" : 23,
+        "api" : "KeyFactory",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EC)"
+      }, {
+        "ruleId" : "JCA-KF-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
+        "line" : 932,
+        "column" : 26,
+        "api" : "KeyFactory",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyFactory.getInstance(JceNames.EC)"
+      }, {
         "ruleId" : "FRAG-F4-ECPublicKey",
         "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
         "line" : 932,
@@ -50,6 +186,17 @@
         "fragility" : [ "F4" ],
         "snippet" : "ECPublicKey"
       }, {
+        "ruleId" : "JCA-KPG-EC",
+        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
+        "line" : 1116,
+        "column" : 39,
+        "api" : "KeyPairGenerator",
+        "algorithm" : "EC",
+        "category" : "KEYGEN",
+        "confidence" : "MEDIUM",
+        "fragility" : [ ],
+        "snippet" : "KeyPairGenerator.getInstance(JceNames.EC)"
+      }, {
         "ruleId" : "FRAG-F4-ECPublicKey",
         "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/Asn1DerDecoder.java",
         "line" : 1118,
@@ -71,32 +218,6 @@
         "confidence" : "MEDIUM",
         "fragility" : [ "F4" ],
         "snippet" : "ECPublicKey"
-      } ]
-    }, {
-      "path" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
-      "score" : 5.0,
-      "findings" : [ {
-        "ruleId" : "JCA-SIG-ECDSA",
-        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
-        "line" : 449,
-        "column" : 28,
-        "api" : "Signature",
-        "algorithm" : "ECDSA",
-        "category" : "SIGNATURE",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "Signature.getInstance(\"SHA256withECDSA\")"
-      }, {
-        "ruleId" : "JCA-KPG-EC",
-        "file" : "element-connector/src/main/java/org/eclipse/californium/elements/util/JceProviderUtil.java",
-        "line" : 450,
-        "column" : 42,
-        "api" : "KeyPairGenerator",
-        "algorithm" : "EC",
-        "category" : "KEYGEN",
-        "confidence" : "HIGH",
-        "fragility" : [ ],
-        "snippet" : "KeyPairGenerator.getInstance(\"EC\")"
       } ]
     }, {
       "path" : "element-connector/src/test/java/org/eclipse/californium/elements/util/Asn1DerDecoderTest.java",
@@ -138,6 +259,74 @@
         "confidence" : "HIGH",
         "fragility" : [ ],
         "snippet" : "KeyPairGenerator.getInstance(\"EC\")"
+      } ]
+    } ]
+  }, {
+    "name" : "element-connector-tcp-netty",
+    "loc" : 3356,
+    "score" : 14.79,
+    "tier" : "MEDIUM",
+    "urgency" : 16.0,
+    "baselineCount" : 4,
+    "files" : [ {
+      "path" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsClientConnector.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "TLS-SUITES-PINNED",
+        "file" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsClientConnector.java",
+        "line" : 166,
+        "column" : 4,
+        "api" : "setEnabledCipherSuites",
+        "algorithm" : "pinned",
+        "category" : "TLS_CONFIG",
+        "confidence" : "HIGH",
+        "fragility" : [ "F3" ],
+        "snippet" : "sslEngine.setEnabledCipherSuites(weakCipherSuites)"
+      } ]
+    }, {
+      "path" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsServerConnector.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "TLS-SUITES-PINNED",
+        "file" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsServerConnector.java",
+        "line" : 103,
+        "column" : 4,
+        "api" : "setEnabledCipherSuites",
+        "algorithm" : "pinned",
+        "category" : "TLS_CONFIG",
+        "confidence" : "HIGH",
+        "fragility" : [ "F3" ],
+        "snippet" : "sslEngine.setEnabledCipherSuites(weakCipherSuites)"
+      } ]
+    }, {
+      "path" : "element-connector-tcp-netty/src/test/java/org/eclipse/californium/elements/tcp/netty/TlsConnectorTestUtil.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "TLS-PIN-TLSV1.2",
+        "file" : "element-connector-tcp-netty/src/test/java/org/eclipse/californium/elements/tcp/netty/TlsConnectorTestUtil.java",
+        "line" : 145,
+        "column" : 24,
+        "api" : "SSLContext",
+        "algorithm" : "TLSV1.2",
+        "category" : "TLS_CONFIG",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F3" ],
+        "snippet" : "SSLContext.getInstance(SslContextUtil.DEFAULT_SSL_PROTOCOL)"
+      } ]
+    }, {
+      "path" : "element-connector-tcp-netty/src/test/java/org/eclipse/californium/elements/tcp/netty/TlsCorrelationTest.java",
+      "score" : 3.0,
+      "findings" : [ {
+        "ruleId" : "TLS-PIN-TLSV1.2",
+        "file" : "element-connector-tcp-netty/src/test/java/org/eclipse/californium/elements/tcp/netty/TlsCorrelationTest.java",
+        "line" : 763,
+        "column" : 30,
+        "api" : "SSLContext",
+        "algorithm" : "TLSV1.2",
+        "category" : "TLS_CONFIG",
+        "confidence" : "MEDIUM",
+        "fragility" : [ "F3" ],
+        "snippet" : "SSLContext.getInstance(SslContextUtil.DEFAULT_SSL_PROTOCOL)"
       } ]
     } ]
   }, {
@@ -249,41 +438,26 @@
       } ]
     } ]
   }, {
-    "name" : "element-connector-tcp-netty",
-    "loc" : 3356,
-    "score" : 6.95,
+    "name" : "cf-utils/cf-cli-tcp-netty",
+    "loc" : 166,
+    "score" : 3.3,
     "tier" : "LOW",
-    "urgency" : 8.0,
-    "baselineCount" : 2,
+    "urgency" : 4.0,
+    "baselineCount" : 1,
     "files" : [ {
-      "path" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsClientConnector.java",
+      "path" : "cf-utils/cf-cli-tcp-netty/src/main/java/org/eclipse/californium/cli/tcp/netty/TlsConnectorFactory.java",
       "score" : 3.0,
       "findings" : [ {
-        "ruleId" : "TLS-SUITES-PINNED",
-        "file" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsClientConnector.java",
-        "line" : 166,
-        "column" : 4,
-        "api" : "setEnabledCipherSuites",
-        "algorithm" : "pinned",
+        "ruleId" : "TLS-PIN-TLSV1.2",
+        "file" : "cf-utils/cf-cli-tcp-netty/src/main/java/org/eclipse/californium/cli/tcp/netty/TlsConnectorFactory.java",
+        "line" : 81,
+        "column" : 23,
+        "api" : "SSLContext",
+        "algorithm" : "TLSV1.2",
         "category" : "TLS_CONFIG",
-        "confidence" : "HIGH",
+        "confidence" : "MEDIUM",
         "fragility" : [ "F3" ],
-        "snippet" : "sslEngine.setEnabledCipherSuites(weakCipherSuites)"
-      } ]
-    }, {
-      "path" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsServerConnector.java",
-      "score" : 3.0,
-      "findings" : [ {
-        "ruleId" : "TLS-SUITES-PINNED",
-        "file" : "element-connector-tcp-netty/src/main/java/org/eclipse/californium/elements/tcp/netty/TlsServerConnector.java",
-        "line" : 103,
-        "column" : 4,
-        "api" : "setEnabledCipherSuites",
-        "algorithm" : "pinned",
-        "category" : "TLS_CONFIG",
-        "confidence" : "HIGH",
-        "fragility" : [ "F3" ],
-        "snippet" : "sslEngine.setEnabledCipherSuites(weakCipherSuites)"
+        "snippet" : "SSLContext.getInstance(SslContextUtil.DEFAULT_SSL_PROTOCOL)"
       } ]
     } ]
   } ]

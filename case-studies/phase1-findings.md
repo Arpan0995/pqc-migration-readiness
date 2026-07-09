@@ -1,6 +1,7 @@
 # Phase 1 Findings — Cross-Repo PQC Migration Readiness Estimation
 
-Scanned **2026-07-09** with auditor `0.1.0-SNAPSHOT`, score model `v0`. Four public Java
+Scanned **2026-07-09** with auditor `0.1.0-SNAPSHOT` (detection waves 1–3 **plus
+intra- and cross-file constant propagation**), score model `v0`. Four public Java
 codebases, pinned commits in [`pre-scan.md`](pre-scan.md). Raw reports are in each
 `case-studies/<name>/readiness-report.{json,md}`.
 
@@ -12,102 +13,99 @@ codebases, pinned commits in [`pre-scan.md`](pre-scan.md). Raw reports are in ea
 
 ## Summary
 
-| Codebase | Files | Findings | Type-coupling (F4) | Real call sites (B0) | Top tier |
-|---|---:|---:|---:|---:|---|
-| jjwt 0.13.0 | 408 | 193 | 193 | 0 | CRITICAL |
-| mina-sshd 2.13.1 | 1,365 | 321 | 316 | 5 | CRITICAL |
-| californium 3.14.0 | 1,001 | 20 | 11 | 9 | MEDIUM |
-| shiro 2.2.1 | 790 | 0 | 0 | 0 | — |
-| **Total** | **3,564** | **534** | **520 (97%)** | **14 (3%)** | |
+| Codebase | Files | Findings | Type-coupling (F4) | Real call sites (B0) | of which via const-prop | Top tier |
+|---|---:|---:|---:|---:|---:|---|
+| jjwt 0.13.0 | 408 | 193 | 193 | 0 | 0 | CRITICAL |
+| mina-sshd 2.13.1 | 1,365 | 323 | 316 | 7 | 2 | CRITICAL |
+| californium 3.14.0 | 1,001 | 34 | 11 | 23 | 14 | MEDIUM |
+| shiro 2.2.1 | 790 | 0 | 0 | 0 | 0 | — |
+| **Total** | **3,564** | **550** | **520 (95%)** | **30** | **16** | |
 
-## Headline finding
+## Headline findings
 
-**Across 3,564 files of mature Java crypto code, actual quantum-vulnerable
-*algorithm-selection call sites* are rare (14 total, ~3% of findings). The
-overwhelming majority of findings — 520, ~97% — are F4 *concrete-key-type coupling*:
-code typed against `RSAPublicKey`, `ECPublicKey`, `ECPrivateKey`, `DSAPublicKey`, etc.**
+**1. Type coupling dominates.** Across 3,564 files, ~95% of findings (520) are F4
+*concrete-key-type coupling*: code typed against `RSAPublicKey`, `ECPublicKey`,
+`DSAPublicKey`, etc. This is a genuine migration cost — an API typed against
+`ECPublicKey` cannot transparently accept an ML-DSA key, so the change propagates through
+every caller — and for these libraries it is the *bulk* of the migration surface, not a
+handful of `getInstance` swaps. A "CRITICAL" tier here therefore means *"dense
+concrete-key-type API surface,"* not *"heavy active use of RSA."* jjwt's `impl` module
+(213, CRITICAL) has ~118 key-typed sites and **zero** actual RSA calls; that is stated
+plainly so the tier is not over-read.
 
-This is the most important Phase-1 result, and it has two honest sides:
+**2. Constant propagation more than doubled the real call sites we can see (14 → 30).**
+The initial literal-only pass found only 14 actual algorithm-selection call sites in
+3,564 files, because mature libraries rarely write `getInstance("RSA")`. They write
+`getInstance(KeyUtils.RSA_ALGORITHM)` or `getInstance(EC_KEY_FACTORY_ALGORITHM)` —
+constants, often in another file. Adding intra- and **cross-file** constant propagation
+(resolved from the source tree itself, no compiled classpath needed) recovered **16**
+additional true-positive call sites: californium jumped from 9 to 23 (it centralises
+algorithm names in constants like `EC_KEY_FACTORY_ALGORITHM = "EC"`), mina-sshd from 5 to
+7 (`KeyUtils.RSA_ALGORITHM`, `KeyUtils.EC_ALGORITHM`). Spot-checked: all genuine.
 
-1. **It is a real, useful migration signal.** Type coupling is a genuine migration cost:
-   an API typed against `ECPublicKey` cannot transparently accept an ML-DSA key, so the
-   change propagates through every caller. For these libraries, the *bulk* of migration
-   effort really would be reworking key-typed API surface, not swapping a handful of
-   `getInstance` calls. The tool is pointing at something true.
-
-2. **It also exposes a detection limitation, exactly as documented.** The auditor's
-   detection is intentionally syntactic and literal-only (see
-   [doc 02 §5](../docs/research/02-detection-rule-catalog.md)): it flags
-   `getInstance("RSA")` but not `getInstance(alg)` where `alg` is a constant, enum, or
-   config value. Mature libraries almost always do the latter — jjwt selects algorithms
-   through its `SignatureAlgorithm`/`KeyAlgorithm` enums, Shiro passes transformation
-   strings held in variables. So the near-total absence of call-site findings is partly
-   real (these libraries *are* well-abstracted) and partly a blind spot
-   (constant-propagation / symbol resolution, deferred, would recover many of them).
-
-**Consequence for reading the scores:** because scores are ~97% driven by type coupling,
-a "CRITICAL" tier here means *"dense concrete-key-type API surface,"* not *"heavy active
-use of RSA."* jjwt's `impl` module scoring 213 reflects ~118 key-typed sites, not 118
-RSA calls (it has zero). This is stated plainly so the tier is not over-read.
+**3. What constant propagation still cannot see marks the real detection frontier.**
+Two patterns remain invisible and are honest limitations, not bugs:
+- **Enum / registry selection** — jjwt chooses algorithms through its `SignatureAlgorithm`
+  enum, which maps names internally. This is library semantics, not constant propagation;
+  jjwt stayed at 0 call sites. Resolving it would need per-library modelling or full type
+  resolution.
+- **Runtime-dynamic selection** — `getInstance(algo)` from a method parameter, or
+  `getInstance(builtIn.getTransformation())` from a method call (common in mina-sshd's
+  negotiation layer). These are genuinely not statically determinable without dataflow.
 
 ## Per-codebase readiness profile
 
-### jjwt 0.13.0 — HIGH type-coupling, zero visible call sites
-193 findings, **all** F4. The `impl` module (CRITICAL, 20k LOC) is densely typed against
-RSA/EC key interfaces because that is jjwt's public contract. Zero `getInstance` call
-sites were visible because jjwt resolves algorithms through its own enums — a clean
-design that also renders algorithm selection invisible to literal-only scanning. Honest
-migration read: the effort here is **API-surface churn** (key types → interfaces/PQC),
-which the tool captures, plus enum-internal algorithm wiring, which it does not yet see.
+### jjwt 0.13.0 — HIGH type-coupling, algorithm selection invisible (by enum)
+193 findings, **all** F4. Zero call sites even after constant propagation, because jjwt
+resolves algorithms through enums rather than constants. Honest read: the migration
+effort here is **API-surface churn** (key interfaces → PQC-capable abstractions), which
+the tool captures well; the enum-internal algorithm wiring it does not see at all.
 
 ### mina-sshd 2.13.1 — largest surface, protocol-shaped
-321 findings (316 F4 + 5 key-generation call sites) across 6 modules. Broadest key-type
-coupling of the four, including DSA (SSH still carries legacy host-key types) — a genuine
-extra migration axis. Only 5 literal call sites surfaced despite this being a protocol
-implementation, again because algorithm names flow through SSH's negotiation constants
-rather than literals. Pinned pre-PQC on purpose: upstream later added ML-KEM hybrids
-(3.0.0-M2), so this codebase is the natural candidate if Phase 2 ever mines a real
-migration.
+323 findings (316 F4 + 7 call sites, 2 recovered via cross-file constants). Broadest
+key-type coupling of the four, including DSA (SSH still carries legacy host-key types) —
+a genuine extra migration axis. Most of its algorithm selection flows through negotiation
+constants and factory methods that remain dynamic. Pinned pre-PQC on purpose: upstream
+later added ML-KEM hybrids (3.0.0-M2), so this is the natural Phase-2 candidate if a real
+migration is ever mined.
 
-### californium 3.14.0 — smallest but most *balanced* signal
-Only 20 findings, but the **richest mix**: 11 F4 + 5 key-generation + 2 ECDSA signature
-sites + 2 TLS suite-pinning (F3) sites, concentrated in a DER/ASN.1 utility and the
-Scandium DTLS module. This is the one codebase that uses literal algorithm strings in a
-few real places, so its (small) score is the most representative of *active* crypto
-usage rather than type coupling alone.
+### californium 3.14.0 — now the richest call-site signal
+Constant propagation transformed this codebase's report: 20 → 34 findings, call sites
+9 → 23. Californium centralises algorithm names in cross-file constants
+(`EC_KEY_FACTORY_ALGORITHM`, `EDDSA`, `ED25519`, `ED448`, plus `TLSv1.2` version pins in
+test/utility harnesses), all now resolved. It is the clearest example of why cross-file
+resolution matters on real code, and the codebase whose score most reflects *active*
+crypto usage rather than type coupling alone.
 
 ### shiro 2.2.1 — correctly near-zero (a useful negative control)
-**Zero findings, and that appears to be correct.** Shiro has 0 `Signature.getInstance`,
-0 `KeyPairGenerator`, and 0 concrete asymmetric key types; its cryptography is
-predominantly **symmetric** (AES/Blowfish) and password hashing, which are not
-quantum-vulnerable in the asymmetric sense and are out of scope by design (doc 01). Its
-6 `Cipher.getInstance` calls take a *variable* transformation, so they are both symmetric
-and literal-invisible. Shiro validates that the detector does **not** false-positive on
-symmetric crypto — an important calibration point. (Small caveat: if any variable-sourced
-algorithm ever resolved to an asymmetric scheme, we would miss it; nothing in the source
-suggests it does.)
+**Zero findings, and that appears correct.** 0 `Signature.getInstance`, 0
+`KeyPairGenerator`, 0 concrete asymmetric key types; Shiro's cryptography is predominantly
+**symmetric** (AES/Blowfish) and password hashing — not quantum-vulnerable in the
+asymmetric sense and out of scope by design (doc 01). Its `Cipher.getInstance` calls take
+a *variable* transformation that is both symmetric and dynamic. Shiro validates that the
+detector does **not** false-positive on symmetric crypto.
 
 ## What this means
 
-**For the tool.** Phase 1 gives strong empirical motivation for the deferred
-constant-propagation / symbol-resolution work: on real libraries, literal-only detection
-finds almost no algorithm-selection sites. The type-coupling signal (F4) is doing the
-real work today and is worth trusting as an API-surface indicator; the call-site signal
-is currently under-powered on well-abstracted code and should be read as a lower bound.
+**For the tool.** Constant propagation was the right next step and paid off on real code
+(call-site detection 14 → 30, +114%), while confirming its own frontier: enum/registry
+selection and runtime-dynamic selection are what remain. Those, not literal vs. constant,
+are where further detection investment would go. The F4 type-coupling signal remains the
+workhorse and should be trusted as an API-surface indicator.
 
-**For a migration planner.** For libraries like these, budget the migration around
-**key-typed API surface** (interfaces, casts, serialization of key material), not around
-counting `getInstance` calls. A codebase can have a large, real migration cost with zero
-literal RSA/EC calls — jjwt is the clean example.
+**For a migration planner.** Budget these libraries' migrations around **key-typed API
+surface** first (interfaces, casts, key-material serialization), with algorithm-site
+counts as a *lower bound* — especially for enum-driven libraries like jjwt, where the
+visible call-site count is zero but the real work is not.
 
-**For the scoring model.** A future revision might weight or report type-coupling
-separately from active call sites, so a "type-coupling-only" CRITICAL is distinguishable
-from an "active-usage" CRITICAL. Noted for score model `v1` (Phase 2), not changed now —
-`v0` stays frozen.
+**For the scoring model.** A future `v1` might report type-coupling separately from active
+call sites so a "coupling-only CRITICAL" is distinguishable from an "active-usage
+CRITICAL." Noted for Phase 2; `v0` stays frozen.
 
 ## Caveats
 
-- Syntactic, literal-only detection: call-site counts are lower bounds (see above).
+- Detection is syntactic; call-site counts are still lower bounds (enum/dynamic selection
+  is invisible — see headline 3).
 - No ground truth here: precision/recall and score-vs-effort validation are Phase 2.
 - Scores/tiers are heuristics; there is deliberately no engineer-days figure.
 - Reports reflect the exact pinned commits in `pre-scan.md`; later releases differ (e.g.
