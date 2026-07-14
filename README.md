@@ -1,8 +1,50 @@
 # PQC Migration Readiness Framework
 
+[![auditor on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-auditor.svg?label=auditor%20%E2%80%94%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-auditor)
+[![agility-provider on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-agility.svg?label=agility-provider%20%E2%80%94%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-agility)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![JDK 21](https://img.shields.io/badge/JDK-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
+
 A research framework for answering a question current post-quantum-cryptography
 guidance leaves open: **not *what* to migrate to, but *how much* a migration
 will cost for a specific Java codebase — and where the expensive parts hide.**
+
+## Install / Run
+
+**Run the auditor on any Java source tree in one command** — no build, no
+classpath wrangling. Download the self-contained CLI jar from Maven Central and
+point it at a directory:
+
+```bash
+# Download the executable auditor (fat jar) from Maven Central
+curl -L -o pqc-readiness-auditor.jar \
+  https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.0.0/pqc-readiness-auditor-1.0.0-all.jar
+
+# Scan a codebase; writes JSON + Markdown reports to ./audit-out
+java -jar pqc-readiness-auditor.jar /path/to/java/project --out audit-out --name my-project
+```
+
+Output: `audit-out/readiness-report.json` (machine-readable) and
+`audit-out/readiness-report.md` (ranked hotspots with file:line and *why each is
+expensive*).
+
+**Use the libraries in a Maven build:**
+
+```xml
+<!-- Static readiness auditor (scanner + pre-registered scoring model) -->
+<dependency>
+  <groupId>io.github.arpan0995</groupId>
+  <artifactId>pqc-readiness-auditor</artifactId>
+  <version>1.0.0</version>
+</dependency>
+
+<!-- Runtime crypto-agility layer (classical / hybrid / PQC-only) -->
+<dependency>
+  <groupId>io.github.arpan0995</groupId>
+  <artifactId>pqc-readiness-agility</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
 ## Why
 
@@ -104,12 +146,14 @@ Design decisions and methodology live in [`docs/research/`](docs/research/):
 mvn clean install
 ```
 
-## Run the auditor
+## Run the auditor (from source)
+
+The published `-all` jar (see [Install / Run](#install--run)) is the easiest way
+to run the auditor. To run it from a local build instead:
 
 ```
-mvn -pl auditor dependency:build-classpath -Dmdep.outputFile=target/cp.txt
-java -cp "auditor/target/classes:$(cat auditor/target/cp.txt)" \
-    org.pqcreadiness.auditor.cli.AuditorCli <source-root> --out audit-out --name <label>
+mvn -pl auditor -am package
+java -jar auditor/target/pqc-readiness-auditor-1.0.0-all.jar <source-root> --out audit-out --name <label>
 ```
 
 Produces `audit-out/readiness-report.json` (machine-readable, feeds the analysis
@@ -191,4 +235,9 @@ Headlines:
 
 ## License
 
-TBD.
+[Apache License 2.0](LICENSE).
+
+## Citation
+
+If you use this work, please cite it via [`CITATION.cff`](CITATION.cff) (also
+surfaced by GitHub's "Cite this repository" button).
