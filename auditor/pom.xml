@@ -5,16 +5,40 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.pqcreadiness</groupId>
+    <groupId>io.github.arpan0995</groupId>
     <artifactId>pqc-migration-readiness</artifactId>
     <version>1.0.0</version>
   </parent>
 
-  <artifactId>auditor</artifactId>
+  <artifactId>pqc-readiness-auditor</artifactId>
   <packaging>jar</packaging>
 
-  <name>PQC Auditor</name>
-  <description>Scans a Java codebase for quantum-vulnerable cryptographic usage and produces a migration difficulty score.</description>
+  <name>PQC Readiness Auditor</name>
+  <description>Static readiness auditor estimating post-quantum cryptography migration effort for Java codebases. Detects quantum-vulnerable JCA usage and structural fragility indicators via classpath-free constant propagation, with a pre-registered scoring model.</description>
+  <url>https://github.com/Arpan0995/pqc-migration-readiness</url>
+
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Arpan Sharma</name>
+      <email>arpansharma073@gmail.com</email>
+      <url>https://github.com/Arpan0995</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/Arpan0995/pqc-migration-readiness.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Arpan0995/pqc-migration-readiness.git</developerConnection>
+    <url>https://github.com/Arpan0995/pqc-migration-readiness</url>
+    <tag>v1.0.0</tag>
+  </scm>
 
   <dependencies>
     <dependency>
@@ -25,11 +49,6 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk18on</artifactId>
     </dependency>
 
     <dependency>
@@ -44,6 +63,42 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>cli-fat-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>all</shadedClassifierName>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>org.pqcreadiness.auditor.cli.AuditorCli</mainClass>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+              </transformers>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <exclude>module-info.class</exclude>
+                    <exclude>META-INF/versions/*/module-info.class</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Estimating the Cost of Post-Quantum Cryptography Migration for Java Codebases: A Pre-Registered Static Readiness Auditor and Crypto-Agility Framework"
+authors:
+  - family-names: Sharma
+    given-names: Arpan
+    email: arpansharma073@gmail.com
+version: 1.0.0
+date-released: 2026-07-14
+license: Apache-2.0
+repository-code: "https://github.com/Arpan0995/pqc-migration-readiness"
+keywords:
+  - post-quantum cryptography
+  - ML-KEM
+  - ML-DSA
+  - crypto-agility
+  - static analysis
+  - Java

@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.pqcreadiness</groupId>
+    <groupId>io.github.arpan0995</groupId>
     <artifactId>pqc-migration-readiness</artifactId>
     <version>1.0.0</version>
   </parent>
@@ -19,12 +19,17 @@
   <properties>
     <!-- JMH benchmarks must not be skipped by surefire; they run via the shaded jar, not JUnit. -->
     <maven.test.skip>true</maven.test.skip>
+    <!-- Internal benchmark harness: never published to Maven Central. -->
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+    <maven.source.skip>true</maven.source.skip>
+    <gpg.skip>true</gpg.skip>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>org.pqcreadiness</groupId>
-      <artifactId>agility-provider</artifactId>
+      <groupId>io.github.arpan0995</groupId>
+      <artifactId>pqc-readiness-agility</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -44,6 +49,13 @@
   <build>
     <finalName>benchmarks</finalName>
     <plugins>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <configuration>
+          <skipPublishing>true</skipPublishing>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
