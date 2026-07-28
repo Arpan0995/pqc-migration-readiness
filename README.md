@@ -176,7 +176,7 @@ methodology, and raw data in [`benchmarks/results/RESULTS.md`](benchmarks/result
 Headlines:
 
 - **Negotiation overhead is negligible** — capability negotiation costs **~6–9 ns** and
-  24 B/op, ~7 orders of magnitude below the crypto it selects. The "abstraction layer is
+  24 B/op, 4–5 orders of magnitude below the crypto it selects. The "abstraction layer is
   too slow" objection does not survive the data.
 - **PQC is not uniformly slower** — ML-KEM encapsulate/decapsulate are *faster* than
   X25519 (0.3× / 0.7×); the cost moves to keygen. ML-DSA signing is the expensive
