@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.github.arpan0995</groupId>
+    <artifactId>pqc-migration-readiness</artifactId>
+    <version>1.1.0</version>
+  </parent>
+
+  <artifactId>pqc-readiness-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+
+  <name>PQC Readiness Maven Plugin</name>
+  <description>Runs the PQC readiness auditor from a Maven build: scans the project for quantum-vulnerable JCA usage and structural fragility indicators, and writes JSON, Markdown, and SARIF readiness reports.</description>
+  <url>https://github.com/Arpan0995/pqc-migration-readiness</url>
+
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Arpan Sharma</name>
+      <email>arpansharma073@gmail.com</email>
+      <url>https://github.com/Arpan0995</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/Arpan0995/pqc-migration-readiness.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Arpan0995/pqc-migration-readiness.git</developerConnection>
+    <url>https://github.com/Arpan0995/pqc-migration-readiness</url>
+    <tag>v1.1.0</tag>
+  </scm>
+
+  <properties>
+    <maven-plugin-api.version>3.9.9</maven-plugin-api.version>
+    <maven-plugin-tools.version>3.15.1</maven-plugin-tools.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.github.arpan0995</groupId>
+      <artifactId>pqc-readiness-auditor</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven-plugin-api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>${maven-plugin-tools.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>${maven-plugin-tools.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

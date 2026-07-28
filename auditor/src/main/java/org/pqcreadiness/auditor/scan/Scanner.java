@@ -29,10 +29,22 @@ import java.util.stream.Stream;
 public final class Scanner {
 
     private final ParserConfiguration configuration;
+    private final Set<String> excludedDirectoryNames;
 
     public Scanner() {
+        this(Set.of());
+    }
+
+    /**
+     * @param excludedDirectoryNames directory names pruned from the walk wherever they
+     *                               appear under the root (e.g. {@code "target"} so a
+     *                               build-integrated scan does not audit generated
+     *                               sources). The default scanner excludes nothing.
+     */
+    public Scanner(Set<String> excludedDirectoryNames) {
         this.configuration = new ParserConfiguration()
                 .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_21);
+        this.excludedDirectoryNames = Set.copyOf(excludedDirectoryNames);
     }
 
     /**
@@ -121,18 +133,32 @@ public final class Scanner {
         }
     }
 
-    private static List<Path> javaSources(Path root) {
+    private List<Path> javaSources(Path root) {
         if (Files.isRegularFile(root)) {
             return isJava(root) ? List.of(root) : List.of();
         }
         try (Stream<Path> walk = Files.walk(root)) {
             return walk.filter(Files::isRegularFile)
                     .filter(Scanner::isJava)
+                    .filter(source -> !isExcluded(root, source))
                     .sorted(Comparator.naturalOrder())
                     .toList();
         } catch (IOException e) {
             throw new UncheckedIOException("Failed to walk source root: " + root, e);
         }
+    }
+
+    /** Whether any directory between the root and the file has an excluded name. */
+    private boolean isExcluded(Path root, Path source) {
+        if (excludedDirectoryNames.isEmpty()) {
+            return false;
+        }
+        for (Path element : root.relativize(source.getParent() == null ? source : source.getParent())) {
+            if (excludedDirectoryNames.contains(element.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean isJava(Path path) {
