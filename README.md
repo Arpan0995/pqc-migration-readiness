@@ -4,6 +4,7 @@
 [![agility-provider on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-agility.svg?label=agility-provider%20%E2%80%94%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-agility)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![JDK 21](https://img.shields.io/badge/JDK-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21638938.svg)](https://doi.org/10.5281/zenodo.21638938)
 
 A research framework for answering a question current post-quantum-cryptography
 guidance leaves open: **not *what* to migrate to, but *how much* a migration
