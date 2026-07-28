@@ -24,9 +24,23 @@ curl -L -o pqc-readiness-auditor.jar \
 java -jar pqc-readiness-auditor.jar /path/to/java/project --out audit-out --name my-project
 ```
 
-Output: `audit-out/readiness-report.json` (machine-readable) and
+Output: `audit-out/readiness-report.json` (machine-readable),
 `audit-out/readiness-report.md` (ranked hotspots with file:line and *why each is
-expensive*).
+expensive*), and `audit-out/readiness-report.sarif` (SARIF 2.1.0).
+
+**Surface findings in GitHub code scanning:** upload the SARIF report from any
+workflow and findings appear as pull-request annotations and Security-tab
+alerts. Scan the repository root so alert paths resolve:
+
+```yaml
+- run: |
+    curl -L -o pqc-readiness-auditor.jar \
+      https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.0.0/pqc-readiness-auditor-1.0.0-all.jar
+    java -jar pqc-readiness-auditor.jar . --out audit-out
+- uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: audit-out/readiness-report.sarif
+```
 
 **Use the libraries in a Maven build:**
 

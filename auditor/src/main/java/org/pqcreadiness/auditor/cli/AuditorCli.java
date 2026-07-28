@@ -3,6 +3,7 @@ package org.pqcreadiness.auditor.cli;
 import org.pqcreadiness.auditor.model.ReadinessReport;
 import org.pqcreadiness.auditor.report.JsonReportWriter;
 import org.pqcreadiness.auditor.report.MarkdownReportWriter;
+import org.pqcreadiness.auditor.report.SarifReportWriter;
 import org.pqcreadiness.auditor.scan.ScanResult;
 import org.pqcreadiness.auditor.scan.Scanner;
 import org.pqcreadiness.auditor.score.ModuleResolver;
@@ -14,7 +15,7 @@ import java.nio.file.Path;
 
 /**
  * Command-line entry point: scans a Java codebase and writes a readiness report as
- * JSON and Markdown.
+ * JSON, Markdown, and SARIF (for GitHub code scanning).
  *
  * <pre>{@code
  * auditor <source-root> [--out <dir>] [--name <codebase-label>]
@@ -57,14 +58,17 @@ public final class AuditorCli {
 
         Path jsonOut = out.resolve("readiness-report.json");
         Path mdOut = out.resolve("readiness-report.md");
+        Path sarifOut = out.resolve("readiness-report.sarif");
         new JsonReportWriter().write(report, jsonOut);
         new MarkdownReportWriter().write(report, mdOut);
+        new SarifReportWriter().write(report, sarifOut);
 
         System.out.printf("Scanned %d files (%d skipped), %d findings across %d module(s).%n",
                 report.filesScanned(), report.filesSkipped(), report.totalFindings(),
                 report.modules().size());
         System.out.println("JSON report:     " + jsonOut.toAbsolutePath());
         System.out.println("Markdown report: " + mdOut.toAbsolutePath());
+        System.out.println("SARIF report:    " + sarifOut.toAbsolutePath());
     }
 
     private static boolean isHelp(String arg) {
@@ -76,7 +80,7 @@ public final class AuditorCli {
                 Usage: auditor <source-root> [--out <dir>] [--name <label>]
 
                 Scans a Java codebase for quantum-vulnerable cryptographic usage and
-                writes a PQC migration readiness report (JSON + Markdown).
+                writes a PQC migration readiness report (JSON + Markdown + SARIF).
 
                   <source-root>   directory (or single .java file) to scan
                   --out <dir>     output directory (default: ./audit-out)

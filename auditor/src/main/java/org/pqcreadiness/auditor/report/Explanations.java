@@ -13,6 +13,15 @@ public final class Explanations {
     private Explanations() {
     }
 
+    /**
+     * One-line description of the rule a finding was emitted by, without the
+     * finding-specific fragility notes. Used as SARIF rule metadata, where one
+     * description must stand for every result the rule produces.
+     */
+    public static String ruleDescription(Finding representative) {
+        return categoryReason(representative);
+    }
+
     /** One-line reason a finding matters for a PQC migration. */
     public static String why(Finding finding) {
         StringBuilder reason = new StringBuilder(categoryReason(finding));
