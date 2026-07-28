@@ -66,8 +66,8 @@ to study.
 ## Interpretation
 
 **The agility layer's own overhead is negligible.** Capability negotiation costs
-**~6–9 nanoseconds** and 24 bytes — roughly seven orders of magnitude below the crypto
-operations it selects (µs–ms). The "abstraction layer is too expensive" objection does not
+**~6–9 nanoseconds** and 24 bytes — 4–5 orders of magnitude below the crypto
+operations it selects (36–514 µs across the measured matrix). The "abstraction layer is too expensive" objection does not
 survive contact with the data; whatever cost exists is the *algorithms*, not the policy/
 negotiation wrapper around them.
 

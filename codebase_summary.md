@@ -174,7 +174,7 @@ Environment: Apple M2 (8 cores), OpenJDK 21.0.11, Bouncy Castle 1.84; JMH 1.37, 
 Allocation per operation (GC profiler): KEM keygen 3,720 B classical vs. **47,073 B hybrid (12.7x)** / 43,321 B PQC (11.6x); sign 52,633 B classical vs. 266,227 B dual (5.1x) / **341,908 B ML-DSA (6.5x)**; overall hybrid/PQC allocate **4–13x more per operation**. Negotiation: **6.44 ns** (hybrid-capable peer) / **8.98 ns** (classical-only, downgrade path), 24 B/op.
 
 **Significance.**
-1. **The agility abstraction is effectively free:** negotiation costs single-digit nanoseconds — about seven orders of magnitude below the crypto it selects — empirically retiring the standard "an agility layer is too slow" objection to crypto-agility architectures.
+1. **The agility abstraction is effectively free:** negotiation costs single-digit nanoseconds — 4–5 orders of magnitude below the crypto it selects — empirically retiring the standard "an agility layer is too slow" objection to crypto-agility architectures.
 2. **PQC is not uniformly slower; it is differently shaped.** ML-KEM encapsulation/decapsulation are *faster* than X25519 (0.3x / 0.7x) with cost shifted to keygen, while ML-DSA signing is the one genuinely expensive operation (7.8x; verification only 1.5–1.7x). Workload shape — not a blanket slowdown — should drive migration planning.
 3. **The JVM-specific result is allocation pressure** (4–13x per op, driven by multi-KB keys/ciphertexts/signatures): sustained GC load under handshake- or signing-heavy traffic, a managed-runtime effect invisible to the C/Rust-centric PQC benchmarking literature and the clearest candidate for a standalone empirical contribution.
 
