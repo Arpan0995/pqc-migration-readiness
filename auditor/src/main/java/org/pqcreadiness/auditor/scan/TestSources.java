@@ -13,6 +13,12 @@ package org.pqcreadiness.auditor.scan;
  * {@code src/androidTest/java}). A directory merely named {@code test} lower in a main
  * source tree does not count, since that would misclassify production packages such as
  * {@code org/example/test/}.
+ *
+ * <p>Paths are matched relative to the scanned root, deliberately: matching absolute paths
+ * would misclassify an entire project that happens to be checked out under a directory such
+ * as {@code /home/user/src/test/}. The consequence is that pointing the auditor directly at
+ * a test directory classifies nothing, because the {@code src/test} prefix is then outside
+ * the scan. Scan the project root to get the classification.
  */
 public final class TestSources {
 
