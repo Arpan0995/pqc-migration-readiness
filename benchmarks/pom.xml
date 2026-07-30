@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.arpan0995</groupId>
     <artifactId>pqc-migration-readiness</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
   </parent>
 
   <artifactId>benchmarks</artifactId>

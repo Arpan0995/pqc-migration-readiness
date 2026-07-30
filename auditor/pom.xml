@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.arpan0995</groupId>
     <artifactId>pqc-migration-readiness</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
   </parent>
 
   <artifactId>pqc-readiness-auditor</artifactId>
@@ -37,7 +37,7 @@
     <connection>scm:git:https://github.com/Arpan0995/pqc-migration-readiness.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Arpan0995/pqc-migration-readiness.git</developerConnection>
     <url>https://github.com/Arpan0995/pqc-migration-readiness</url>
-    <tag>v1.2.0</tag>
+    <tag>v1.3.0</tag>
   </scm>
 
   <dependencies>

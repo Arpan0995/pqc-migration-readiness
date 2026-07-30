@@ -19,7 +19,7 @@ point it at a directory:
 ```bash
 # Download the executable auditor (fat jar) from Maven Central
 curl -L -o pqc-readiness-auditor.jar \
-  https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.2.0/pqc-readiness-auditor-1.2.0-all.jar
+  https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.3.0/pqc-readiness-auditor-1.3.0-all.jar
 
 # Scan a codebase; writes JSON + Markdown + SARIF reports to ./audit-out
 java -jar pqc-readiness-auditor.jar /path/to/java/project --out audit-out --name my-project
@@ -29,6 +29,13 @@ Output: `audit-out/readiness-report.json` (machine-readable),
 `audit-out/readiness-report.md` (ranked hotspots with file:line and *why each is
 expensive*), and `audit-out/readiness-report.sarif` (SARIF 2.1.0).
 
+Build-output directories (`target`, `build`, `out`, `bin`) are pruned by default
+so a scan of a built tree matches a scan of a clean checkout; override with
+`--exclude <dirs>`, or pass an empty value to scan everything. Findings under
+conventional test source roots are labelled and ranked separately, because test
+code exercises vulnerable algorithms deliberately; add `--skip-tests` to leave
+them out of the scan entirely.
+
 **Surface findings in GitHub code scanning:** upload the SARIF report from any
 workflow and findings appear as pull-request annotations and Security-tab
 alerts. Scan the repository root so alert paths resolve:
@@ -36,7 +43,7 @@ alerts. Scan the repository root so alert paths resolve:
 ```yaml
 - run: |
     curl -L -o pqc-readiness-auditor.jar \
-      https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.2.0/pqc-readiness-auditor-1.2.0-all.jar
+      https://repo1.maven.org/maven2/io/github/arpan0995/pqc-readiness-auditor/1.3.0/pqc-readiness-auditor-1.3.0-all.jar
     java -jar pqc-readiness-auditor.jar . --out audit-out
 - uses: github/codeql-action/upload-sarif@v3
   with:
@@ -50,28 +57,29 @@ alerts. Scan the repository root so alert paths resolve:
 <dependency>
   <groupId>io.github.arpan0995</groupId>
   <artifactId>pqc-readiness-auditor</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 
 <!-- Runtime crypto-agility layer (classical / hybrid / PQC-only) -->
 <dependency>
   <groupId>io.github.arpan0995</groupId>
   <artifactId>pqc-readiness-agility</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
 **Run the audit from a Maven build** — no pom changes required:
 
 ```bash
-mvn io.github.arpan0995:pqc-readiness-maven-plugin:1.2.0:audit
+mvn io.github.arpan0995:pqc-readiness-maven-plugin:1.3.0:audit
 ```
 
 Aggregates once at the multi-module root and writes all three reports to
 `target/pqc-readiness/`. Build output directories (`target/`) are excluded from
 the scan, so generated sources are never audited. Configurable via
 `-Dpqc.readiness.sourceRoot`, `-Dpqc.readiness.out`, `-Dpqc.readiness.name`,
-and `-Dpqc.readiness.skip`.
+`-Dpqc.readiness.excludedDirectories`, `-Dpqc.readiness.skipTests`, and
+`-Dpqc.readiness.skip`.
 
 ## Why
 
@@ -180,7 +188,7 @@ to run the auditor. To run it from a local build instead:
 
 ```
 mvn -pl auditor -am package
-java -jar auditor/target/pqc-readiness-auditor-1.2.0-all.jar <source-root> --out audit-out --name <label>
+java -jar auditor/target/pqc-readiness-auditor-1.3.0-all.jar <source-root> --out audit-out --name <label>
 ```
 
 Produces `audit-out/readiness-report.json` (machine-readable, feeds the analysis
