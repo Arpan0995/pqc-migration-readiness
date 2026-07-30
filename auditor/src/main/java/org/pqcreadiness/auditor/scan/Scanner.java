@@ -30,6 +30,7 @@ public final class Scanner {
 
     private final ParserConfiguration configuration;
     private final Set<String> excludedDirectoryNames;
+    private final boolean skipTestSources;
 
     public Scanner() {
         this(Set.of());
@@ -42,9 +43,21 @@ public final class Scanner {
      *                               sources). The default scanner excludes nothing.
      */
     public Scanner(Set<String> excludedDirectoryNames) {
+        this(excludedDirectoryNames, false);
+    }
+
+    /**
+     * @param excludedDirectoryNames directory names pruned from the walk wherever they appear
+     * @param skipTestSources        whether to omit conventional test source roots entirely
+     *                               (see {@link TestSources}). Findings from test code are
+     *                               classified either way; skipping them changes the totals,
+     *                               so it is off by default to keep runs comparable.
+     */
+    public Scanner(Set<String> excludedDirectoryNames, boolean skipTestSources) {
         this.configuration = new ParserConfiguration()
                 .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_21);
         this.excludedDirectoryNames = Set.copyOf(excludedDirectoryNames);
+        this.skipTestSources = skipTestSources;
     }
 
     /**
@@ -141,6 +154,8 @@ public final class Scanner {
             return walk.filter(Files::isRegularFile)
                     .filter(Scanner::isJava)
                     .filter(source -> !isExcluded(root, source))
+                    .filter(source -> !skipTestSources
+                            || !TestSources.isTestSourcePath(relativize(root, source)))
                     .sorted(Comparator.naturalOrder())
                     .toList();
         } catch (IOException e) {

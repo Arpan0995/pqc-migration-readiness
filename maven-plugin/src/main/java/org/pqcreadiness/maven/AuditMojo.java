@@ -61,6 +61,13 @@ public class AuditMojo extends AbstractMojo {
     @Parameter(property = "pqc.readiness.skip", defaultValue = "false")
     private boolean skip;
 
+    /**
+     * Omit conventional test source roots from the scan. Off by default: test findings are
+     * classified and reported separately, so totals stay comparable between runs.
+     */
+    @Parameter(property = "pqc.readiness.skipTests", defaultValue = "false")
+    private boolean skipTests;
+
     /** Version stamped into the reports; injected from the plugin descriptor. */
     @Parameter(defaultValue = "${plugin.version}", readonly = true)
     private String pluginVersion;
@@ -76,7 +83,7 @@ public class AuditMojo extends AbstractMojo {
         }
 
         Path root = sourceRoot.toPath().toAbsolutePath().normalize();
-        ScanResult scan = new Scanner(new LinkedHashSet<>(excludedDirectories)).scan(root);
+        ScanResult scan = new Scanner(new LinkedHashSet<>(excludedDirectories), skipTests).scan(root);
         ReadinessReport report = new ScoringEngine(pluginVersion == null ? "unknown" : pluginVersion)
                 .score(name == null ? String.valueOf(root.getFileName()) : name,
                         scan, new ModuleResolver(root));

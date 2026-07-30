@@ -40,8 +40,22 @@ public final class MarkdownReportWriter {
                 + "call sites. Urgency **U** is a separate axis (harvest-now-decrypt-later risk), "
                 + "not part of the difficulty estimate.\n\n");
 
-        appendModuleRanking(md, report.modules());
-        for (ModuleReport module : report.modules()) {
+        List<ModuleReport> production = report.modules().stream()
+                .filter(m -> !m.testScoped()).toList();
+        List<ModuleReport> tests = report.modules().stream()
+                .filter(ModuleReport::testScoped).toList();
+
+        appendModuleRanking(md, "Module ranking", production);
+        if (!tests.isEmpty()) {
+            md.append("Test-only modules are ranked separately below. Their crypto is "
+                    + "usually deliberate test material rather than production migration "
+                    + "surface, so mixing them into the ranking overstates the work.\n\n");
+            appendModuleRanking(md, "Test-only modules", tests);
+        }
+        for (ModuleReport module : production) {
+            appendModuleDetail(md, module);
+        }
+        for (ModuleReport module : tests) {
             appendModuleDetail(md, module);
         }
         return md.toString();
@@ -54,8 +68,8 @@ public final class MarkdownReportWriter {
         Files.writeString(out, toMarkdown(report));
     }
 
-    private void appendModuleRanking(StringBuilder md, List<ModuleReport> modules) {
-        md.append("## Module ranking\n\n");
+    private void appendModuleRanking(StringBuilder md, String heading, List<ModuleReport> modules) {
+        md.append("## ").append(heading).append("\n\n");
         md.append("| Rank | Module | Tier | Score S | Urgency U | Baseline B0 | LOC |\n");
         md.append("|---:|---|---|---:|---:|---:|---:|\n");
         int rank = 1;

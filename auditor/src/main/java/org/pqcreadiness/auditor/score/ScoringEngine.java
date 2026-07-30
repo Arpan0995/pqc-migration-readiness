@@ -6,6 +6,7 @@ import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
 import org.pqcreadiness.auditor.model.ReadinessReport;
 import org.pqcreadiness.auditor.scan.ScanResult;
+import org.pqcreadiness.auditor.scan.TestSources;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -78,15 +79,20 @@ public final class ScoringEngine {
                 }
             }
             summedDifficulty += fileScore;
-            files.add(new FileReport(entry.getKey(), round(fileScore), entry.getValue()));
+            files.add(new FileReport(entry.getKey(), round(fileScore),
+                    TestSources.isTestSourcePath(entry.getKey()), entry.getValue()));
         }
         files.sort(Comparator.comparingDouble(FileReport::score).reversed()
                 .thenComparing(FileReport::path));
 
+        // A module counts as test-scoped only when it contributes no production findings,
+        // so a mixed module is still ranked as production surface.
+        boolean testScoped = !files.isEmpty() && files.stream().allMatch(FileReport::testScoped);
+
         double score = summedDifficulty * ScoreModel.spread(byFile.size());
         double rounded = round(score);
         return new ModuleReport(module, loc, rounded, EffortTier.forScore(rounded),
-                round(urgency), baselineCount, files);
+                round(urgency), baselineCount, testScoped, files);
     }
 
     private static double round(double value) {

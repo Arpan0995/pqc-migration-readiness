@@ -16,6 +16,9 @@ import java.util.List;
  *                      estimate, not yet a validated prediction (see {@link EffortTier})
  * @param urgency       urgency score U, kept orthogonal to difficulty
  * @param baselineCount naive baseline B0: count of vulnerable call sites
+ * @param testScoped    whether every file in this module sits under a test source root.
+ *                      Such modules are reported separately: their crypto is usually
+ *                      deliberate test material, not production migration surface.
  * @param files         per-file breakdown, ranked by descending file score
  */
 public record ModuleReport(
@@ -25,9 +28,16 @@ public record ModuleReport(
         EffortTier tier,
         double urgency,
         int baselineCount,
+        boolean testScoped,
         List<FileReport> files) {
 
     public ModuleReport {
         files = List.copyOf(files);
+    }
+
+    /** Production-scoped module report. */
+    public ModuleReport(String name, int loc, double score, EffortTier tier,
+                        double urgency, int baselineCount, List<FileReport> files) {
+        this(name, loc, score, tier, urgency, baselineCount, false, files);
     }
 }
