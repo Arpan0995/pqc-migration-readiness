@@ -50,11 +50,15 @@ class EndToEndReportTest {
         assertNotNull(json);
         assertTrue(json.contains("JCA-KPG-RSA"));
         assertTrue(json.contains("\"scoreModel\" : \"v0\""));
+        assertTrue(json.contains("\"migrationPlan\""));
+        assertTrue(json.contains("\"timeModel\" : \"t0\""));
 
         String md = new MarkdownReportWriter().toMarkdown(report);
         assertTrue(md.contains("# PQC Migration Readiness Report: fixture"));
         assertTrue(md.contains("Module ranking"));
         assertTrue(md.contains("harvest-now-decrypt-later"));
+        assertTrue(md.contains("Migration plan at a glance"));
+        assertTrue(md.contains("Estimated effort for one engineer"));
 
         // Writers persist to disk without error.
         Path out = root.resolve("out");

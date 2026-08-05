@@ -8,8 +8,10 @@ package org.pqcreadiness.auditor.model;
  * two phases: Phase 1 (current) produces this score-derived estimate for real public
  * codebases; Phase 2 (deferred) validates the score against measured migration effort.
  * Until Phase 2 runs, treat these tiers as an informed ranking aid, not a measured
- * effort figure — there is deliberately no "N engineer-days" number here, because we
- * have no evidence yet for what conversion factor would be honest.
+ * effort figure. The tiers themselves carry no time conversion; engineer-time ranges
+ * in the report come from the separate planning-time layer (doc 03 &sect;8.1, see
+ * {@code auditor/.../score/PlanningTimeModel.java}), whose conversion constants are
+ * declared assumptions awaiting the same Phase-2 validation.
  *
  * <p>Thresholds are picked from the scoring model's own arithmetic (base weights 1-3,
  * fragility multipliers 1.5-2.5x each, capped at 6x product, spread factor ~1.0-1.4 for

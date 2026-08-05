@@ -40,6 +40,8 @@ public final class MarkdownReportWriter {
                 + "call sites. Urgency **U** is a separate axis (harvest-now-decrypt-later risk), "
                 + "not part of the difficulty estimate.\n\n");
 
+        appendMigrationPlan(md, report);
+
         List<ModuleReport> production = report.modules().stream()
                 .filter(m -> !m.testScoped()).toList();
         List<ModuleReport> tests = report.modules().stream()
@@ -66,6 +68,76 @@ public final class MarkdownReportWriter {
             Files.createDirectories(out.getParent());
         }
         Files.writeString(out, toMarkdown(report));
+    }
+
+    private void appendMigrationPlan(StringBuilder md, ReadinessReport report) {
+        MigrationPlan plan = MigrationPlan.of(report);
+        md.append("## Migration plan at a glance\n\n");
+        if (plan.isEmpty()) {
+            md.append("No quantum-vulnerable production crypto was found, so there is "
+                    + "nothing to plan: this codebase needs no PQC migration work on the "
+                    + "surface this auditor sees.\n\n");
+            return;
+        }
+
+        md.append("**Estimated effort for one engineer: ")
+                .append(MigrationPlan.humanRange(plan.totalHoursLow(), plan.totalHoursHigh()))
+                .append("** — change work ")
+                .append(MigrationPlan.humanRange(plan.changeHoursLow(), plan.changeHoursHigh()))
+                .append(", testing ")
+                .append(MigrationPlan.humanRange(plan.testingHoursLow(), plan.testingHoursHigh()))
+                .append(", plus ")
+                .append(MigrationPlan.humanRange(plan.setupHoursLow(), plan.setupHoursHigh()))
+                .append(" of one-time setup.\n\n");
+
+        md.append("> Time figures come from planning-time model `").append(plan.timeModel())
+                .append("`, layered on the difficulty score: 1 score point ≈ ")
+                .append(plan.assumptions().changeHoursPerPointLow()).append('–')
+                .append(plan.assumptions().changeHoursPerPointHigh())
+                .append(" engineer-hours of change work; testing ≈ 50–100% of change. ")
+                .append("These are declared planning assumptions, not validated "
+                        + "predictions (doc 03 §8.1). Findings under test source roots "
+                        + "are excluded from the plan.\n\n");
+
+        md.append("| # | Step | Sites | Where | Effort |\n");
+        md.append("|---:|---|---:|---|---|\n");
+        int number = 1;
+        for (MigrationPlan.Step step : plan.steps()) {
+            md.append("| ").append(number++).append(" | ").append(step.title())
+                    .append(" | ").append(step.sites() > 0 ? step.sites() : "—")
+                    .append(" | ").append(moduleList(step.modules()))
+                    .append(" | ")
+                    .append(step.effortCountedInOtherSteps()
+                            ? "_counted in the steps above_"
+                            : MigrationPlan.humanRange(step.hoursLow(), step.hoursHigh()))
+                    .append(" |\n");
+        }
+        md.append("\n");
+
+        number = 1;
+        for (MigrationPlan.Step step : plan.steps()) {
+            md.append(number++).append(". **").append(step.title()).append(".** ")
+                    .append(step.action()).append('\n');
+        }
+        md.append("\n");
+    }
+
+    private static String moduleList(List<String> modules) {
+        if (modules.isEmpty()) {
+            return "—";
+        }
+        StringBuilder cell = new StringBuilder();
+        int shown = Math.min(3, modules.size());
+        for (int i = 0; i < shown; i++) {
+            if (i > 0) {
+                cell.append(", ");
+            }
+            cell.append('`').append(modules.get(i)).append('`');
+        }
+        if (modules.size() > shown) {
+            cell.append(" +").append(modules.size() - shown).append(" more");
+        }
+        return cell.toString();
     }
 
     private void appendModuleRanking(StringBuilder md, String heading, List<ModuleReport> modules) {

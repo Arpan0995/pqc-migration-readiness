@@ -29,6 +29,17 @@ Output: `audit-out/readiness-report.json` (machine-readable),
 `audit-out/readiness-report.md` (ranked hotspots with file:line and *why each is
 expensive*), and `audit-out/readiness-report.sarif` (SARIF 2.1.0).
 
+The Markdown report opens with a **migration plan at a glance**: the ordered
+steps a PQC migration of the scanned codebase needs (provider setup, key-type
+decoupling, ML-KEM/ML-DSA call-site moves, keystore re-issue, testing and
+rollout), which modules each step touches, and an engineer-time range per step
+split into change work and testing. The time figures come from a declared
+planning-time model layered on the difficulty score (1 point ≈ 1.5–3
+engineer-hours of change work, testing ≈ 50–100% of change); they are planning
+heuristics, not validated predictions — see
+`docs/research/03-difficulty-scoring-model.md` §8.1. The same plan is embedded
+in the JSON report as the additive `migrationPlan` node, assumptions included.
+
 Build-output directories (`target`, `build`, `out`, `bin`) are pruned by default
 so a scan of a built tree matches a scan of a clean checkout; override with
 `--exclude <dirs>`, or pass an empty value to scan everything. Findings under

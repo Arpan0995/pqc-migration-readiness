@@ -3,6 +3,7 @@ package org.pqcreadiness.auditor.cli;
 import org.pqcreadiness.auditor.model.ReadinessReport;
 import org.pqcreadiness.auditor.report.JsonReportWriter;
 import org.pqcreadiness.auditor.report.MarkdownReportWriter;
+import org.pqcreadiness.auditor.report.MigrationPlan;
 import org.pqcreadiness.auditor.report.SarifReportWriter;
 import org.pqcreadiness.auditor.scan.ScanResult;
 import org.pqcreadiness.auditor.scan.Scanner;
@@ -79,6 +80,19 @@ public final class AuditorCli {
         System.out.printf("Scanned %d files (%d skipped), %d findings across %d module(s).%n",
                 report.filesScanned(), report.filesSkipped(), report.totalFindings(),
                 report.modules().size());
+        MigrationPlan plan = MigrationPlan.of(report);
+        if (plan.isEmpty()) {
+            System.out.println("No quantum-vulnerable production findings; "
+                    + "no migration effort to estimate.");
+        } else {
+            System.out.printf("Estimated migration effort (planning heuristic, time model %s): "
+                            + "%s for one engineer — change %s, testing %s, one-time setup %s.%n",
+                    plan.timeModel(),
+                    MigrationPlan.humanRange(plan.totalHoursLow(), plan.totalHoursHigh()),
+                    MigrationPlan.humanRange(plan.changeHoursLow(), plan.changeHoursHigh()),
+                    MigrationPlan.humanRange(plan.testingHoursLow(), plan.testingHoursHigh()),
+                    MigrationPlan.humanRange(plan.setupHoursLow(), plan.setupHoursHigh()));
+        }
         System.out.println("JSON report:     " + jsonOut.toAbsolutePath());
         System.out.println("Markdown report: " + mdOut.toAbsolutePath());
         System.out.println("SARIF report:    " + sarifOut.toAbsolutePath());
