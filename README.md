@@ -279,6 +279,20 @@ Headlines:
 > Every score/tier currently produced is a Phase 1 estimate, not a validated
 > prediction.
 
+## Contributing and feedback
+
+Questions, scan results from real codebases, bug reports and pull requests are
+all welcome. Open a
+[Discussion](https://github.com/Arpan0995/pqc-migration-readiness/discussions)
+to ask about the approach or to share what the auditor found on your code, raise
+an [Issue](https://github.com/Arpan0995/pqc-migration-readiness/issues) for bugs
+and detection gaps, or send a pull request. [CONTRIBUTING.md](CONTRIBUTING.md)
+has the details and a list of where help is most useful right now.
+
+If you find this project interesting or useful, please give it a star. Stars are
+the quickest way to show that the work is worth continuing, and they help others
+working on Java PQC migration find it.
+
 ## License
 
 [Apache License 2.0](LICENSE).
