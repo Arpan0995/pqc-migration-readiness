@@ -2,7 +2,7 @@
 
 Runtime cost of the crypto-agility layer across classical / hybrid / PQC-only postures.
 This is the [doc 05 §4](../../docs/research/05-validation-and-benchmark-plan.md) benchmark
-deliverable — it answers the standard *"an abstraction layer / PQC is too slow"* objection
+deliverable. It answers the standard *"an abstraction layer / PQC is too slow"* objection
 with measured data, and quantifies the JVM-specific allocation effect the project set out
 to study.
 
@@ -11,7 +11,7 @@ to study.
 - **Hardware:** Apple M2, 8 cores
 - **JVM:** OpenJDK 21.0.11 (Homebrew)
 - **Crypto:** Bouncy Castle `bcprov-jdk18on:1.84` (ML-KEM / ML-DSA)
-- **JMH:** 1.37 — `@Fork(2)`, `@Warmup(5×1s)`, `@Measurement(5×1s)` (Cnt = 10 per row),
+- **JMH:** 1.37 with `@Fork(2)`, `@Warmup(5×1s)`, `@Measurement(5×1s)` (Cnt = 10 per row),
   `AverageTime`, `-prof gc`
 - **Date:** 2026-07-09
 - Raw data: [`jmh-results.json`](jmh-results.json) (latency) and
@@ -32,13 +32,13 @@ to study.
 
 | Op | Suite | Latency | ×base | Alloc B/op | ×base |
 |---|---|--:|--:|--:|--:|
-| keygen | X25519 (classical) | 43.6 µs | — | 3,720 | — |
+| keygen | X25519 (classical) | 43.6 µs | base | 3,720 | base |
 | keygen | X25519+ML-KEM-768 (hybrid) | 102.4 µs | 2.3× | 47,073 | 12.7× |
 | keygen | ML-KEM-768 (PQC) | 55.6 µs | 1.3× | 43,321 | 11.6× |
-| encapsulate | X25519 (classical) | 108.0 µs | — | 8,413 | — |
+| encapsulate | X25519 (classical) | 108.0 µs | base | 8,413 | base |
 | encapsulate | X25519+ML-KEM-768 (hybrid) | 138.2 µs | 1.3× | 36,713 | 4.4× |
 | encapsulate | ML-KEM-768 (PQC) | 36.1 µs | **0.3×** | 31,048 | 3.7× |
-| decapsulate | X25519 (classical) | 62.3 µs | — | 4,737 | — |
+| decapsulate | X25519 (classical) | 62.3 µs | base | 4,737 | base |
 | decapsulate | X25519+ML-KEM-768 (hybrid) | 101.2 µs | 1.6× | 34,597 | 7.3× |
 | decapsulate | ML-KEM-768 (PQC) | 42.4 µs | **0.7×** | 32,460 | 6.9× |
 
@@ -46,13 +46,13 @@ to study.
 
 | Op | Suite | Latency | ×base | Alloc B/op | ×base |
 |---|---|--:|--:|--:|--:|
-| keygen | ECDSA-P256 (classical) | 66.9 µs | — | 52,389 | — |
+| keygen | ECDSA-P256 (classical) | 66.9 µs | base | 52,389 | base |
 | keygen | ECDSA+ML-DSA-65 (dual) | 187.7 µs | 2.8× | 189,691 | 3.6× |
 | keygen | ML-DSA-65 (PQC) | 120.4 µs | 1.8× | 137,257 | 2.6× |
-| sign | ECDSA-P256 (classical) | 65.6 µs | — | 52,633 | — |
+| sign | ECDSA-P256 (classical) | 65.6 µs | base | 52,633 | base |
 | sign | ECDSA+ML-DSA-65 (dual) | 355.9 µs | 5.4× | 266,227 | 5.1× |
 | sign | ML-DSA-65 (PQC) | 513.7 µs | **7.8×** | 341,908 | 6.5× |
-| verify | ECDSA-P256 (classical) | 72.3 µs | — | 81,780 | — |
+| verify | ECDSA-P256 (classical) | 72.3 µs | base | 81,780 | base |
 | verify | ECDSA+ML-DSA-65 (dual) | 171.7 µs | 2.4× | 207,014 | 2.5× |
 | verify | ML-DSA-65 (PQC) | 119.9 µs | 1.7× | 125,265 | 1.5× |
 
@@ -66,30 +66,30 @@ to study.
 ## Interpretation
 
 **The agility layer's own overhead is negligible.** Capability negotiation costs
-**~6–9 nanoseconds** and 24 bytes — 4–5 orders of magnitude below the crypto
+**~6–9 nanoseconds** and 24 bytes, 4–5 orders of magnitude below the crypto
 operations it selects (36–514 µs across the measured matrix). The "abstraction layer is too expensive" objection does not
 survive contact with the data; whatever cost exists is the *algorithms*, not the policy/
 negotiation wrapper around them.
 
-**PQC is not uniformly "slower" — it is different per operation.** ML-KEM
+**PQC is not uniformly "slower": it is different per operation.** ML-KEM
 **encapsulate/decapsulate are actually faster than** classical X25519 (0.3× and 0.7×),
 because ML-KEM's lattice arithmetic is cheaper than an X25519 scalar multiplication; the
 cost moves to keygen. So a KEM-heavy workload can get *faster* moving to PQC. Signatures
 are where the real CPU cost lands: **ML-DSA signing is ~7.8× ECDSA** (dual-sign 5.4×),
 though verification stays modest (1.5–1.7×).
 
-**The JVM-specific story is allocation, not just latency** — the effect this project set
+**The JVM-specific story is allocation, not just latency.** This is the effect this project set
 out to surface. Hybrid/PQC operations allocate **4–13× more per operation** (hybrid KE
 keygen 47 KB/op vs 3.7 KB/op classical; ML-DSA sign 342 KB/op vs 53 KB/op), driven by the
 multi-KB keys, ciphertexts, and signatures. For a service doing many handshakes/signatures
 per second this is real, sustained GC pressure that a C/Rust deployment would not see the
-same way — the under-studied JVM angle the C/Rust-heavy PQC literature misses. Hybrid is
+same way: the under-studied JVM angle the C/Rust-heavy PQC literature misses. Hybrid is
 consistently the heaviest (it pays both components plus the HKDF combine), which is the
 honest cost of "secure if either component holds."
 
 ## Caveats
 
-- Microbenchmarks on one machine (Apple M2); absolute numbers are platform-specific — read
+- Microbenchmarks on one machine (Apple M2); absolute numbers are platform-specific, so read
   the **ratios**, not the µs. Reproduce on target hardware before quoting figures.
 - BC 1.84 software implementations; a different provider or JDK-native ML-KEM/ML-DSA
   (JDK 24+) would shift absolute costs.

@@ -1,18 +1,18 @@
 # PQC Migration Readiness Framework
 
-[![auditor on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-auditor.svg?label=auditor%20%E2%80%94%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-auditor)
-[![agility-provider on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-agility.svg?label=agility-provider%20%E2%80%94%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-agility)
+[![auditor on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-auditor.svg?label=auditor%20on%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-auditor)
+[![agility-provider on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-agility.svg?label=agility-provider%20on%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-agility)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![JDK 21](https://img.shields.io/badge/JDK-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21638938.svg)](https://doi.org/10.5281/zenodo.21638938)
 
 A research framework for answering a question current post-quantum-cryptography
 guidance leaves open: **not *what* to migrate to, but *how much* a migration
-will cost for a specific Java codebase — and where the expensive parts hide.**
+will cost for a specific Java codebase, and where the expensive parts hide.**
 
 ## Install / Run
 
-**Run the auditor on any Java source tree in one command** — no build, no
+**Run the auditor on any Java source tree in one command**: no build, no
 classpath wrangling. Download the self-contained CLI jar from Maven Central and
 point it at a directory:
 
@@ -36,8 +36,8 @@ rollout), which modules each step touches, and an engineer-time range per step
 split into change work and testing. The time figures come from a declared
 planning-time model layered on the difficulty score (1 point ≈ 1.5–3
 engineer-hours of change work, testing ≈ 50–100% of change); they are planning
-heuristics, not validated predictions — see
-`docs/research/03-difficulty-scoring-model.md` §8.1. The same plan is embedded
+heuristics, not validated predictions (see
+`docs/research/03-difficulty-scoring-model.md` §8.1). The same plan is embedded
 in the JSON report as the additive `migrationPlan` node, assumptions included.
 
 Build-output directories (`target`, `build`, `out`, `bin`) are pruned by default
@@ -79,7 +79,7 @@ alerts. Scan the repository root so alert paths resolve:
 </dependency>
 ```
 
-**Run the audit from a Maven build** — no pom changes required:
+**Run the audit from a Maven build**, with no pom changes required:
 
 ```bash
 mvn io.github.arpan0995:pqc-readiness-maven-plugin:1.4.0:audit
@@ -100,7 +100,7 @@ August 2024; NIST IR 8547 deprecates quantum-vulnerable algorithms (RSA, ECDSA,
 the destination. What no existing tool provides is a **validated estimate of
 migration effort**: existing scanners (CBOM inventories, misuse detectors) stop
 at *listing* crypto usage. Meanwhile almost all PQC tooling research targets
-C/C++/Rust — the enterprise JVM ecosystem is nearly unstudied, even though
+C/C++/Rust. The enterprise JVM ecosystem is nearly unstudied, even though
 JDK-native PQC only began arriving in JDK 24+ and most production fleets sit on
 JDK 8–21 for years to come.
 
@@ -110,16 +110,16 @@ JDK 8–21 for years to come.
 > required to migrate it to post-quantum cryptography?
 
 **Hypothesis (H1):** a difficulty score built from (a) crypto API usage
-patterns and (b) *structural fragility indicators* — hardcoded key/signature
+patterns and (b) *structural fragility indicators* (hardcoded key/signature
 buffer sizes, fixed-width serialization, protocol pinning, concrete key-type
-coupling — predicts measured migration effort **better than naively counting
+coupling) predicts measured migration effort **better than naively counting
 crypto call sites**. The validated scoring methodology is the research
 contribution; the tool is the instrument. A negative result is a result.
 
 **Current phase:** the project runs in two phases (see
 [doc 03 §8](docs/research/03-difficulty-scoring-model.md)). **Phase 1
 (now)** runs the auditor against real public codebases and produces a
-score-derived effort **estimate** — a transparent heuristic, not yet a
+score-derived effort **estimate**, a transparent heuristic, not yet a
 validated prediction. **Phase 2 (deferred)** performs the actual
 correlation study against measured migration effort (doc 04/05, unchanged,
 just not started). Read every score/tier in this repo today as Phase 1
@@ -131,9 +131,9 @@ output.
    usage, validated by precision/recall against hand-labeled ground truth.
 2. **Score** (`auditor`): pre-registered difficulty model (weights frozen
    *before* effort data is collected) per module/file.
-3. **Validate** *(Phase 2, deferred — not currently active)*: migrate real
+3. **Validate** *(Phase 2, deferred, not currently active)*: migrate real
    open-source codebases to hybrid crypto and measure actual effort (files
-   touched, LOC, breakages, time) — plus a second track mining projects that
+   touched, LOC, breakages, time), plus a second track mining projects that
    already migrated for real (e.g., Apache Mina SSHD's ML-KEM hybrid
    adoption). Correlate predicted score vs. measured effort (Spearman ρ),
    against the naive-count baseline.
@@ -147,10 +147,10 @@ output.
 **Phase 1 (now):**
 - Per-codebase **readiness report**: module scores, a qualitative **effort
   tier** (`NONE`/`LOW`/`MEDIUM`/`HIGH`/`CRITICAL`), and ranked hotspots with
-  file:line and *why each is expensive* — an estimation aid, not a validated
+  file:line and *why each is expensive*: an estimation aid, not a validated
   prediction (see [doc 03 §8](docs/research/03-difficulty-scoring-model.md)).
 - **Benchmark tables**: agility-layer overhead across modes, incl. JVM-specific
-  effects (GC/allocation pressure from multi-KB PQC artifacts) — **done**, see
+  effects (GC/allocation pressure from multi-KB PQC artifacts). **Done**, see
   [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md).
 
 **Phase 2 (deferred):**
@@ -173,18 +173,18 @@ document (what's built, key results, deviations from the original plan, what rem
 
 Design decisions and methodology live in [`docs/research/`](docs/research/):
 
-1. [Background & motivation](docs/research/01-background-and-motivation.md) — threat model, verified standards status, the gap
-2. [Detection rule catalog](docs/research/02-detection-rule-catalog.md) — what the auditor flags and why
-3. [Difficulty scoring model](docs/research/03-difficulty-scoring-model.md) — pre-registered score v0
-4. [Case-study plan](docs/research/04-case-study-plan.md) — selection criteria, migration & effort-logging protocol
-5. [Validation & benchmark plan](docs/research/05-validation-and-benchmark-plan.md) — statistics, interpretation grid, JMH matrix
-6. [Agility provider design](docs/research/06-agility-provider-design.md) — policy, negotiation, hybrid composition
+1. [Background & motivation](docs/research/01-background-and-motivation.md): threat model, verified standards status, the gap
+2. [Detection rule catalog](docs/research/02-detection-rule-catalog.md): what the auditor flags and why
+3. [Difficulty scoring model](docs/research/03-difficulty-scoring-model.md): pre-registered score v0
+4. [Case-study plan](docs/research/04-case-study-plan.md): selection criteria, migration & effort-logging protocol
+5. [Validation & benchmark plan](docs/research/05-validation-and-benchmark-plan.md): statistics, interpretation grid, JMH matrix
+6. [Agility provider design](docs/research/06-agility-provider-design.md): policy, negotiation, hybrid composition
 
 ## Requirements
 
 - JDK 21, Maven 3.9+
 - Crypto primitives via `org.bouncycastle:bcprov-jdk18on` (ML-KEM/ML-DSA/SLH-DSA
-  are bundled in the main provider jar — there is no separate `bcpq` artifact)
+  are bundled in the main provider jar, so there is no separate `bcpq` artifact)
 
 ## Build
 
@@ -221,13 +221,13 @@ Full JMH campaign (Apple M2, JDK 21.0.11, BC 1.84, `@Fork(2)`/`@Warmup(5)`/
 methodology, and raw data in [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md).
 Headlines:
 
-- **Negotiation overhead is negligible** — capability negotiation costs **~6–9 ns** and
+- **Negotiation overhead is negligible.** Capability negotiation costs **~6–9 ns** and
   24 B/op, 4–5 orders of magnitude below the crypto it selects. The "abstraction layer is
   too slow" objection does not survive the data.
-- **PQC is not uniformly slower** — ML-KEM encapsulate/decapsulate are *faster* than
+- **PQC is not uniformly slower.** ML-KEM encapsulate/decapsulate are *faster* than
   X25519 (0.3× / 0.7×); the cost moves to keygen. ML-DSA signing is the expensive
   operation (**7.8× ECDSA**; dual-sign 5.4×), while verification stays modest (1.5–1.7×).
-- **The JVM-specific cost is allocation** — hybrid/PQC operations allocate **4–13× more
+- **The JVM-specific cost is allocation.** Hybrid/PQC operations allocate **4–13× more
   per op** (hybrid KE keygen 47 KB/op vs 3.7 KB classical; ML-DSA sign 342 KB/op vs
   53 KB), i.e. sustained GC pressure the C/Rust-heavy PQC literature does not surface.
 
@@ -238,13 +238,13 @@ Headlines:
 | Signature sign | 65.6 µs | 355.9 µs (5.4×) | 513.7 µs (7.8×) |
 | Signature verify | 72.3 µs | 171.7 µs (2.4×) | 119.9 µs (1.7×) |
 
-> Read the ratios, not the absolute µs — microbenchmarks on one machine. Reproduce on
+> Read the ratios, not the absolute µs: these are microbenchmarks on one machine. Reproduce on
 > target hardware before quoting figures. Must be run from the module classpath, not the
-> shaded jar (BC's ML-KEM is a multi-release jar the shade plugin flattens — see RESULTS.md).
+> shaded jar (BC's ML-KEM is a multi-release jar the shade plugin flattens, see RESULTS.md).
 
 ## Status
 
-**Phase 1 — estimation (current focus):**
+**Phase 1 (estimation, current focus):**
 - [x] Multi-module scaffolding, build-verified on JDK 21 (JMH runs end-to-end)
 - [x] Research phase: standards verified (2026-07-08), detection catalog,
       pre-registered scoring model v0
@@ -253,23 +253,23 @@ Headlines:
       F1 (fixed buffers), F3 (TLS/protocol pinning), F4 (type coupling), F6
       (persisted key material)
 - [x] Scoring engine (score v0), qualitative effort tier, JSON + Markdown
-      reports, CLI — build-verified end-to-end
+      reports, CLI, all build-verified end-to-end
 - [x] `agility-provider`: negotiation core (suites, policy, capability
       negotiation, audit log) + BC-backed hybrid primitives (KEM combiner,
       dual signature), 20 tests
 - [x] Auditor detection: intra- and cross-file constant propagation
       (`getInstance(Type.FIELD)` resolved without a classpath)
-- [x] JMH benchmark **campaign run** across classical/hybrid/PQC — results and
+- [x] JMH benchmark **campaign run** across classical/hybrid/PQC, with results and
       interpretation in [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md)
       (negotiation overhead ~6–9 ns; PQC allocation 4–13× classical)
-- [x] Auditor run against 4 real public codebases — Phase 1 estimation reports +
+- [x] Auditor run against 4 real public codebases: Phase 1 estimation reports +
       synthesis in [`case-studies/`](case-studies/)
 - [ ] Remaining detection (optional): F2 (fixed-width persistence), F8 (third-party
       API boundary), JOSE/JWT surface, enum/registry & dynamic algorithm selection
 
-**Phase 2 — validation (deferred, not started):**
+**Phase 2 (validation, deferred, not started):**
 - [ ] Case-study migrations (real or mined) and effort logging (`docs/research/04`)
-- [ ] Correlation analysis: score vs. measured effort (`docs/research/05`) —
+- [ ] Correlation analysis: score vs. measured effort (`docs/research/05`).
       `analysis/correlate.py` exists and is validated against synthetic data
       only; real case-study data is what's missing
 - [ ] Precision/recall against hand-labeled ground truth

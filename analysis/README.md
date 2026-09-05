@@ -1,4 +1,4 @@
-# Analysis harness (Phase 2 — deferred, not currently active)
+# Analysis harness (Phase 2, deferred and not currently active)
 
 This harness exists and is unit-tested, but the project is currently in
 Phase 1 (estimation only); nothing here runs against real data yet. See
@@ -9,15 +9,15 @@ measured migration effort better than the naive baseline **B0** (count of vulner
 call sites), controlling for module size (LOC)? See
 [`../docs/research/05-validation-and-benchmark-plan.md`](../docs/research/05-validation-and-benchmark-plan.md).
 
-`correlate.py` is pure Python 3.9+ standard library — no numpy/scipy, so it runs
+`correlate.py` is pure Python 3.9+ standard library (no numpy/scipy), so it runs
 anywhere and results are reproducible. It computes Spearman ρ, Kendall τ, a partial
 correlation controlling for LOC, and a bootstrap 95% CI for Δρ = ρ(S) − ρ(B0).
 
 ## Inputs (real data only)
 
-1. **Auditor reports** — one `readiness-report.json` per case-study codebase,
+1. **Auditor reports**: one `readiness-report.json` per case-study codebase,
    produced by the auditor (`--report` is repeatable to pool codebases).
-2. **Effort log** — `effort-log.csv` in the format of
+2. **Effort log**: `effort-log.csv` in the format of
    [`effort-log.template.csv`](effort-log.template.csv), recording measured effort per
    module. `codebase` + `module` must match the report JSON.
 
@@ -28,10 +28,10 @@ The harness **joins on (codebase, module)** and never invents effort numbers.
 The effort data is a **human-in-the-loop deliverable**, not something the tool can
 produce:
 
-- **Track A** — manually migrate selected codebases to hybrid crypto and log effort
+- **Track A**: manually migrate selected codebases to hybrid crypto and log effort
   (files touched, lines changed, breakages, time). Protocol in
   [`../docs/research/04-case-study-plan.md`](../docs/research/04-case-study-plan.md) §5.
-- **Track B** — mine projects that already migrated (e.g. Apache Mina SSHD's ML-KEM
+- **Track B**: mine projects that already migrated (e.g. Apache Mina SSHD's ML-KEM
   hybrid work) and measure the historical diffs.
 
 Until at least ~3 modules of real data exist, `analyse()` refuses to report a
@@ -46,7 +46,7 @@ python3 correlate.py --selftest
 
 Generates clearly-labelled **synthetic** modules where effort depends on a hidden
 fragility structure that S captures and B0 does not, then asserts the harness
-recovers ρ(S) > ρ(B0). This validates the statistics only — it is never a
+recovers ρ(S) > ρ(B0). This validates the statistics only. It is never a
 case-study result.
 
 ## Run on real data (once collected)

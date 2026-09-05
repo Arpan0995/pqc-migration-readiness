@@ -8,12 +8,12 @@ two phases (see [`docs/research/03-difficulty-scoring-model.md` §8](../docs/res
   No migration is performed.
 - **Phase 2 (deferred, not currently active)**: migrate the pinned codebase
   (or mine one that already migrated for real) and log actual effort, to
-  validate the score against measured effort — see
-  [`docs/research/04-case-study-plan.md`](../docs/research/04-case-study-plan.md).
+  validate the score against measured effort (see
+  [`docs/research/04-case-study-plan.md`](../docs/research/04-case-study-plan.md)).
 
 Case-study codebases are added as git submodules (`git submodule add <repo-url>
 case-studies/<name>/repo`), pinned to a specific commit, so the exact code a
-report describes is always reproducible — even though Phase 1 doesn't modify that
+report describes is always reproducible, even though Phase 1 doesn't modify that
 code at all. (The submodule lives in `repo/`, not `target/`, because the standard
 Java `.gitignore` excludes `target/`.)
 
@@ -30,6 +30,6 @@ case-studies/
     └── effort-log.md                  (Phase 2 only, once that phase starts)
 ```
 
-Current case studies: **jjwt**, **mina-sshd**, **californium**, **shiro** — see
+Current case studies: **jjwt**, **mina-sshd**, **californium**, **shiro**. See
 [`pre-scan.md`](pre-scan.md) for pins and [`phase1-findings.md`](phase1-findings.md)
 for the analysis.

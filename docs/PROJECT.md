@@ -2,7 +2,7 @@
 
 Authoritative status document for the **PQC Migration Readiness Framework**. The README
 is the entry point; the detailed methodology lives in [`docs/research/`](research/). This
-document records **what the project is, what has been built, and what remains** — updated
+document records **what the project is, what has been built, and what remains**, updated
 to reflect actual state (not the original design-phase plan).
 
 _Version: **1.0.0** (Phase 1 release). Last updated: 2026-07-09._
@@ -11,14 +11,14 @@ _Version: **1.0.0** (Phase 1 release). Last updated: 2026-07-09._
 
 A research framework, in Java (JDK 21), with two linked components plus supporting modules:
 
-- **`auditor`** — scans a Java codebase for quantum-vulnerable cryptographic usage and
+- **`auditor`**: scans a Java codebase for quantum-vulnerable cryptographic usage and
   produces a per-module/file migration **difficulty score** and effort tier, with ranked
   hotspots and file:line references.
-- **`agility-provider`** — a runtime abstraction over JCA/JCE that switches between
+- **`agility-provider`**: a runtime abstraction over JCA/JCE that switches between
   classical, hybrid, and PQC-only algorithms by policy, with capability negotiation and
   audit logging.
-- **`benchmarks`** — JMH harness measuring the agility layer's runtime cost across modes.
-- **`case-studies`** — real public codebases (pinned submodules) scanned by the auditor.
+- **`benchmarks`**: JMH harness measuring the agility layer's runtime cost across modes.
+- **`case-studies`**: real public codebases (pinned submodules) scanned by the auditor.
 
 ## 2. Research question
 
@@ -34,7 +34,7 @@ instrument. See §4 for how the project is currently phased against this.
 (57 auditor across 8 classes, 20 agility-provider across 4), clean `mvn install` on JDK 21.
 
 ### Auditor (`auditor`, 24 source files)
-- **Detection** (JavaParser, syntactic — no classpath required):
+- **Detection** (JavaParser, syntactic, no classpath required):
   - Waves 1–2: `Cipher`, `KeyPairGenerator`, `KeyFactory`, `KeyAgreement`, `Signature`
     entry points with the full quantum-vulnerable algorithm tables.
   - Wave 3 fragility indicators: **F1** (fixed-size buffers), **F3** (TLS/protocol
@@ -60,7 +60,7 @@ instrument. See §4 for how the project is currently phased against this.
 
 ### Benchmarks (`benchmarks`, 3 source files)
 - JMH matrix over classical/hybrid/PQC for key establishment, signatures, and negotiation.
-- **Campaign run** — results in [`benchmarks/results/RESULTS.md`](../benchmarks/results/RESULTS.md).
+- **Campaign run**: results in [`benchmarks/results/RESULTS.md`](../benchmarks/results/RESULTS.md).
 
 ### Case studies
 - Four pinned public codebases (jjwt, mina-sshd, californium, shiro) scanned; per-repo
@@ -70,10 +70,10 @@ instrument. See §4 for how the project is currently phased against this.
 
 The original plan was a single validated study. It is now split:
 
-- **Phase 1 — estimation (complete).** Run the auditor against real codebases; produce a
+- **Phase 1, estimation (complete).** Run the auditor against real codebases; produce a
   score-derived **estimate** (a transparent heuristic, not a validated prediction), plus
   the agility-layer benchmark numbers. Everything in §3 and §5 is Phase 1.
-- **Phase 2 — validation (deferred, not started).** Migrate (or mine) real codebases,
+- **Phase 2, validation (deferred, not started).** Migrate (or mine) real codebases,
   measure effort, and correlate score vs. effort. Protocol preserved unchanged in
   [`docs/research/04`](research/04-case-study-plan.md) and [`05`](research/05-validation-and-benchmark-plan.md);
   `analysis/correlate.py` exists and is self-tested on synthetic data only.
@@ -92,10 +92,10 @@ useful, honest estimation tool first and keep validation as a clean future phase
 - Remaining detection frontier: enum/registry selection and runtime-dynamic `getInstance`.
 
 **Agility-layer benchmarks** (Apple M2 / JDK 21.0.11; see [`benchmarks/results/RESULTS.md`](../benchmarks/results/RESULTS.md)):
-- Negotiation overhead **~6–9 ns** — the agility layer's own cost is negligible.
+- Negotiation overhead **~6–9 ns**: the agility layer's own cost is negligible.
 - ML-KEM encaps/decaps are *faster* than X25519; ML-DSA signing is the expensive op
   (7.8× ECDSA).
-- JVM-specific finding: hybrid/PQC allocate **4–13× more per op** — sustained GC pressure.
+- JVM-specific finding: hybrid/PQC allocate **4–13× more per op**, i.e. sustained GC pressure.
 
 ## 6. Deviations from the original design plan (honest record)
 
@@ -106,7 +106,7 @@ useful, honest estimation tool first and keep validation as a clean future phase
   compiled classpath we do not have for arbitrary case studies; a syntactic matcher runs
   on any source tree. Constant propagation was added later without needing a classpath.
 - **Two-phase reframe** (estimation vs. validation), per §4.
-- **Benchmarks must run from the module classpath, not the shaded jar** — BC ships ML-KEM
+- **Benchmarks must run from the module classpath, not the shaded jar.** BC ships ML-KEM
   in a multi-release jar the shade plugin flattens (see RESULTS.md). Caught because 6/20
   benchmarks silently failed on the first run.
 
@@ -116,8 +116,8 @@ useful, honest estimation tool first and keep validation as a clean future phase
 correlation analysis, precision/recall against hand-labeled ground truth.
 
 **Optional Phase-1 detection extensions (not planned unless requested):** F2 (fixed-width
-persistence), F8 (third-party API boundary), JOSE/JWT surface, and — to reach the libraries
-constant propagation can't (e.g. jjwt) — enum/registry modelling or dataflow for dynamic
+persistence), F8 (third-party API boundary), JOSE/JWT surface, and (to reach the libraries
+constant propagation can't, e.g. jjwt) enum/registry modelling or dataflow for dynamic
 algorithm selection.
 
 ## 8. Key facts / conventions

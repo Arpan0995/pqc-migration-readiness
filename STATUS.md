@@ -1,18 +1,18 @@
-# Release engineering status — v1.0.0 Maven Central deployment
+# Release engineering status: v1.0.0 Maven Central deployment
 
 Date: 2026-07-14. All results below are from real runs on this machine
 (macOS, Homebrew OpenJDK 21.0.11, Maven 3.9.16).
 
-## Deployment (Step 5) — STOPPED AT VALIDATED, awaiting manual publish
+## Deployment (Step 5): STOPPED AT VALIDATED, awaiting manual publish
 
 - **Deployment ID: `1e42fc41-7d1d-479e-9303-086758ab855f`**
 - State: **VALIDATED** (autoPublish=false). Nothing has been published to the
   live repository. Review and publish at
   https://central.sonatype.com/publishing/deployments
 - Bundle contents (all GPG-signed with `.asc`):
-  - `io.github.arpan0995:pqc-migration-readiness:1.0.0` — parent POM only (pom packaging)
-  - `io.github.arpan0995:pqc-readiness-auditor:1.0.0` — thin jar, `-all` fat jar, `-sources`, `-javadoc`, POM
-  - `io.github.arpan0995:pqc-readiness-agility:1.0.0` — thin jar, `-sources`, `-javadoc`, POM
+  - `io.github.arpan0995:pqc-migration-readiness:1.0.0` - parent POM only (pom packaging)
+  - `io.github.arpan0995:pqc-readiness-auditor:1.0.0` - thin jar, `-all` fat jar, `-sources`, `-javadoc`, POM
+  - `io.github.arpan0995:pqc-readiness-agility:1.0.0` - thin jar, `-sources`, `-javadoc`, POM
   - benchmarks module: **not in the bundle** (excluded via `-pl .,auditor,agility-provider`,
     plus `skipPublishing=true` and `maven.deploy.skip=true` as belt-and-braces)
 - Central validation warnings: **none** reported by the portal; the deployment
@@ -22,12 +22,12 @@ Date: 2026-07-14. All results below are from real runs on this machine
 
 - Coordinates: `org.pqcreadiness` → `io.github.arpan0995` (verified namespace);
   artifactIds `auditor` → `pqc-readiness-auditor`, `agility-provider` → `pqc-readiness-agility`.
-  Java package names unchanged (`org.pqcreadiness.*`) — Central does not require
+  Java package names unchanged (`org.pqcreadiness.*`), since Central does not require
   package = groupId, and renaming would have touched frozen code.
 - Full Central-required metadata (name, description, url, licenses, developers,
   scm with `<tag>v1.0.0</tag>`) added explicitly to parent + both published POMs.
 - `LICENSE` (canonical Apache-2.0 text, sha1 `2b8b8152…` matches apache.org copy)
-  and `CITATION.cff` added at repo root. **No license headers added to sources** —
+  and `CITATION.cff` added at repo root. **No license headers added to sources**, because
   the project had no existing header convention (all files start with `package`).
 - Unused Bouncy Castle dependency **removed from the auditor POM** (zero
   `org.bouncycastle` references in auditor sources; see dependency:tree below).
@@ -56,8 +56,8 @@ errors. `<doclint>none</doclint>` was NOT set; javadoc jars are real.
 
 ## Test results
 
-`mvn clean verify` (signed): **77/77 pass** — 57 auditor, 20 agility-provider,
-0 failures/errors/skips. Matches expected counts.
+`mvn clean verify` (signed): **77/77 pass** (57 auditor, 20 agility-provider,
+0 failures/errors/skips). Matches expected counts.
 
 ## dependency:tree for the auditor (after removing unused BC dep)
 
@@ -105,7 +105,7 @@ report predates the version bump). All findings, scores, and module results matc
 ## Zenodo prep (Step 7)
 
 - `CITATION.cff` added and pushed to all three repos (author Arpan Sharma; no
-  ORCID supplied — say the word and I'll add it).
+  ORCID supplied yet).
 - Tags pushed, pointing at the paper-cited commits:
   - `pqc-migration-readiness` → `v1.0.0` at `1621227` (release commit)
   - `PQC-Java-Library-Comparison` → `v1.0.0` at `da87998` (cited commit)

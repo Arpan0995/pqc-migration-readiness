@@ -1,12 +1,12 @@
-# 03 — Difficulty Scoring Model (v0, pre-registered)
+# 03: Difficulty Scoring Model (v0, pre-registered)
 
-**Pre-registration statement.** This model (weights included) is frozen **before** any migration-effort ground truth is collected, and the freeze is timestamped by git history. If validation results later motivate changes, the tuned model becomes **v1** and may only be evaluated on codebases *not used for tuning*. This is the bias control demanded by plan §4b.3 — without it, "our score correlates with effort" is circular.
+**Pre-registration statement.** This model (weights included) is frozen **before** any migration-effort ground truth is collected, and the freeze is timestamped by git history. If validation results later motivate changes, the tuned model becomes **v1** and may only be evaluated on codebases *not used for tuning*. This is the bias control demanded by plan §4b.3. Without it, "our score correlates with effort" is circular.
 
 ## 1. Units of analysis
 
-- **Finding** — one flagged site (rule ID + file:line, doc 02).
-- **File score** — sum of finding difficulties in the file.
-- **Module score** — the unit validated against effort: Maven/Gradle module, or top-level package for single-module projects.
+- **Finding**: one flagged site (rule ID + file:line, doc 02).
+- **File score**: sum of finding difficulties in the file.
+- **Module score**: the unit validated against effort: Maven/Gradle module, or top-level package for single-module projects.
 
 ## 2. Per-finding difficulty
 
@@ -44,7 +44,7 @@ d(finding) = base(category) × Π multipliers   (product capped at 6.0)
 S(module) = ( Σ d(finding) ) × spread,   spread = 1 + 0.1 × log2(1 + files_with_findings)
 ```
 
-Rationale: 40 findings in one file are one focused rewrite; 40 findings across 25 files are a campaign. The log keeps the term gentle; the constant 0.1 is a v0 guess — deliberately pre-registered rather than tuned.
+Rationale: 40 findings in one file are one focused rewrite; 40 findings across 25 files are a campaign. The log keeps the term gentle; the constant 0.1 is a v0 guess, deliberately pre-registered rather than tuned.
 
 ## 4. Urgency (separate axis, never mixed into S)
 
@@ -52,7 +52,7 @@ Rationale: 40 findings in one file are one focused rewrite; 40 findings across 2
 U(module) = Σ base(category) × w_urgency,   w = 2.0 for confidentiality (HNDL), 1.0 for signatures
 ```
 
-The report ranks by S (cost) and colors by U (deadline pressure). Validation (doc 05) tests **S only** — U is a planning aid whose "validation" is the IR 8547 threat model, not our data.
+The report ranks by S (cost) and colors by U (deadline pressure). Validation (doc 05) tests **S only**. U is a planning aid whose "validation" is the IR 8547 threat model, not our data.
 
 ## 5. Baseline comparator
 
@@ -92,15 +92,15 @@ Human-readable report (markdown) renders from this JSON: ranked hotspot list wit
 
 The original plan (this document, doc 04, doc 05) was written as a single validated study: freeze the score, migrate real codebases, measure actual effort, correlate. That full plan is **deferred**, not abandoned, because real migrations (whether we perform them or mine a project's history) are a significant, separate effort. The project now runs in two phases:
 
-- **Phase 1 (current)** — the *estimation* phase. The auditor runs against real public codebases and produces the score `S`, the naive baseline `B0`, and a derived qualitative **effort tier** (`EffortTier`: `NONE < LOW < MEDIUM < HIGH < CRITICAL`, thresholds at score 0 / 0.01 / 10 / 40 / 120 — see `auditor/.../model/EffortTier.java`). This is a transparent, structured heuristic informed by the fragility indicators in doc 02, comparable in spirit to how CBOM-style tools already rank findings. **It is not a validated prediction.** There is deliberately no "N engineer-days" figure anywhere in the tool, because no conversion factor from score to hours has been tested against anything — publishing one would imply a precision we don't have.
-- **Phase 2 (deferred)** — the *validation* phase, unchanged from doc 04/05: real or mined migrations, measured effort, correlation of `S` against effort, `S` vs. baseline `B0` comparison. Doc 04 and doc 05 stay as-written as the protocol for when this phase starts; nothing in them needs to change.
+- **Phase 1 (current)**: the *estimation* phase. The auditor runs against real public codebases and produces the score `S`, the naive baseline `B0`, and a derived qualitative **effort tier** (`EffortTier`: `NONE < LOW < MEDIUM < HIGH < CRITICAL`, thresholds at score 0 / 0.01 / 10 / 40 / 120, see `auditor/.../model/EffortTier.java`). This is a transparent, structured heuristic informed by the fragility indicators in doc 02, comparable in spirit to how CBOM-style tools already rank findings. **It is not a validated prediction.** There is deliberately no "N engineer-days" figure anywhere in the tool, because no conversion factor from score to hours has been tested against anything, and publishing one would imply a precision we don't have.
+- **Phase 2 (deferred)**: the *validation* phase, unchanged from doc 04/05: real or mined migrations, measured effort, correlation of `S` against effort, `S` vs. baseline `B0` comparison. Doc 04 and doc 05 stay as-written as the protocol for when this phase starts; nothing in them needs to change.
 
-Consequence for how to read any report this tool produces in Phase 1: the module ranking and hotspot list are useful for **triage and prioritization** (which modules and sites look expensive, and why, per the fragility indicators) — but a claim like "score correlates with real effort" or "tier X means Y engineer-days" is not yet substantiated. Report language reflects this (see the caveat banner in the Markdown report and this section).
+Consequence for how to read any report this tool produces in Phase 1: the module ranking and hotspot list are useful for **triage and prioritization** (which modules and sites look expensive, and why, per the fragility indicators), but a claim like "score correlates with real effort" or "tier X means Y engineer-days" is not yet substantiated. Report language reflects this (see the caveat banner in the Markdown report and this section).
 
 ### 8.1 Addendum (2026-08-02): the planning-time layer `t0`
 
-The sentence above — "there is deliberately no 'N engineer-days' figure anywhere in the tool" — described v1.0.0 through v1.3.0 and is **superseded** for later releases. Practitioner feedback on the reports was consistent: a ranked hotspot list without any time anchor is not actionable for planning, and users converted the score into time themselves, each with a different undocumented factor. Publishing one declared conversion is more honest than forcing many private ones.
+The sentence above ("there is deliberately no 'N engineer-days' figure anywhere in the tool") described v1.0.0 through v1.3.0 and is **superseded** for later releases. Practitioner feedback on the reports was consistent: a ranked hotspot list without any time anchor is not actionable for planning, and users converted the score into time themselves, each with a different undocumented factor. Publishing one declared conversion is more honest than forcing many private ones.
 
 So the report now carries a **migration plan**: the ordered high-level steps the findings imply, and engineer-time ranges (change work and testing separately) derived from `S` by a *planning-time model* `t0` (`auditor/.../score/PlanningTimeModel.java`). Its constants are declared assumptions, embedded in the JSON output for self-description: 1 score point ≈ 1.5–3.0 engineer-hours of change work (anchored on what a 1-point type-coupling site and a 3-point signature call site cost to change and review), testing ≈ 50–100% of change work, plus a flat 3–5 day one-time setup. Every rendering labels the figures a planning heuristic, not a validated prediction.
 
-What this does **not** change: score model v0 stays frozen exactly as pre-registered above — `t0` is a separate, separately versioned layer that reads `S` and feeds nothing back into scores, tiers, `B0`, or `U`. Phase 2 remains the validation phase, and gains one task: validate or replace the `t0` conversion constants against measured effort, the same way `S` itself is validated. Reports remain comparable across versions because the underlying scores are unchanged; the plan is a derived view.
+What this does **not** change: score model v0 stays frozen exactly as pre-registered above. `t0` is a separate, separately versioned layer that reads `S` and feeds nothing back into scores, tiers, `B0`, or `U`. Phase 2 remains the validation phase, and gains one task: validate or replace the `t0` conversion constants against measured effort, the same way `S` itself is validated. Reports remain comparable across versions because the underlying scores are unchanged; the plan is a derived view.
