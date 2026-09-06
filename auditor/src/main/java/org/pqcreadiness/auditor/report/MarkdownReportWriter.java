@@ -82,13 +82,13 @@ public final class MarkdownReportWriter {
 
         md.append("**Estimated effort for one engineer: ")
                 .append(MigrationPlan.humanRange(plan.totalHoursLow(), plan.totalHoursHigh()))
-                .append("** — change work ")
+                .append("** (change work ")
                 .append(MigrationPlan.humanRange(plan.changeHoursLow(), plan.changeHoursHigh()))
                 .append(", testing ")
                 .append(MigrationPlan.humanRange(plan.testingHoursLow(), plan.testingHoursHigh()))
                 .append(", plus ")
                 .append(MigrationPlan.humanRange(plan.setupHoursLow(), plan.setupHoursHigh()))
-                .append(" of one-time setup.\n\n");
+                .append(" of one-time setup).\n\n");
 
         md.append("> Time figures come from planning-time model `").append(plan.timeModel())
                 .append("`, layered on the difficulty score: 1 score point ≈ ")
@@ -104,7 +104,7 @@ public final class MarkdownReportWriter {
         int number = 1;
         for (MigrationPlan.Step step : plan.steps()) {
             md.append("| ").append(number++).append(" | ").append(step.title())
-                    .append(" | ").append(step.sites() > 0 ? step.sites() : "—")
+                    .append(" | ").append(step.sites() > 0 ? step.sites() : "n/a")
                     .append(" | ").append(moduleList(step.modules()))
                     .append(" | ")
                     .append(step.effortCountedInOtherSteps()
@@ -124,7 +124,7 @@ public final class MarkdownReportWriter {
 
     private static String moduleList(List<String> modules) {
         if (modules.isEmpty()) {
-            return "—";
+            return "n/a";
         }
         StringBuilder cell = new StringBuilder();
         int shown = Math.min(3, modules.size());
