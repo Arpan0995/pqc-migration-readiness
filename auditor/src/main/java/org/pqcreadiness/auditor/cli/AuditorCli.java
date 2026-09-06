@@ -86,7 +86,7 @@ public final class AuditorCli {
                     + "no migration effort to estimate.");
         } else {
             System.out.printf("Estimated migration effort (planning heuristic, time model %s): "
-                            + "%s for one engineer — change %s, testing %s, one-time setup %s.%n",
+                            + "%s for one engineer (change %s, testing %s, one-time setup %s).%n",
                     plan.timeModel(),
                     MigrationPlan.humanRange(plan.totalHoursLow(), plan.totalHoursHigh()),
                     MigrationPlan.humanRange(plan.changeHoursLow(), plan.changeHoursHigh()),
