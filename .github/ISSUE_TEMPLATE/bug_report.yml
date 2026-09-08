@@ -1,0 +1,54 @@
+name: Bug report
+description: A crash, wrong output or build problem in the auditor, the Maven plugin, the GitHub Action or the agility provider
+title: "[bug] "
+labels: [bug]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Auditor CLI
+        - Maven plugin
+        - GitHub Action
+        - Agility provider
+        - Benchmarks
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Release version or commit hash.
+      placeholder: "1.4.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: JDK and OS
+      placeholder: "Temurin 21.0.9, Ubuntu 24.04"
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: shell
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Paste the full error output if there was one.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Minimal Java snippet
+      description: The smallest source file that reproduces the problem, if the bug is in detection or reporting.
+      render: java

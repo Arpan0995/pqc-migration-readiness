@@ -1,14 +1,32 @@
 # PQC Migration Readiness Framework
 
+[![CI](https://github.com/Arpan0995/pqc-migration-readiness/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Arpan0995/pqc-migration-readiness/actions/workflows/ci.yml)
 [![auditor on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-auditor.svg?label=auditor%20on%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-auditor)
 [![agility-provider on Maven Central](https://img.shields.io/maven-central/v/io.github.arpan0995/pqc-readiness-agility.svg?label=agility-provider%20on%20Maven%20Central)](https://central.sonatype.com/artifact/io.github.arpan0995/pqc-readiness-agility)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![JDK 21](https://img.shields.io/badge/JDK-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21638938.svg)](https://doi.org/10.5281/zenodo.21638938)
 
-A research framework for answering a question current post-quantum-cryptography
-guidance leaves open: **not *what* to migrate to, but *how much* a migration
-will cost for a specific Java codebase, and where the expensive parts hide.**
+Point the auditor at a Java source tree and it returns the code that has to
+change when RSA, ECDSA and (EC)DH are retired, ranked by how expensive each site
+is to migrate, together with an ordered migration plan and an engineer-time
+estimate for the work. It needs no build and no classpath: the scan is
+syntactic, runs on the source alone, and takes a few seconds for a mid-sized
+project.
+
+![First screen of the Markdown readiness report for Eclipse Californium 3.14.0: the migration plan with six ordered steps, sites per step, modules touched and an effort range per step](docs/assets/readiness-report-example.png)
+
+*The first screen of `readiness-report.md` for Eclipse Californium 3.14.0, one of
+the four [case studies](case-studies/). The full report continues with the
+module ranking and the ranked hotspots, each with a file:line and the reason it
+is expensive.*
+
+The tool is the instrument of a research project on a question current
+post-quantum-cryptography guidance leaves open: how much a migration will cost
+for a specific Java codebase, and where the expensive parts hide. Every score
+and time figure it produces today is a Phase 1 estimate from a pre-registered
+model, not a validated prediction; [Research question](#research-question) and
+[Status](#status) below say what has and has not been validated.
 
 ## Install / Run
 
@@ -59,6 +77,15 @@ alerts. Scan the repository root so alert paths resolve:
 - uses: github/codeql-action/upload-sarif@v3
   with:
     sarif_file: audit-out/readiness-report.sarif
+```
+
+The same steps are packaged as a GitHub Action,
+[`Arpan0995/pqc-readiness-action`](https://github.com/Arpan0995/pqc-readiness-action),
+which downloads the auditor, scans the checkout, writes a summary to the job page
+and uploads the SARIF report:
+
+```yaml
+- uses: Arpan0995/pqc-readiness-action@v1
 ```
 
 **Use the libraries in a Maven build:**
@@ -164,6 +191,7 @@ output.
 | `auditor` | Scanner + difficulty scoring |
 | `agility-provider` | Runtime crypto-agility layer (BC-backed, JDK 21) |
 | `benchmarks` | JMH harness for agility-layer overhead |
+| `maven-plugin` | `pqc-readiness-maven-plugin`: runs the auditor from a Maven build |
 | `case-studies` | Pinned target codebases + migration effort logs |
 
 ## Research documentation
@@ -189,8 +217,12 @@ Design decisions and methodology live in [`docs/research/`](docs/research/):
 ## Build
 
 ```
-mvn clean install
+mvn clean install -Dgpg.skip=true
 ```
+
+Release builds sign every artifact with GPG during the `verify` phase, so a
+local build fails at that step unless a signing key is configured. The flag
+skips signing; nothing else changes.
 
 ## Run the auditor (from source)
 

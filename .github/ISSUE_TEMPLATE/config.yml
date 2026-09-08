@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Share scan results
+    url: https://github.com/Arpan0995/pqc-migration-readiness/discussions/categories/show-and-tell
+    about: Ran the auditor on a codebase? Post the report and say whether the ranking matches what you know about the code.
+  - name: Ask a question
+    url: https://github.com/Arpan0995/pqc-migration-readiness/discussions/categories/q-a
+    about: Questions about the approach, the scoring model or how to read a report.
+  - name: Report a security problem
+    url: https://github.com/Arpan0995/pqc-migration-readiness/blob/main/CONTRIBUTING.md#ground-rules
+    about: Security-sensitive findings go by email to the address in CITATION.cff, not into a public issue.

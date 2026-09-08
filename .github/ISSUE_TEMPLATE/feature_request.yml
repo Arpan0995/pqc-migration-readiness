@@ -1,0 +1,35 @@
+name: Feature request
+description: A new detection rule, report format, option or agility-layer capability
+title: "[feature] "
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Detection rules
+        - Scoring or effort model
+        - Reports and output formats
+        - CLI, Maven plugin or GitHub Action
+        - Agility provider
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation the feature would help with, ideally with an example codebase or snippet.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before filing
+      options:
+        - label: I looked through the open issues and the "Where help is most useful" list in CONTRIBUTING.md.

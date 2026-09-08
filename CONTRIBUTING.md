@@ -50,8 +50,11 @@ The usual flow:
 2. Build and run the tests with JDK 21 and Maven 3.9+:
 
    ```
-   mvn clean install
+   mvn clean install -Dgpg.skip=true
    ```
+
+   The flag skips the GPG signing step that release builds run in `verify`;
+   without it the build fails unless you have a signing key configured.
 
    To build the CLI jar on its own:
 

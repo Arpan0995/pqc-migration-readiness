@@ -1,0 +1,42 @@
+name: Detection gap
+description: A false positive or a false negative in what the auditor flags
+title: "[detection] "
+labels: [detection]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of gap
+      options:
+        - "False negative: a quantum-vulnerable call or a fragility pattern was missed"
+        - "False positive: a flagged site is not quantum-vulnerable or not fragile"
+        - "Wrong rule, category or confidence on an otherwise correct finding"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Auditor version
+      placeholder: "1.4.0"
+    validations:
+      required: true
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Java snippet
+      description: The smallest source file that shows the gap. This is the most useful part of the report.
+      render: java
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the report shows
+      description: The finding rows from readiness-report.md for this snippet, or "nothing" for a miss.
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should show, and why
+      description: Name the rule from docs/research/02-detection-rule-catalog.md if you know it.
+    validations:
+      required: true
