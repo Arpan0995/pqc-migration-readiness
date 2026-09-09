@@ -65,9 +65,10 @@ the tool captures well; the enum-internal algorithm wiring it does not see at al
 323 findings (316 F4 + 7 call sites, 2 recovered via cross-file constants). Broadest
 key-type coupling of the four, including DSA (SSH still carries legacy host-key types),
 a genuine extra migration axis. Most of its algorithm selection flows through negotiation
-constants and factory methods that remain dynamic. Pinned pre-PQC on purpose: upstream
-later added ML-KEM hybrids (3.0.0-M2), so this is the natural Phase-2 candidate if a real
-migration is ever mined.
+constants and factory methods that remain dynamic. Pinned before the ML-KEM work on
+purpose: 2.13.1 already ships the sntrup761x25519 hybrid KEX (added in 2.13.0), and upstream
+added ML-KEM hybrids in 2.15.0 and made them the default in 3.0.0-M2, so this is the natural
+Phase-2 candidate if a real migration is ever mined.
 
 ### californium 3.14.0: now the richest call-site signal
 Constant propagation transformed this codebase's report: 20 → 34 findings, call sites
@@ -109,4 +110,4 @@ CRITICAL." Noted for Phase 2; `v0` stays frozen.
 - No ground truth here: precision/recall and score-vs-effort validation are Phase 2.
 - Scores/tiers are heuristics; there is deliberately no engineer-days figure.
 - Reports reflect the exact pinned commits in `pre-scan.md`; later releases differ (e.g.
-  mina-sshd ≥ 2.13.2 and 3.0.0-M2 already add PQC).
+  mina-sshd 2.15.0 and 3.0.0-M2 add ML-KEM hybrid key exchange).

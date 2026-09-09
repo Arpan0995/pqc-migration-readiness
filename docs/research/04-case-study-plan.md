@@ -17,7 +17,7 @@ Known Track B candidates (verified 2026-07-08):
 
 | Project | Real migration evidence |
 |---|---|
-| Apache Mina SSHD | `sntrup761x25519` in 2.13.2; ML-KEM hybrids (`mlkem768x25519-sha256` etc.) in 3.0.0-M2. The auditor runs on the pre-PQC tag, effort = the actual kex-related commits between tags |
+| Apache Mina SSHD | `sntrup761x25519-sha512` in 2.13.0 (interop fix in 2.13.2); ML-KEM hybrids (`mlkem768x25519-sha256` etc.) in 2.15.0 on Bouncy Castle; JDK built-in ML-KEM and the ML-KEM default in 3.0.0-M2. The auditor runs on the pinned 2.13.1 tag, which predates the ML-KEM work; effort = the actual kex-related commits between tags, and the 2.13.0 sntrup761 commits can be mined the same way |
 | Bouncy Castle (bctls) | Hybrid TLS named-group support commits |
 | Others to confirm during pre-scan | Netty, Conscrypt (JNI-heavy, may not qualify), Tink Java |
 
@@ -36,7 +36,7 @@ Known Track B candidates (verified 2026-07-08):
 |---|---|---|---|
 | **jjwt** | JOSE/JWT library | small-med | Signature-centric; algorithm registry (F5 both ways); JWS size assumptions (F1); third-party alg enums (F8) |
 | **Apache Shiro** (crypto/support modules) | Security framework | medium | Framework-style indirection; hashing vs signing mix; config-driven algorithm selection (F5 credit) |
-| **Apache Mina SSHD** @ pre-PQC tag (~2.13.0) | SSH protocol | medium | Protocol negotiation (F3), wire-format lengths (F1/F2), host-key formats (F6), and doubles as Track B ground truth |
+| **Apache Mina SSHD** @ pre-ML-KEM tag (2.13.1 as pinned) | SSH protocol | medium | Protocol negotiation (F3), wire-format lengths (F1/F2), host-key formats (F6), and doubles as Track B ground truth |
 | **Eclipse Californium / Scandium** | (D)TLS for IoT | medium | Handshake internals, cipher-suite enums (F3), record sizing under DTLS MTU pressure (F1: PQC sizes hurt most here) |
 | **pgpainless** | OpenPGP | small-med | Packet-format algorithm IDs (F2), persisted key rings (F6) |
 | **Keycloak** (crypto SPI module only) or **Jenkins core** (scoped) | Enterprise app | large (scoped) | Realistic enterprise layering; keystores (F6); tests whether scoring survives scale |

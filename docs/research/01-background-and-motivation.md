@@ -68,4 +68,4 @@ Implications for us:
 
 ## 6. A lucky break for validation
 
-Apache Mina SSHD **already performed a real PQC migration**: `sntrup761x25519-sha512` landed in 2.13.2, and ML-KEM hybrids (`mlkem768x25519-sha256`, `mlkem768nistp256-sha256`, `mlkem1024nistp384-sha384`) in 3.0.0-M2. Its commit history is *genuine* migration-effort ground truth (files touched, LOC, iterations) produced by people who had never seen our scoring model. Doc 04 builds a second validation track on such mined migrations.
+Apache Mina SSHD **already performed a real PQC migration**: `sntrup761x25519-sha512` landed in 2.13.0 (with an OpenSSH interop fix in 2.13.2), ML-KEM hybrids (`mlkem768x25519-sha256`, `mlkem768nistp256-sha256`, `mlkem1024nistp384-sha384`) followed in 2.15.0 on Bouncy Castle, and 3.0.0-M2 moved to the JDK's built-in ML-KEM on Java 24+ and made `mlkem768x25519-sha256` the preferred key exchange. Its commit history is *genuine* migration-effort ground truth (files touched, LOC, iterations) produced by people who had never seen our scoring model. Doc 04 builds a second validation track on such mined migrations.

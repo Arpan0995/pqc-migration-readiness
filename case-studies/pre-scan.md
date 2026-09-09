@@ -18,7 +18,7 @@ what every one of these projects *should* be using in 2026.
 | Name | Repo | Pinned tag | Domain | Why selected |
 |---|---|---|---|---|
 | jjwt | `jwtk/jjwt` | `0.13.0` | JWT/JOSE signing library | Signature-centric; heavy concrete-key-type API; small enough for a clean first report |
-| mina-sshd | `apache/mina-sshd` | `sshd-2.13.1` | SSH protocol implementation | Protocol negotiation + wire formats (F1/F3 territory). **Pinned pre-PQC on purpose** (sntrup761 landed in 2.13.2, ML-KEM in 3.0.0-M2), leaving a clean Phase-2 comparison open |
+| mina-sshd | `apache/mina-sshd` | `sshd-2.13.1` | SSH protocol implementation | Protocol negotiation + wire formats (F1/F3 territory). **Pinned before the ML-KEM work on purpose**: 2.13.1 already carries the sntrup761x25519 hybrid KEX (added in 2.13.0, interop fix in 2.13.2); ML-KEM hybrids landed in 2.15.0 and became the preferred default in 3.0.0-M2, leaving a clean Phase-2 comparison open |
 | californium | `eclipse-californium/californium` | `3.14.0` | DTLS for constrained IoT | Different maintainer/domain; DTLS handshake + cert handling; expected rich in fixed-buffer (F1) code |
 | shiro | `apache/shiro` | `shiro-root-2.2.1` | Security / auth framework | Framework-style indirection (different code shape); enterprise-auth is the project's core target population |
 
