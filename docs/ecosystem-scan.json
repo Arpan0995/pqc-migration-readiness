@@ -1,0 +1,272 @@
+[
+ {
+  "name": "Apache MINA SSHD",
+  "domain": "SSH",
+  "version": "2.19.0",
+  "files": 1413,
+  "findings": 337,
+  "modules": 6,
+  "tier": "CRITICAL",
+  "effort": "~5\u201312 months"
+ },
+ {
+  "name": "jjwt",
+  "domain": "JWT / JOSE",
+  "version": "0.13.0",
+  "files": 408,
+  "findings": 193,
+  "modules": 3,
+  "tier": "CRITICAL",
+  "effort": "~3\u20139 months"
+ },
+ {
+  "name": "WildFly Elytron",
+  "domain": "Security framework",
+  "version": "2.9.2",
+  "files": 1226,
+  "findings": 178,
+  "modules": 17,
+  "tier": "CRITICAL",
+  "effort": "~3\u20139 months"
+ },
+ {
+  "name": "Keycloak",
+  "domain": "Identity / SSO",
+  "version": "26.7.3",
+  "files": 8142,
+  "findings": 185,
+  "modules": 14,
+  "tier": "HIGH",
+  "effort": "~3\u20138 months"
+ },
+ {
+  "name": "Apache CXF",
+  "domain": "Web services",
+  "version": "4.2.3",
+  "files": 7607,
+  "findings": 159,
+  "modules": 10,
+  "tier": "CRITICAL",
+  "effort": "~3\u20137 months"
+ },
+ {
+  "name": "Spring Security",
+  "domain": "Auth framework",
+  "version": "7.1.1",
+  "files": 4138,
+  "findings": 251,
+  "modules": 1,
+  "tier": "CRITICAL",
+  "effort": "~8\u201321 weeks"
+ },
+ {
+  "name": "webauthn4j",
+  "domain": "WebAuthn / FIDO2",
+  "version": "0.31.10",
+  "files": 1034,
+  "findings": 125,
+  "modules": 3,
+  "tier": "CRITICAL",
+  "effort": "~7\u201319 weeks"
+ },
+ {
+  "name": "Quarkus",
+  "domain": "App framework",
+  "version": "3.39.2",
+  "files": 22057,
+  "findings": 80,
+  "modules": 17,
+  "tier": "MEDIUM",
+  "effort": "~7\u201319 weeks"
+ },
+ {
+  "name": "Netty",
+  "domain": "Network / TLS",
+  "version": "4.2.17",
+  "files": 3412,
+  "findings": 53,
+  "modules": 5,
+  "tier": "CRITICAL",
+  "effort": "~5\u201313 weeks"
+ },
+ {
+  "name": "Eclipse Californium",
+  "domain": "CoAP / DTLS, IoT",
+  "version": "4.0.0-M6",
+  "files": 1011,
+  "findings": 38,
+  "modules": 5,
+  "tier": "HIGH",
+  "effort": "~4\u201310 weeks"
+ },
+ {
+  "name": "pac4j",
+  "domain": "Security engine",
+  "version": "6.5.8",
+  "files": 871,
+  "findings": 63,
+  "modules": 4,
+  "tier": "HIGH",
+  "effort": "~4\u20139 weeks"
+ },
+ {
+  "name": "Apache Tomcat",
+  "domain": "Servlet container",
+  "version": "11.0.25",
+  "files": 2814,
+  "findings": 14,
+  "modules": 2,
+  "tier": "MEDIUM",
+  "effort": "~4\u20139 weeks"
+ },
+ {
+  "name": "Undertow",
+  "domain": "Web server",
+  "version": "2.4.1",
+  "files": 925,
+  "findings": 14,
+  "modules": 2,
+  "tier": "HIGH",
+  "effort": "~3\u20139 weeks"
+ },
+ {
+  "name": "Apache Knox",
+  "domain": "Gateway",
+  "version": "3.0.0",
+  "files": 1783,
+  "findings": 116,
+  "modules": 7,
+  "tier": "HIGH",
+  "effort": "~3\u20138 weeks"
+ },
+ {
+  "name": "Apache ZooKeeper",
+  "domain": "Coordination",
+  "version": "3.9.6",
+  "files": 918,
+  "findings": 12,
+  "modules": 1,
+  "tier": "HIGH",
+  "effort": "~2\u20136 weeks"
+ },
+ {
+  "name": "Apache MINA",
+  "domain": "Network framework",
+  "version": "2.2.9",
+  "files": 628,
+  "findings": 14,
+  "modules": 2,
+  "tier": "MEDIUM",
+  "effort": "~2\u20134 weeks"
+ },
+ {
+  "name": "Eclipse Vert.x",
+  "domain": "Reactive toolkit",
+  "version": "5.1.7",
+  "files": 1245,
+  "findings": 23,
+  "modules": 1,
+  "tier": "HIGH",
+  "effort": "~1\u20133 weeks"
+ },
+ {
+  "name": "Apache Kafka",
+  "domain": "Streaming",
+  "version": "4.3.1",
+  "files": 5793,
+  "findings": 14,
+  "modules": 1,
+  "tier": "MEDIUM",
+  "effort": "~1\u20133 weeks"
+ },
+ {
+  "name": "Apache ActiveMQ",
+  "domain": "Messaging",
+  "version": "6.3.2",
+  "files": 4511,
+  "findings": 10,
+  "modules": 5,
+  "tier": "LOW",
+  "effort": "~7\u201315 days"
+ },
+ {
+  "name": "Apache HttpClient",
+  "domain": "HTTP client",
+  "version": "5.6.4",
+  "files": 890,
+  "findings": 5,
+  "modules": 2,
+  "tier": "MEDIUM",
+  "effort": "~7\u201315 days"
+ },
+ {
+  "name": "Eclipse Jetty",
+  "domain": "Servlet container",
+  "version": "12.1.13",
+  "files": 5987,
+  "findings": 10,
+  "modules": 4,
+  "tier": "LOW",
+  "effort": "~4\u20138 days"
+ },
+ {
+  "name": "Square Keywhiz",
+  "domain": "Secrets manager",
+  "version": "0.11.0",
+  "files": 323,
+  "findings": 1,
+  "modules": 1,
+  "tier": "LOW",
+  "effort": "~4\u20137 days"
+ },
+ {
+  "name": "OkHttp",
+  "domain": "HTTP client",
+  "version": "5.5.0",
+  "files": 56,
+  "findings": 1,
+  "modules": 1,
+  "tier": "LOW",
+  "effort": "~4\u20137 days"
+ },
+ {
+  "name": "Micronaut",
+  "domain": "App framework",
+  "version": "5.1.14",
+  "files": 4429,
+  "findings": 12,
+  "modules": 1,
+  "tier": "NONE",
+  "effort": "none"
+ },
+ {
+  "name": "Dropwizard",
+  "domain": "Web framework",
+  "version": "5.0.2",
+  "files": 917,
+  "findings": 1,
+  "modules": 1,
+  "tier": "NONE",
+  "effort": "none"
+ },
+ {
+  "name": "Apache Shiro",
+  "domain": "Auth framework",
+  "version": "3.0.1",
+  "files": 780,
+  "findings": 0,
+  "modules": 0,
+  "tier": "NONE",
+  "effort": "none"
+ },
+ {
+  "name": "Apache PDFBox",
+  "domain": "PDF / signing",
+  "version": "3.0.8",
+  "files": 1435,
+  "findings": 0,
+  "modules": 0,
+  "tier": "NONE",
+  "effort": "none"
+ }
+]

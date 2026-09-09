@@ -320,6 +320,14 @@ Headlines:
 > Every score/tier currently produced is a Phase 1 estimate, not a validated
 > prediction.
 
+## Ecosystem scan
+
+[PQC readiness of the Java ecosystem](docs/ecosystem-scan.md) runs the auditor over the latest release of
+27 widely used open-source Java projects and ranks them by estimated migration effort, from Apache MINA SSHD
+and jjwt at the top to projects that come back clean. It is a Phase 1 estimate meant to be corrected: if a
+ranking looks wrong for a project you know, say so in the
+[scan-results discussion](https://github.com/Arpan0995/pqc-migration-readiness/discussions/16).
+
 ## Contributing and feedback
 
 Questions, scan results from real codebases, bug reports and pull requests are
