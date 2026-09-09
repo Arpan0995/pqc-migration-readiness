@@ -53,6 +53,22 @@ class Wave1ScannerTest {
     }
 
     @Test
+    void flagsEciesCipher() throws IOException {
+        List<Finding> findings = scan("A",
+                "        Cipher c = Cipher.getInstance(\"ECIES\");");
+
+        assertEquals(1, findings.size());
+
+        Finding f = findings.get(0);
+
+        assertEquals("JCA-CIPHER-ECIES", f.ruleId());
+        assertEquals("ECIES", f.algorithm());
+        assertEquals(Category.KEY_ESTABLISHMENT, f.category());
+        assertEquals(Confidence.HIGH, f.confidence());
+        assertEquals("A.java", f.file());
+    }
+
+    @Test
     void flagsRsaKeyPairGenerator() throws IOException {
         List<Finding> findings = scan("B", "        KeyPairGenerator.getInstance(\"RSA\");");
         assertEquals(1, findings.size());
