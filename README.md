@@ -30,6 +30,15 @@ model, not a validated prediction; [Research question](#research-question) and
 
 ## Install / Run
 
+**Try it in your browser, nothing to install.**
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Arpan0995/pqc-migration-readiness)
+
+Launch a Codespace and the dev container builds the auditor and checks out a
+bundled case study. When it is ready, run `./scan.sh` to scan the jjwt study, or
+`./scan.sh path/to/your/project` to scan your own code. The same `scan.sh` works
+on any local clone.
+
 **Run the auditor on any Java source tree in one command**: no build, no
 classpath wrangling. Download the self-contained CLI jar from Maven Central and
 point it at a directory:

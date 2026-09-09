@@ -1,0 +1,18 @@
+{
+  "name": "PQC Migration Readiness",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "true",
+      "mavenVersion": "3.9.9"
+    }
+  },
+  "postCreateCommand": "git submodule update --init case-studies/jjwt/repo && mvn -q -pl auditor -am package -DskipTests -Dgpg.skip=true",
+  "postAttachCommand": "echo 'PQC Migration Readiness is ready. Run ./scan.sh to scan the bundled jjwt case study, or ./scan.sh <dir> [name] for your own Java code.'",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack", "redhat.java"]
+    }
+  }
+}
