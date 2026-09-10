@@ -38,6 +38,12 @@ public final class AuditorCli {
             return;
         }
 
+        if (args[0].equals("--version") || args[0].equals("-v")) {
+            System.out.println(VERSION);
+            System.exit(0);
+            return;
+        }
+
         Path root = Path.of(args[0]).toAbsolutePath().normalize();
         Path out = Path.of("audit-out");
         String name = root.getFileName() == null ? "codebase" : root.getFileName().toString();
@@ -135,6 +141,7 @@ public final class AuditorCli {
                 writes a PQC migration readiness report (JSON + Markdown + SARIF).
 
                   <source-root>     directory (or single .java file) to scan
+                  --version, -v     print the Auditor version
                   --out <dir>       output directory (default: ./audit-out)
                   --name <label>    codebase label in the report (default: source-root name)
                   --exclude <dirs>  comma-separated directory names pruned anywhere under
