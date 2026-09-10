@@ -1,3 +1,7 @@
+---
+title: PQC readiness of the Java ecosystem
+---
+
 # PQC readiness of the Java ecosystem
 
 A snapshot of how much a post-quantum migration would touch across 27 widely used open-source Java projects, produced by running this repository's auditor over each project's latest release. Scanned on 2026-09-09 with auditor 1.4.0 on JDK 21.

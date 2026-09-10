@@ -327,6 +327,7 @@ Headlines:
 and jjwt at the top to projects that come back clean. It is a Phase 1 estimate meant to be corrected: if a
 ranking looks wrong for a project you know, say so in the
 [scan-results discussion](https://github.com/Arpan0995/pqc-migration-readiness/discussions/16).
+A rendered version is published at https://arpan0995.github.io/pqc-migration-readiness/ecosystem-scan.html
 
 ## Contributing and feedback
 
