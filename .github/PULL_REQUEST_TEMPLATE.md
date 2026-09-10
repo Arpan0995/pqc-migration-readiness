@@ -2,6 +2,12 @@
 
 ## Why
 
+## Related issue
+
+Closes #
+
+<!-- Use a closing keyword (Closes, Fixes or Resolves #NN) so the linked issue closes automatically when this PR merges. Delete this section if the PR is not tied to an issue. -->
+
 ## Checklist
 
 - [ ] `mvn verify -Dgpg.skip=true` passes on JDK 21
