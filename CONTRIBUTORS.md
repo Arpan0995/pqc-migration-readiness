@@ -5,7 +5,7 @@ records what a contributor added; follow the pull request for the detail.
 
 - [@emilTejnRasmussen](https://github.com/emilTejnRasmussen): positive test fixture for `Cipher.getInstance("ECIES")` detection ([#32](https://github.com/Arpan0995/pqc-migration-readiness/pull/32))
 - [@najuma223](https://github.com/najuma223): `--version` and `-v` flags for the auditor CLI ([#33](https://github.com/Arpan0995/pqc-migration-readiness/pull/33))
-- [@zemiles](https://github.com/zemiles): ElGamal detection for the Cipher and KeyPairGenerator APIs ([#34](https://github.com/Arpan0995/pqc-migration-readiness/pull/34))
+- [@zemiles](https://github.com/zemiles): ElGamal detection for the Cipher and KeyPairGenerator APIs ([#34](https://github.com/Arpan0995/pqc-migration-readiness/pull/34)) and Ed448/EdDSA signature detection tests ([#35](https://github.com/Arpan0995/pqc-migration-readiness/pull/35))
 
 Contributions of any size are welcome, from a test fixture to a new detection
 rule. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and the open
