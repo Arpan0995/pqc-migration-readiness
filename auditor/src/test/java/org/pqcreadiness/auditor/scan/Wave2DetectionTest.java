@@ -126,4 +126,20 @@ class Wave2DetectionTest {
                 """);
         assertTrue(f.isEmpty());
     }
+
+    @Test
+    void flagsElGamalCipher() throws IOException {
+        List<Finding> findings = scanClass("ElGamalCipher", """
+                package fixture;
+                import javax.crypto.Cipher;
+                class ElGamalCipher {
+                    void encrypt() throws Exception {
+                        Cipher.getInstance("ElGamal/None/NoPadding");
+                    }
+                }
+                """);
+
+        assertEquals(1, findings.size());
+        assertEquals("JCA-CIPHER-ELGAMAL", findings.get(0).ruleId());
+    }
 }

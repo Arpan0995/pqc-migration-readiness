@@ -22,7 +22,7 @@ public final class VulnerableAlgorithms {
     public static final Set<String> KEY_PAIR_GENERATOR = Set.of(
             "RSA", "RSASSA-PSS", "DSA", "DH", "DIFFIEHELLMAN",
             "EC", "ECDSA", "ECDH", "ECMQV",
-            "X25519", "X448", "XDH", "ED25519", "ED448", "EDDSA");
+            "X25519", "X448", "XDH", "ED25519", "ED448", "EDDSA", "ELGAMAL");
 
     /** Quantum-vulnerable algorithms for {@code KeyAgreement}. */
     public static final Set<String> KEY_AGREEMENT = Set.of(
@@ -30,7 +30,7 @@ public final class VulnerableAlgorithms {
 
     /** Quantum-vulnerable algorithm tokens for {@code Cipher.getInstance}. */
     public static final Set<String> CIPHER = Set.of(
-            "RSA", "ECIES");
+            "RSA", "ECIES", "ELGAMAL");
 
     /**
      * Concrete key interface types whose use in a type position couples code to a
