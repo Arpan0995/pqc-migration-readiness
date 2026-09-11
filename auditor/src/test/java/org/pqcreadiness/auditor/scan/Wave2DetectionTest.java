@@ -63,6 +63,40 @@ class Wave2DetectionTest {
     }
 
     @Test
+    void flagsEd448Signature() throws IOException {
+        List<Finding> f = scanClass("Ed448Signature", """
+            package fixture;
+            import java.security.Signature;
+            class Ed448Signature {
+                void m() throws Exception {
+                    Signature.getInstance("Ed448");
+                }
+            }
+            """);
+
+        assertEquals(1, f.size());
+        assertEquals("JCA-SIG-ED448", f.get(0).ruleId());
+        assertEquals(Category.SIGNATURE, f.get(0).category());
+    }
+
+    @Test
+    void flagsEdDsaSignature() throws IOException {
+        List<Finding> f = scanClass("EdDsaSignature", """
+            package fixture;
+            import java.security.Signature;
+            class EdDsaSignature {
+                void m() throws Exception {
+                    Signature.getInstance("EdDSA");
+                }
+            }
+            """);
+
+        assertEquals(1, f.size());
+        assertEquals("JCA-SIG-EDDSA", f.get(0).ruleId());
+        assertEquals(Category.SIGNATURE, f.get(0).category());
+    }
+
+    @Test
     void flagsKeyAgreement() throws IOException {
         List<Finding> f = scanClass("KA", """
                 package fixture;
