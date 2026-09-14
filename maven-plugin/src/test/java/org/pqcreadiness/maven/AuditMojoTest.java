@@ -2,10 +2,15 @@ package org.pqcreadiness.maven;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -49,7 +54,22 @@ class AuditMojoTest {
         set(mojo, "outputDirectory", out.toFile());
         set(mojo, "name", "fixture");
         set(mojo, "pluginVersion", "test");
-        mojo.execute();
+
+        ByteArrayOutputStream capturedOutput = new ByteArrayOutputStream();
+        PrintStream originalOutput = System.out;
+
+        try (PrintStream redirectedOutput = new PrintStream(capturedOutput, true, StandardCharsets.UTF_8)) {
+            System.setOut(redirectedOutput);
+            mojo.setLog(new SystemStreamLog());
+            mojo.execute();
+        } finally {
+            System.setOut(originalOutput);
+        }
+
+        String output = capturedOutput.toString(StandardCharsets.UTF_8);
+
+        assertTrue(output.contains(
+                "Estimated migration effort (planning heuristic, time model t0):"));
 
         assertTrue(Files.exists(out.resolve("readiness-report.json")));
         assertTrue(Files.exists(out.resolve("readiness-report.md")));

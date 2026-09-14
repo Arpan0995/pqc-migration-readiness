@@ -8,6 +8,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.pqcreadiness.auditor.model.ReadinessReport;
 import org.pqcreadiness.auditor.report.JsonReportWriter;
 import org.pqcreadiness.auditor.report.MarkdownReportWriter;
+import org.pqcreadiness.auditor.report.MigrationPlan;
 import org.pqcreadiness.auditor.report.SarifReportWriter;
 import org.pqcreadiness.auditor.scan.ScanResult;
 import org.pqcreadiness.auditor.scan.Scanner;
@@ -100,6 +101,22 @@ public class AuditMojo extends AbstractMojo {
         getLog().info(String.format("Scanned %d files (%d skipped), %d findings across %d module(s).",
                 report.filesScanned(), report.filesSkipped(), report.totalFindings(),
                 report.modules().size()));
+
+        MigrationPlan plan = MigrationPlan.of(report);
+        if (plan.isEmpty()) {
+            getLog().info("No quantum-vulnerable production findings; "
+                    + "no migration effort to estimate.");
+        } else {
+            getLog().info(String.format(
+                    "Estimated migration effort (planning heuristic, time model %s): "
+                            + "%s for one engineer (change %s, testing %s, one-time setup %s).",
+                    plan.timeModel(),
+                    MigrationPlan.humanRange(plan.totalHoursLow(), plan.totalHoursHigh()),
+                    MigrationPlan.humanRange(plan.changeHoursLow(), plan.changeHoursHigh()),
+                    MigrationPlan.humanRange(plan.testingHoursLow(), plan.testingHoursHigh()),
+                    MigrationPlan.humanRange(plan.setupHoursLow(), plan.setupHoursHigh())));
+        }
+
         getLog().info("Readiness reports written to " + out.toAbsolutePath());
     }
 }
