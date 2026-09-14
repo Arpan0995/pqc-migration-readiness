@@ -10,7 +10,7 @@ to study.
 
 - **Hardware:** Apple M2, 8 cores
 - **JVM:** OpenJDK 21.0.11 (Homebrew)
-- **Crypto:** Bouncy Castle `bcprov-jdk18on:1.84` (ML-KEM / ML-DSA)
+- **Crypto:** Bouncy Castle `bcprov-jdk18on:1.84` (ML-KEM / ML-DSA) *(Note: the parent `pom.xml` now pins `<bouncycastle.version>1.86</bouncycastle.version>`; running the benchmarks today resolves 1.86, so absolute numbers may shift slightly — re-run before quoting)*
 - **JMH:** 1.37 with `@Fork(2)`, `@Warmup(5×1s)`, `@Measurement(5×1s)` (Cnt = 10 per row),
   `AverageTime`, `-prof gc`
 - **Date:** 2026-07-09
@@ -91,7 +91,7 @@ honest cost of "secure if either component holds."
 
 - Microbenchmarks on one machine (Apple M2); absolute numbers are platform-specific, so read
   the **ratios**, not the µs. Reproduce on target hardware before quoting figures.
-- BC 1.84 software implementations; a different provider or JDK-native ML-KEM/ML-DSA
+- BC 1.84 software implementations (the build currently pins BC 1.86 in root `pom.xml`); a different provider, newer library version, or JDK-native ML-KEM/ML-DSA
   (JDK 24+) would shift absolute costs.
 - Dual-signature keygen/sign do both algorithms sequentially; a parallel implementation
   would cut the hybrid signing latency (not the allocation).
