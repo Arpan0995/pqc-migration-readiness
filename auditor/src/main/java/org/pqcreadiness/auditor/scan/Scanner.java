@@ -97,7 +97,7 @@ public final class Scanner {
         try {
             result = parser.parse(source);
             lineCounts.put(relative, nonBlankLines(source));
-        } catch (IOException e) {
+        } catch (IOException | UncheckedIOException e) {
             unparseable.add(source);
             return;
         }
