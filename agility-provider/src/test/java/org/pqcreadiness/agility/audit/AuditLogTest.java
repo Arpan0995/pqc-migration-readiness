@@ -31,4 +31,15 @@ class AuditLogTest {
         log.record(new AuditEvent("t", "i", "m", "a\"b", "", "SELECTED", 0));
         assertTrue(log.toJsonl().contains("a\\\"b"));
     }
+
+    @Test
+    void escapesJsonControlCharacters() {
+        AuditLog log = new AuditLog();
+        log.record(new AuditEvent("t", "i", "m", "\u0000\b\f\u001f", "", "SELECTED", 0));
+
+        String jsonl = log.toJsonl();
+
+        assertTrue(jsonl.contains("\\u0000\\u0008\\u000c\\u001f"));
+        assertTrue(jsonl.chars().noneMatch(c -> c < 0x20 && c != '\n'));
+    }
 }
