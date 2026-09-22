@@ -65,6 +65,7 @@ class SarifReportWriterTest {
         assertTrue(log.path("$schema").asText().contains("sarif"));
 
         JsonNode run = log.path("runs").get(0);
+        assertEquals("utf16CodeUnits", run.path("columnKind").asText());
         JsonNode driver = run.path("tool").path("driver");
         assertEquals("pqc-readiness-auditor", driver.path("name").asText());
         assertEquals("test", driver.path("version").asText());
@@ -101,6 +102,29 @@ class SarifReportWriterTest {
         Path out = root.resolve("out/r.sarif");
         new SarifReportWriter().write(report, out);
         assertTrue(Files.exists(out));
+    }
+
+    @Test
+    void preservesUtf16ColumnsAfterSupplementaryCharacters() throws IOException {
+        String prefix = "class Crypto { void m() throws Exception { /* \uD83D\uDD10 */ ";
+        Files.writeString(root.resolve("Crypto.java"),
+                prefix + "java.security.KeyPairGenerator.getInstance(\"RSA\"); } }");
+
+        ScanResult scan = new Scanner().scan(root);
+        ReadinessReport report = new ScoringEngine("test")
+                .score("fixture", scan, new ModuleResolver(root));
+        JsonNode run = mapper.readTree(new SarifReportWriter().toSarif(report))
+                .path("runs").get(0);
+
+        assertEquals("utf16CodeUnits", run.path("columnKind").asText());
+        JsonNode results = run.path("results");
+        assertEquals(1, results.size());
+        assertEquals("JCA-KPG-RSA", results.get(0).path("ruleId").asText());
+        JsonNode region = results.get(0).path("locations").get(0)
+                .path("physicalLocation").path("region");
+        assertEquals(1, region.path("startLine").asInt());
+        // String.length() counts the supplementary character as two UTF-16 code units.
+        assertEquals(prefix.length() + 1, region.path("startColumn").asInt());
     }
 
     /** Level and severity mapping on a hand-built report covering the edge cases. */

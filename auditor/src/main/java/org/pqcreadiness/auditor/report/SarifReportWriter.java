@@ -43,6 +43,7 @@ public final class SarifReportWriter {
 
     private static final String SARIF_VERSION = "2.1.0";
     private static final String SARIF_SCHEMA = "https://json.schemastore.org/sarif-2.1.0.json";
+    private static final String COLUMN_KIND = "utf16CodeUnits";
     private static final String TOOL_NAME = "pqc-readiness-auditor";
     private static final String INFO_URI = "https://github.com/Arpan0995/pqc-migration-readiness";
     private static final String RULE_HELP_URI =
@@ -99,6 +100,7 @@ public final class SarifReportWriter {
 
         Map<String, Object> run = new LinkedHashMap<>();
         run.put("tool", Map.of("driver", driver));
+        run.put("columnKind", COLUMN_KIND);
         run.put("results", results);
         return run;
     }
