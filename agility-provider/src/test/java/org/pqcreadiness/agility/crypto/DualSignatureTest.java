@@ -50,6 +50,29 @@ class DualSignatureTest {
     }
 
     @Test
+    void dualRejectsEmptySignature() throws Exception {
+        CryptoSuite suite = Suites.SIG_DUAL_ECDSAP256_MLDSA65;
+        DualSignature.SignerKeys keys = signer.generateSignerKeys(suite);
+
+        assertFalse(signer.verify(suite, keys, message, new byte[0]),
+                "an empty signature must fail dual verification");
+    }
+
+    @Test
+    void dualRejectsClassicalOnlySignature() throws Exception {
+        CryptoSuite suite = Suites.SIG_DUAL_ECDSAP256_MLDSA65;
+        DualSignature.SignerKeys keys = signer.generateSignerKeys(suite);
+        byte[] sig = signer.sign(suite, keys, message);
+
+        List<byte[]> blocks = Wire.split(sig);
+        assertEquals(2, blocks.size(), "dual signature carries two blocks");
+        byte[] classicalOnly = Wire.concat(List.of(blocks.get(0)));
+
+        assertFalse(signer.verify(suite, keys, message, classicalOnly),
+                "a missing PQC component must fail the AND verification");
+    }
+
+    @Test
     void dualFailsIfPqcComponentCorrupted() throws Exception {
         CryptoSuite suite = Suites.SIG_DUAL_ECDSAP256_MLDSA65;
         DualSignature.SignerKeys keys = signer.generateSignerKeys(suite);
