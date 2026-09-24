@@ -77,6 +77,18 @@ class Wave1ScannerTest {
     }
 
     @Test
+    void ignoresAlgorithmNamesInCommentsAndStrings() throws IOException {
+        String code = """
+        // try as RSA
+        String message = "it is RSA!!!";
+        """;
+
+        List<Finding> findings = scan("OnlyText", code);
+
+        assertTrue(findings.isEmpty());
+    }
+
+    @Test
     void flagsEllipticCurveKeyPairGenerator() throws IOException {
         List<Finding> findings = scan("C", "        KeyPairGenerator.getInstance(\"EC\");");
         assertEquals(1, findings.size());
