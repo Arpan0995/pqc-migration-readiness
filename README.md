@@ -21,6 +21,11 @@ the four [case studies](case-studies/). The full report continues with the
 module ranking and the ranked hotspots, each with a file:line and the reason it
 is expensive.*
 
+For JMH benchmark results measuring the agility layer's runtime cost across
+classical, hybrid, and PQC-only postures (including allocation profiling with
+`-prof gc`), see [`benchmarks/README.md`](benchmarks/README.md) and the measured
+data in [`benchmarks/results/RESULTS.md`](benchmarks/results/RESULTS.md).
+
 The tool is the instrument of a research project on a question current
 post-quantum-cryptography guidance leaves open: how much a migration will cost
 for a specific Java codebase, and where the expensive parts hide. Every score
