@@ -18,7 +18,7 @@ project.
 
 *The first screen of `readiness-report.md` for Eclipse Californium 3.14.0, one of
 the four [case studies](case-studies/). The full report continues with the
-module ranking and the ranked hotspots, each with a file:line and the reason it
+module ranking and the ranked hotspots, each with a file:line:column and the reason it
 is expensive.*
 
 The tool is the instrument of a research project on a question current
@@ -53,7 +53,7 @@ java -jar pqc-readiness-auditor.jar /path/to/java/project --out audit-out --name
 ```
 
 Output: `audit-out/readiness-report.json` (machine-readable),
-`audit-out/readiness-report.md` (ranked hotspots with file:line and *why each is
+`audit-out/readiness-report.md` (ranked hotspots with file:line:column and *why each is
 expensive*), and `audit-out/readiness-report.sarif` (SARIF 2.1.0).
 
 The Markdown report opens with a **migration plan at a glance**: the ordered
@@ -183,7 +183,7 @@ output.
 **Phase 1 (now):**
 - Per-codebase **readiness report**: module scores, a qualitative **effort
   tier** (`NONE`/`LOW`/`MEDIUM`/`HIGH`/`CRITICAL`), and ranked hotspots with
-  file:line and *why each is expensive*: an estimation aid, not a validated
+  file:line:column and *why each is expensive*: an estimation aid, not a validated
   prediction (see [doc 03 §8](docs/research/03-difficulty-scoring-model.md)).
 - **Benchmark tables**: agility-layer overhead across modes, incl. JVM-specific
   effects (GC/allocation pressure from multi-KB PQC artifacts). **Done**, see

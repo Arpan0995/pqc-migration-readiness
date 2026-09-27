@@ -13,7 +13,9 @@ A research framework, in Java (JDK 21), with two linked components plus supporti
 
 - **`auditor`**: scans a Java codebase for quantum-vulnerable cryptographic usage and
   produces a per-module/file migration **difficulty score** and effort tier, with ranked
-  hotspots and file:line references.
+  hotspots and file:line:column references in Markdown reports. Each module's
+  Markdown hotspots are sorted by finding difficulty descending, then by path,
+  line, and column ascending, before applying the 15-row limit.
 - **`agility-provider`**: a runtime abstraction over JCA/JCE that switches between
   classical, hybrid, and PQC-only algorithms by policy, with capability negotiation and
   audit logging.
