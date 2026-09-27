@@ -96,4 +96,43 @@ class NegotiatorTest {
 
         assertEquals(Suites.SIG_DUAL_ECDSAP256_MLDSA65, r.suite());
     }
+    @Test
+    void nullOnNoIntersectionNormalisesToFailClosed() {
+        IntentPolicy p = new IntentPolicy(Mode.HYBRID,
+                List.of(Suites.KE_HYBRID_X25519_MLKEM768.id()), null, Mode.CLASSICAL);
+        CapabilityDescriptor peer = peer(Intent.KEY_ESTABLISHMENT, Suites.KE_CLASSICAL_X25519.id());
+
+        assertThrows(NegotiationException.class,
+                () -> negotiator.negotiate(Intent.KEY_ESTABLISHMENT, p, peer));
+    }
+    @Test
+    void nullFloorThrowsAtConstruction() {
+        assertThrows(NullPointerException.class,
+                () -> new IntentPolicy(Mode.HYBRID,
+                        List.of(Suites.KE_HYBRID_X25519_MLKEM768.id()),
+                        IntentPolicy.OnNoIntersection.FAIL_CLOSED, null));
+    }
+
+    @Test
+    void nullModeThrowsAtConstruction() {
+        assertThrows(NullPointerException.class,
+                () -> new IntentPolicy(null,
+                        List.of(Suites.KE_HYBRID_X25519_MLKEM768.id()),
+                        IntentPolicy.OnNoIntersection.FAIL_CLOSED, Mode.CLASSICAL));
+    }
+    @Test
+    void unknownPreferredIdThrowsAtConstructionEvenUnderDowngrade() {
+        assertThrows(RuntimeException.class,
+                () -> new IntentPolicy(Mode.HYBRID, List.of("KE-TYPO"),
+                        IntentPolicy.OnNoIntersection.DOWNGRADE, Mode.CLASSICAL));
+    }
+    @Test
+    void wrongIntentPreferredSuiteThrows() {
+        IntentPolicy p = policy(IntentPolicy.OnNoIntersection.FAIL_CLOSED, Mode.CLASSICAL,
+                Suites.SIG_MLDSA65.id());
+        CapabilityDescriptor peer = peer(Intent.KEY_ESTABLISHMENT, Suites.KE_CLASSICAL_X25519.id());
+
+        assertThrows(IllegalArgumentException.class,
+                () -> negotiator.negotiate(Intent.KEY_ESTABLISHMENT, p, peer));
+}  
 }
