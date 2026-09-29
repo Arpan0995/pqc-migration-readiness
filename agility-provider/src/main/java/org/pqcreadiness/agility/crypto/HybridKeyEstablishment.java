@@ -80,6 +80,10 @@ public final class HybridKeyEstablishment {
         int idx = 0;
 
         if (suite.hasClassical()) {
+            if (idx >= blocks.size()) {
+                throw new IllegalArgumentException(
+                        "malformed key-establishment wire for suite " + suite.id());
+            }
             byte[] ephemeralPubEncoded = blocks.get(idx++);
             PublicKey ephemeralPub = KeyFactory.getInstance(suite.classicalAlgorithm(), Providers.BC)
                     .generatePublic(new X509EncodedKeySpec(ephemeralPubEncoded));
@@ -89,6 +93,10 @@ public final class HybridKeyEstablishment {
             secrets.add(ka.generateSecret());
         }
         if (suite.hasPqc()) {
+            if (idx >= blocks.size()) {
+                throw new IllegalArgumentException(
+                        "malformed key-establishment wire for suite " + suite.id());
+            }
             byte[] ciphertext = blocks.get(idx);
             KEM kem = KEM.getInstance("ML-KEM", Providers.BC);
             KEM.Decapsulator dec = kem.newDecapsulator(recipient.pqc().getPrivate());

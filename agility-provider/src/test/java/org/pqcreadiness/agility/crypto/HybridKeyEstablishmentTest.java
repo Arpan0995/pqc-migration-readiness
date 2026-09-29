@@ -9,6 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests for the hybrid KEM combiner. We do not re-test Bouncy Castle's primitives (BC
@@ -74,5 +75,35 @@ class HybridKeyEstablishmentTest {
         assertEquals(32, hybrid.sharedSecret().length);
         // The hybrid wire carries two blocks (X25519 ephemeral pub + ML-KEM ct).
         assertEquals(2, Wire.split(hybrid.wire()).size());
+    }
+
+    @Test
+    void rejectsEmptyHybridWire() throws Exception {
+        CryptoSuite suite = Suites.KE_HYBRID_X25519_MLKEM768;
+        HybridKeyEstablishment.RecipientKeys keys = kem.generateRecipientKeys(suite);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> kem.decapsulate(suite, keys, new byte[0]));
+
+        assertEquals(
+                "malformed key-establishment wire for suite " + suite.id(),
+                exception.getMessage());
+    }
+
+    @Test
+    void rejectsTruncatedHybridWireWhenPqcBlockIsMissing() throws Exception {
+        CryptoSuite suite = Suites.KE_HYBRID_X25519_MLKEM768;
+        HybridKeyEstablishment.RecipientKeys keys = kem.generateRecipientKeys(suite);
+        HybridKeyEstablishment.Encapsulation encapsulation = kem.encapsulate(suite, keys);
+        byte[] truncatedWire = Arrays.copyOf(encapsulation.wire(), encapsulation.wire().length - 1);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> kem.decapsulate(suite, keys, truncatedWire));
+
+        assertEquals(
+                "malformed key-establishment wire for suite " + suite.id(),
+                exception.getMessage());
     }
 }
