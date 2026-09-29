@@ -55,7 +55,7 @@ public final class Scanner {
      */
     public Scanner(Set<String> excludedDirectoryNames, boolean skipTestSources) {
         this.configuration = new ParserConfiguration()
-                .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_21);
+                .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_25); // you should update LanguageLevel as JavaParser version increase.
         this.excludedDirectoryNames = Set.copyOf(excludedDirectoryNames);
         this.skipTestSources = skipTestSources;
     }

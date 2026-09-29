@@ -43,4 +43,43 @@ class ScannerRobustnessTest {
         assertTrue(result.fileLineCounts().containsKey("Good.java"));
         assertEquals(java.util.List.of(bad), result.unparseableFiles());
     }
+
+    @Test
+    void checkVersion() throws IOException {
+        Files.writeString(root.resolve("Good.java"), """
+                import module java.base;
+                class Good {
+                    void generate(){
+                        try { KeyPairGenerator.getInstance("RSA"); } catch (NoSuchAlgorithmException _) {}
+                         
+                    }
+                }
+                """);
+        ScanResult result = new Scanner().scan(root);
+
+
+        assertEquals(1, result.findings().size());
+        assertEquals("JCA-KPG-RSA", result.findings().get(0).ruleId());
+        assertEquals(0, result.unparseableFiles().size());
+    }
+
+    @Test
+    void statementbeforesuperparsesandyieldsitsfinding() throws IOException {
+        Files.writeString(root.resolve("Good.java"), """
+                import module java.base;
+                
+                class Good {
+                    Good() throws NoSuchAlgorithmException {
+                        KeyPairGenerator.getInstance("RSA");
+                        super();
+                    }
+                }
+                """);
+        ScanResult result = new Scanner().scan(root);
+
+
+        assertEquals(1, result.findings().size());
+        assertEquals("JCA-KPG-RSA", result.findings().get(0).ruleId());
+        assertEquals(0, result.unparseableFiles().size());
+    }
 }
