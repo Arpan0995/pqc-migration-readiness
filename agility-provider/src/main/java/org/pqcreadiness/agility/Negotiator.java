@@ -14,6 +14,10 @@ import java.util.Optional;
  *       strongest peer suite that still meets the floor.</li>
  * </ol>
  *
+ * Every preferred suite must belong to the requested intent; a policy that lists, say, a
+ * signature suite for key establishment is a configuration error and makes
+ * {@link #negotiate} throw {@link IllegalArgumentException} before the peer's offer is read.
+ *
  * Selection is deterministic and in-process; exchanging the descriptors is the caller's
  * transport concern.
  */

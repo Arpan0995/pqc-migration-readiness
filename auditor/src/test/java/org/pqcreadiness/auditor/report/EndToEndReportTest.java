@@ -139,7 +139,7 @@ class EndToEndReportTest {
         FileReport a = new FileReport("A.java", 3.0, List.of(
                 typeCouplingFinding("A.java", 10, 20),
                 typeCouplingFinding("A.java", 10, 5),
-                typeCouplingFinding("A.java", 2, 1)));
+                typeCouplingFinding("A.java", 2, 30)));
 
         ModuleReport module = new ModuleReport(
                 "demo", 20, 4.0, EffortTier.forScore(4.0),
@@ -156,7 +156,7 @@ class EndToEndReportTest {
                 .toList();
 
         assertEquals(List.of(
-                "A.java:2:1",
+                "A.java:2:30",
                 "A.java:10:5",
                 "A.java:10:20",
                 "B.java:1:1"), sites);

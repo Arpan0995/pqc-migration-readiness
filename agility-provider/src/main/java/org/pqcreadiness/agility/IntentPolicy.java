@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @param mode              the preferred posture (informational; the suite list encodes the real choice)
  * @param preferredSuiteIds local offer, most preferred first
-  * @param onNoIntersection  behaviour when the preferred list does not intersect the peer's offer;
+ * @param onNoIntersection  behaviour when the preferred list does not intersect the peer's offer;
  *                          {@code null} is normalised to {@code FAIL_CLOSED} (the secure default)
  * @param floor             minimum posture acceptable when downgrading
  */
@@ -20,6 +20,12 @@ public record IntentPolicy(
         OnNoIntersection onNoIntersection,
         Mode floor) {
 
+    /**
+     * Validates the components and normalises a null {@code onNoIntersection}.
+     *
+     * @throws NullPointerException     if {@code mode}, {@code preferredSuiteIds} or {@code floor} is null
+     * @throws IllegalArgumentException if a preferred suite ID is not registered in {@link Suites}
+     */
     public IntentPolicy {
         Objects.requireNonNull(mode, "mode must not be null");
         Objects.requireNonNull(preferredSuiteIds, "preferredSuiteIds must not be null");

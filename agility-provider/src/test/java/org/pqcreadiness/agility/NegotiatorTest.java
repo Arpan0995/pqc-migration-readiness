@@ -96,15 +96,18 @@ class NegotiatorTest {
 
         assertEquals(Suites.SIG_DUAL_ECDSAP256_MLDSA65, r.suite());
     }
+
     @Test
     void nullOnNoIntersectionNormalisesToFailClosed() {
         IntentPolicy p = new IntentPolicy(Mode.HYBRID,
                 List.of(Suites.KE_HYBRID_X25519_MLKEM768.id()), null, Mode.CLASSICAL);
         CapabilityDescriptor peer = peer(Intent.KEY_ESTABLISHMENT, Suites.KE_CLASSICAL_X25519.id());
 
+        assertEquals(IntentPolicy.OnNoIntersection.FAIL_CLOSED, p.onNoIntersection());
         assertThrows(NegotiationException.class,
                 () -> negotiator.negotiate(Intent.KEY_ESTABLISHMENT, p, peer));
     }
+
     @Test
     void nullFloorThrowsAtConstruction() {
         assertThrows(NullPointerException.class,
@@ -120,19 +123,27 @@ class NegotiatorTest {
                         List.of(Suites.KE_HYBRID_X25519_MLKEM768.id()),
                         IntentPolicy.OnNoIntersection.FAIL_CLOSED, Mode.CLASSICAL));
     }
+
     @Test
     void unknownPreferredIdThrowsAtConstructionEvenUnderDowngrade() {
-        assertThrows(RuntimeException.class,
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
                 () -> new IntentPolicy(Mode.HYBRID, List.of("KE-TYPO"),
                         IntentPolicy.OnNoIntersection.DOWNGRADE, Mode.CLASSICAL));
+        assertTrue(e.getMessage().contains("KE-TYPO"));
     }
-    @Test
-    void wrongIntentPreferredSuiteThrows() {
-        IntentPolicy p = policy(IntentPolicy.OnNoIntersection.FAIL_CLOSED, Mode.CLASSICAL,
-                Suites.SIG_MLDSA65.id());
-        CapabilityDescriptor peer = peer(Intent.KEY_ESTABLISHMENT, Suites.KE_CLASSICAL_X25519.id());
 
-        assertThrows(IllegalArgumentException.class,
+    @Test
+    void wrongIntentPreferredSuiteThrowsEvenWhenThePeerOffersIt() {
+        // The fail-open case from #59: a peer that lists a signature suite under key
+        // establishment used to get that signature suite back as the negotiated KEM.
+        IntentPolicy p = policy(IntentPolicy.OnNoIntersection.DOWNGRADE, Mode.CLASSICAL,
+                Suites.SIG_MLDSA65.id());
+        CapabilityDescriptor peer = peer(Intent.KEY_ESTABLISHMENT, Suites.SIG_MLDSA65.id());
+
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
                 () -> negotiator.negotiate(Intent.KEY_ESTABLISHMENT, p, peer));
-}  
+        assertTrue(e.getMessage().contains(Suites.SIG_MLDSA65.id()));
+        assertTrue(e.getMessage().contains("SIGNATURE"));
+        assertTrue(e.getMessage().contains("KEY_ESTABLISHMENT"));
+    }
 }
