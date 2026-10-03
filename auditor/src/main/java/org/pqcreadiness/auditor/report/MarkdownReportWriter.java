@@ -1,18 +1,19 @@
 package org.pqcreadiness.auditor.report;
 
-import org.pqcreadiness.auditor.model.FileReport;
 import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
 import org.pqcreadiness.auditor.model.ReadinessReport;
+import org.pqcreadiness.auditor.score.ScoreModel;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Comparator;
 
 /**
  * Renders a {@link ReadinessReport} as human-readable Markdown: a module ranking by
- * difficulty score, then per-module hotspots with {@code file:line} references and a
+ * difficulty score, then per-module hotspots with {@code file:line:column} references and a
  * plain-language reason each site is expensive to migrate.
  */
 public final class MarkdownReportWriter {
@@ -161,27 +162,34 @@ public final class MarkdownReportWriter {
                 .append(module.urgency()).append(", ").append(module.baselineCount())
                 .append(" vulnerable call sites, ").append(module.loc()).append(" LOC.\n\n");
 
+        List<Finding> findings = module.files().stream()
+                .flatMap(file -> file.findings().stream())
+                .sorted(Comparator.comparingDouble(ScoreModel::findingDifficulty).reversed()
+                        .thenComparing(Finding::file)
+                        .thenComparingInt(Finding::line)
+                        .thenComparingInt(Finding::column))
+                .toList();
+
         int shown = 0;
         boolean any = false;
-        for (FileReport file : module.files()) {
-            for (Finding finding : file.findings()) {
-                if (shown >= MAX_HOTSPOTS_PER_MODULE) {
-                    md.append("\n_").append(remaining(module, shown))
-                            .append(" more finding(s) not shown._\n");
-                    md.append("\n");
-                    return;
-                }
-                if (!any) {
-                    md.append("| Site | Rule | Difficulty | Why it is expensive |\n");
-                    md.append("|---|---|---:|---|\n");
-                    any = true;
-                }
-                md.append("| `").append(finding.file()).append(':').append(finding.line())
-                        .append("` | `").append(finding.ruleId()).append("` | ")
-                        .append(round(org.pqcreadiness.auditor.score.ScoreModel.findingDifficulty(finding)))
-                        .append(" | ").append(Explanations.why(finding)).append(" |\n");
-                shown++;
+        for (Finding finding : findings) {
+            if (shown >= MAX_HOTSPOTS_PER_MODULE) {
+                md.append("\n_").append(remaining(module, shown))
+                        .append(" more finding(s) not shown._\n");
+                md.append("\n");
+                return;
             }
+            if (!any) {
+                md.append("| Site | Rule | Difficulty | Why it is expensive |\n");
+                md.append("|---|---|---:|---|\n");
+                any = true;
+            }
+            md.append("| `").append(finding.file()).append(':').append(finding.line())
+                    .append(':').append(finding.column())
+                    .append("` | `").append(finding.ruleId()).append("` | ")
+                    .append(round(ScoreModel.findingDifficulty(finding)))
+                    .append(" | ").append(Explanations.why(finding)).append(" |\n");
+            shown++;
         }
         md.append("\n");
     }
