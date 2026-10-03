@@ -23,6 +23,15 @@ public final class Negotiator {
         List<String> peerOffer = peer.offered(intent);
 
         for (String id : policy.preferredSuiteIds()) {
+            CryptoSuite suite = Suites.require(id);
+            if (suite.intent() != intent) {
+                throw new IllegalArgumentException(
+                        "Preferred suite " + id + " has intent " + suite.intent()
+                                + " but negotiation requested " + intent);
+            }
+        }
+
+        for (String id : policy.preferredSuiteIds()) {
             if (peerOffer.contains(id)) {
                 return new NegotiationResult(Suites.require(id), false);
             }
