@@ -188,4 +188,4 @@ A replication-relevant artifact from the logs: the first campaign silently lost 
 
 ---
 
-*Primary dependencies: JavaParser 3.27.0 (used purely syntactically), Bouncy Castle `bcprov-jdk18on` 1.84 (all primitives; no separate `bcpq` artifact exists), Jackson 2.18.2, JUnit BOM 6.1.1, JMH 1.37. A companion long-form summary with a different sectioning (including inputs/outputs and dependency rationale) is at `docs/CODEBASE-SUMMARY.md` / `.pdf`.*
+*Primary dependencies: JavaParser 3.27.0 (used purely syntactically), Bouncy Castle `bcprov-jdk18on` 1.84 (all primitives; no separate `bcpq` artifact exists), Jackson 2.18.2, JUnit BOM 6.1.1, JMH 1.37. A companion long-form summary with a different sectioning (including inputs/outputs and dependency rationale) is at `docs/CODEBASE-SUMMARY.md`.*
