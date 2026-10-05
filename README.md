@@ -14,12 +14,15 @@ estimate for the work. It needs no build and no classpath: the scan is
 syntactic, runs on the source alone, and takes a few seconds for a mid-sized
 project.
 
-![First screen of the Markdown readiness report for Eclipse Californium 3.14.0: the migration plan with six ordered steps, sites per step, modules touched and an effort range per step](docs/assets/readiness-report-example.png)
+**Featured on Foojay:** [How much will post-quantum migration cost your Java
+codebase?](https://foojay.io/today/how-much-will-post-quantum-migration-cost-your-java-codebase/)
+walks through the tool and what it found across 27 widely used open-source Java
+projects.
 
-*The first screen of `readiness-report.md` for Eclipse Californium 3.14.0, one of
-the four [case studies](case-studies/). The full report continues with the
-module ranking and the ranked hotspots, each with a file:line:column and the reason it
-is expensive.*
+![Animation of a real ./scan.sh run: it scans the bundled jjwt 0.13.0 case study (408 files, 193 findings in 3 modules) in about a second, estimates about 3 to 9 months of migration work for one engineer (a planning heuristic), and prints a three-step migration plan](docs/assets/scan-demo.gif)
+
+*`./scan.sh` on the bundled jjwt case study. Point it at your own code with
+`./scan.sh path/to/project`.*
 
 The tool is the instrument of a research project on a question current
 post-quantum-cryptography guidance leaves open: how much a migration will cost
@@ -66,6 +69,13 @@ engineer-hours of change work, testing ≈ 50–100% of change); they are planni
 heuristics, not validated predictions (see
 `docs/research/03-difficulty-scoring-model.md` §8.1). The same plan is embedded
 in the JSON report as the additive `migrationPlan` node, assumptions included.
+
+![First screen of the Markdown readiness report for Eclipse Californium 3.14.0: the migration plan with six ordered steps, sites per step, modules touched and an effort range per step](docs/assets/readiness-report-example.png)
+
+*The first screen of `readiness-report.md` for Eclipse Californium 3.14.0, one of
+the four [case studies](case-studies/). The full report continues with the
+module ranking and the ranked hotspots, each with a file:line:column and the reason it
+is expensive.*
 
 Build-output directories (`target`, `build`, `out`, `bin`) are pruned by default
 so a scan of a built tree matches a scan of a clean checkout; override with
