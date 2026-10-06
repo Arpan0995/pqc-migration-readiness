@@ -4,6 +4,7 @@ import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
 import org.pqcreadiness.auditor.model.ReadinessReport;
 import org.pqcreadiness.auditor.score.ScoreModel;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ public final class MarkdownReportWriter {
 
     /** Cap on hotspot findings listed per module, to keep large reports readable. */
     private static final int MAX_HOTSPOTS_PER_MODULE = 15;
+    private static final int MAX_SKIPPED_FILES = 20;
 
     public String toMarkdown(ReadinessReport report) {
         StringBuilder md = new StringBuilder();
@@ -30,9 +32,10 @@ public final class MarkdownReportWriter {
         md.append("- Findings: ").append(report.totalFindings())
                 .append(" across ").append(report.filesScanned()).append(" files");
         if (report.filesSkipped() > 0) {
-            md.append(" (").append(report.filesSkipped()).append(" skipped: parse errors)");
+            md.append(" (").append(report.filesSkipped()).append(" skipped)");
         }
         md.append("\n\n");
+        appendSkippedFiles(md, report);
 
         md.append("> Difficulty score **S** and effort **tier** are a heuristic estimate, "
                 + "not yet a validated prediction of migration effort (see "
@@ -69,6 +72,34 @@ public final class MarkdownReportWriter {
             Files.createDirectories(out.getParent());
         }
         Files.writeString(out, toMarkdown(report));
+    }
+
+    private static void appendSkippedFiles(StringBuilder md, ReadinessReport report) {
+        List<SkippedFile> skippedFiles = report.skippedFiles();
+        if (skippedFiles.isEmpty()) {
+            return;
+        }
+
+        md.append("## Files that could not be parsed\n\n");
+
+        int shown = Math.min(skippedFiles.size(), MAX_SKIPPED_FILES);
+        for (int i = 0; i < shown; i++) {
+            SkippedFile skipped = skippedFiles.get(i);
+            md.append("- `")
+                    .append(skipped.path().replace("`", "\\`"))
+                    .append("` — ")
+                    .append(skipped.reason().replace("`", "\\`"))
+                    .append('\n');
+        }
+
+        int remaining = skippedFiles.size() - shown;
+        if (remaining > 0) {
+            md.append("\n+")
+                    .append(remaining)
+                    .append(" more skipped file(s) not shown.\n\n");
+        } else {
+            md.append('\n');
+        }
     }
 
     private void appendMigrationPlan(StringBuilder md, ReadinessReport report) {

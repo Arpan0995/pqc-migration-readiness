@@ -8,6 +8,7 @@ import org.pqcreadiness.auditor.model.FileReport;
 import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
 import org.pqcreadiness.auditor.model.ReadinessReport;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -102,7 +103,33 @@ public final class SarifReportWriter {
         run.put("tool", Map.of("driver", driver));
         run.put("columnKind", COLUMN_KIND);
         run.put("results", results);
+
+        List<Map<String, Object>> notifications = new ArrayList<>();
+        for (SkippedFile skipped : report.skippedFiles()) {
+            notifications.add(notification(skipped));
+        }
+
+        run.put("invocations",
+                List.of(Map.of("toolExecutionNotifications", notifications)));
+
         return run;
+    }
+
+    private static Map<String, Object> notification(SkippedFile skipped) {
+        Map<String, Object> physicalLocation = new LinkedHashMap<>();
+        physicalLocation.put("artifactLocation", artifactLocation(skipped.path()));
+
+        Map<String, Object> notification = new LinkedHashMap<>();
+        notification.put("level", "warning");
+        notification.put("message",
+                Map.of("text", "Source file was skipped: " + skipped.reason()));
+        notification.put("locations",
+                List.of(Map.of("physicalLocation", physicalLocation)));
+        return notification;
+    }
+
+    private static Map<String, String> artifactLocation(String path) {
+        return Map.of("uri", path.replace('\\', '/'));
     }
 
     private static Map<String, Object> rule(String ruleId, Finding representative) {
@@ -133,8 +160,7 @@ public final class SarifReportWriter {
         }
 
         Map<String, Object> physicalLocation = new LinkedHashMap<>();
-        physicalLocation.put("artifactLocation",
-                Map.of("uri", finding.file().replace('\\', '/')));
+        physicalLocation.put("artifactLocation", artifactLocation(finding.file()));
         physicalLocation.put("region", region);
 
         Map<String, Object> properties = new LinkedHashMap<>();

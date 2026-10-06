@@ -54,6 +54,12 @@ class SarifReportWriterTest {
                 }
                 """);
 
+        Files.writeString(src.resolve("Broken.java"), """
+        package demo;
+        class Broken {
+            void incomplete() {
+        """);
+
         ScanResult scan = new Scanner().scan(root);
         ReadinessReport report = new ScoringEngine("test")
                 .score("fixture", scan, new ModuleResolver(root));
@@ -65,6 +71,15 @@ class SarifReportWriterTest {
         assertTrue(log.path("$schema").asText().contains("sarif"));
 
         JsonNode run = log.path("runs").get(0);
+        JsonNode notifications = run.path("invocations").get(0)
+                        .path("toolExecutionNotifications");
+        assertEquals(1, notifications.size());
+        assertEquals("warning", notifications.get(0).path("level").asText());
+        assertFalse(notifications.get(0).path("message").path("text").asText().isBlank());
+
+        String skippedUri = notifications.get(0).path("locations").get(0)
+                        .path("physicalLocation").path("artifactLocation").path("uri").asText();
+        assertEquals("src/main/java/demo/Broken.java", skippedUri);
         assertEquals("utf16CodeUnits", run.path("columnKind").asText());
         JsonNode driver = run.path("tool").path("driver");
         assertEquals("pqc-readiness-auditor", driver.path("name").asText());

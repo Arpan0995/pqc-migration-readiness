@@ -10,6 +10,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ScannerRobustnessTest {
 
@@ -41,7 +42,10 @@ class ScannerRobustnessTest {
 
         assertEquals(1, result.findings().size());
         assertTrue(result.fileLineCounts().containsKey("Good.java"));
-        assertEquals(java.util.List.of(bad), result.unparseableFiles());
+        assertEquals(1, result.skippedFiles().size());
+        assertEquals("Bad.java", result.skippedFiles().get(0).path());
+        assertFalse(result.skippedFiles().get(0).reason().isBlank());
+        assertFalse(result.fileLineCounts().containsKey("Bad.java"));
     }
 
     @Test
@@ -51,7 +55,6 @@ class ScannerRobustnessTest {
                 class Good {
                     void generate(){
                         try { KeyPairGenerator.getInstance("RSA"); } catch (NoSuchAlgorithmException _) {}
-                         
                     }
                 }
                 """);
@@ -60,7 +63,7 @@ class ScannerRobustnessTest {
 
         assertEquals(1, result.findings().size());
         assertEquals("JCA-KPG-RSA", result.findings().get(0).ruleId());
-        assertEquals(0, result.unparseableFiles().size());
+        assertEquals(0, result.skippedFiles().size());
     }
 
     @Test
@@ -80,6 +83,6 @@ class ScannerRobustnessTest {
 
         assertEquals(1, result.findings().size());
         assertEquals("JCA-KPG-RSA", result.findings().get(0).ruleId());
-        assertEquals(0, result.unparseableFiles().size());
+        assertEquals(0, result.skippedFiles().size());
     }
 }

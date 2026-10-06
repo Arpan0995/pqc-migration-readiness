@@ -5,6 +5,7 @@ import com.github.javaparser.ParseResult;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import org.pqcreadiness.auditor.model.Finding;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -68,12 +69,12 @@ public final class Scanner {
     public ScanResult scan(Path root) {
         List<Path> sources = javaSources(root);
         Map<String, Integer> lineCounts = new LinkedHashMap<>();
-        List<Path> unparseable = new ArrayList<>();
+        List<SkippedFile> skippedFiles = new ArrayList<>();
 
         // Pass 1: parse all files, keeping the successfully parsed units.
         List<ParsedFile> parsed = new ArrayList<>();
         for (Path source : sources) {
-            parseFile(root, source, parsed, lineCounts, unparseable);
+            parseFile(root, source, parsed, lineCounts, skippedFiles);
         }
         ConstantIndex constants = ConstantIndex.build(
                 parsed.stream().map(ParsedFile::unit).toList());
@@ -83,29 +84,54 @@ public final class Scanner {
         for (ParsedFile file : parsed) {
             visitFile(file, constants, findings);
         }
-        return new ScanResult(findings, lineCounts, unparseable);
+        return new ScanResult(findings, lineCounts, skippedFiles);
     }
 
     private record ParsedFile(String relativePath, CompilationUnit unit) {
     }
 
     private void parseFile(Path root, Path source, List<ParsedFile> parsed,
-                           Map<String, Integer> lineCounts, List<Path> unparseable) {
+            Map<String, Integer> lineCounts, List<SkippedFile> skippedFiles) {
         String relative = relativize(root, source);
         JavaParser parser = new JavaParser(configuration);
-        ParseResult<CompilationUnit> result;
+
         try {
-            result = parser.parse(source);
-            lineCounts.put(relative, nonBlankLines(source));
+            ParseResult<CompilationUnit> result = parser.parse(source);
+
+            if (result.getResult().isEmpty() || !result.isSuccessful()) {
+                String reason = result.getProblems().isEmpty()
+                        ? "No parser diagnostic was provided."
+                        : firstLine(result.getProblems().get(0).getMessage());
+
+                skippedFiles.add(new SkippedFile(relative, reason));
+                return;
+            }
+
+            int nonBlankLineCount = nonBlankLines(source);
+            lineCounts.put(relative, nonBlankLineCount);
+            parsed.add(new ParsedFile(relative, result.getResult().orElseThrow()));
         } catch (IOException | UncheckedIOException e) {
-            unparseable.add(source);
-            return;
+            skippedFiles.add(new SkippedFile(relative, exceptionReason(e)));
         }
-        if (result.getResult().isEmpty() || !result.isSuccessful()) {
-            unparseable.add(source);
-            return;
+    }
+
+    private static String firstLine(String message) {
+        if (message == null || message.isBlank()) {
+            return "No parser diagnostic was provided.";
         }
-        parsed.add(new ParsedFile(relative, result.getResult().get()));
+
+        int lineEnd = message.indexOf('\n');
+        String firstLine = lineEnd >= 0 ? message.substring(0, lineEnd) : message;
+        return firstLine.strip();
+    }
+
+    private static String exceptionReason(Exception exception) {
+        String message = exception.getMessage();
+        if (message == null || message.isBlank()) {
+            return exception.getClass().getSimpleName();
+        }
+
+        return exception.getClass().getSimpleName() + ": " + firstLine(message);
     }
 
     private void visitFile(ParsedFile file, ConstantIndex constants, List<Finding> findings) {
@@ -122,7 +148,7 @@ public final class Scanner {
      * category accepts fragility tags (primary crypto usages, not structural findings).
      */
     private static void merge(List<ScanContext.ScopedFinding> scoped,
-                              List<ScanContext.Signal> signals, List<Finding> out) {
+            List<ScanContext.Signal> signals, List<Finding> out) {
         Map<String, Set<String>> byScope = new LinkedHashMap<>();
         for (ScanContext.Signal signal : signals) {
             byScope.computeIfAbsent(signal.scopeKey(), k -> new TreeSet<>()).add(signal.indicator());

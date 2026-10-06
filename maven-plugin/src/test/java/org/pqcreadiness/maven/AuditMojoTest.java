@@ -41,6 +41,11 @@ class AuditMojoTest {
                     void m() throws Exception { KeyPairGenerator.getInstance("RSA"); }
                 }
                 """);
+        Files.writeString(src.resolve("Broken.java"), """
+        package demo;
+        class Broken {
+            void incomplete() {
+        """);
         // Decoy in build output: must not be audited.
         Path target = Files.createDirectories(project.resolve("target/generated-sources"));
         Files.writeString(target.resolve("Gen.java"), """
@@ -57,25 +62,37 @@ class AuditMojoTest {
 
         ByteArrayOutputStream capturedOutput = new ByteArrayOutputStream();
         PrintStream originalOutput = System.out;
+        PrintStream originalError = System.err;
 
         try (PrintStream redirectedOutput = new PrintStream(capturedOutput, true, StandardCharsets.UTF_8)) {
             System.setOut(redirectedOutput);
+            System.setErr(redirectedOutput);
             mojo.setLog(new SystemStreamLog());
             mojo.execute();
         } finally {
             System.setOut(originalOutput);
+            System.setErr(originalError);
         }
 
         String output = capturedOutput.toString(StandardCharsets.UTF_8);
 
         assertTrue(output.contains(
                 "Estimated migration effort (planning heuristic, time model t0):"));
+        assertTrue(output.contains(
+        "Skipped source file src/main/java/demo/Broken.java:"));
 
         assertTrue(Files.exists(out.resolve("readiness-report.json")));
         assertTrue(Files.exists(out.resolve("readiness-report.md")));
         assertTrue(Files.exists(out.resolve("readiness-report.sarif")));
 
         JsonNode report = new ObjectMapper().readTree(out.resolve("readiness-report.json").toFile());
+        assertEquals(1, report.path("filesSkipped").asInt());
+
+        JsonNode skippedFiles = report.path("skippedFiles");
+        assertEquals(1, skippedFiles.size());
+        assertEquals("src/main/java/demo/Broken.java",
+                skippedFiles.get(0).path("path").asText());
+        assertFalse(skippedFiles.get(0).path("reason").asText().isBlank());
         assertEquals("fixture", report.path("codebase").asText());
         assertEquals("test", report.path("auditorVersion").asText());
         assertEquals(1, report.path("filesScanned").asInt(), "decoy in target/ must be pruned");
