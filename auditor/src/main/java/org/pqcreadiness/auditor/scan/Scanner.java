@@ -10,6 +10,7 @@ import org.pqcreadiness.auditor.model.SkippedFile;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
+import java.nio.file.FileSystemException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -111,7 +112,7 @@ public final class Scanner {
             lineCounts.put(relative, nonBlankLineCount);
             parsed.add(new ParsedFile(relative, result.getResult().orElseThrow()));
         } catch (IOException | UncheckedIOException e) {
-            skippedFiles.add(new SkippedFile(relative, exceptionReason(e)));
+            skippedFiles.add(new SkippedFile(relative, exceptionReason(e, relative)));
         }
     }
 
@@ -125,13 +126,21 @@ public final class Scanner {
         return firstLine.strip();
     }
 
-    private static String exceptionReason(Exception exception) {
-        String message = exception.getMessage();
-        if (message == null || message.isBlank()) {
-            return exception.getClass().getSimpleName();
+    static String exceptionReason(Exception exception, String relativePath) {
+        Throwable cause = exception;
+        while (cause instanceof UncheckedIOException unchecked
+                && unchecked.getCause() != null) {
+            cause = unchecked.getCause();
         }
 
-        return exception.getClass().getSimpleName() + ": " + firstLine(message);
+        if (cause instanceof FileSystemException fileSystemException) {
+            String reason = fileSystemException.getReason();
+            if (reason != null && !reason.isBlank()) {
+                return cause.getClass().getSimpleName() + ": " + firstLine(reason);
+            }
+        }
+
+        return cause.getClass().getSimpleName() + " while reading " + relativePath;
     }
 
     private void visitFile(ParsedFile file, ConstantIndex constants, List<Finding> findings) {

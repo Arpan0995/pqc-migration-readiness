@@ -24,7 +24,6 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /** End-to-end: scan a small fixture tree, score it, and render both report formats. */
 class EndToEndReportTest {
@@ -183,17 +182,25 @@ class EndToEndReportTest {
                 assertEquals(1, report.filesSkipped());
                 assertEquals(1, report.modules().size());
                 assertEquals("src/main/java/demo/Broken.java", report.skippedFiles().get(0).path());
-                assertEquals(1, report.modules().size());
                 assertEquals(7, report.modules().get(0).loc());
 
                 assertEquals(1, scan.skippedFiles().size());
                 assertEquals("src/main/java/demo/Broken.java", scan.skippedFiles().get(0).path());
-                assertFalse(scan.skippedFiles().get(0).reason().isBlank());
+
+            String reason = scan.skippedFiles().get(0).reason();
+            assertTrue(reason.startsWith("Parse error"), reason);
+            assertTrue(reason.contains("<EOF>"), reason);
 
                 String markdown = new MarkdownReportWriter().toMarkdown(report);
                 assertTrue(markdown.contains("## Files that could not be parsed"));
                 assertTrue(markdown.contains("`src/main/java/demo/Broken.java`"));
-                assertTrue(markdown.contains(scan.skippedFiles().get(0).reason()));
+
+            String escapedReason = reason.replace("&", "&amp;")
+                            .replace("<", "&lt;")
+                            .replace(">", "&gt;")
+                            .replace("`", "\\`");
+            assertTrue(markdown.contains(escapedReason));
+            assertTrue(markdown.contains("&lt;EOF&gt;"));
         }
 
         @Test

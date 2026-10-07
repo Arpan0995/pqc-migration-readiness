@@ -109,8 +109,10 @@ public final class SarifReportWriter {
             notifications.add(notification(skipped));
         }
 
-        run.put("invocations",
-                List.of(Map.of("toolExecutionNotifications", notifications)));
+        Map<String, Object> invocation = new LinkedHashMap<>();
+        invocation.put("executionSuccessful", true);
+        invocation.put("toolExecutionNotifications", notifications);
+        run.put("invocations", List.of(invocation));
 
         return run;
     }

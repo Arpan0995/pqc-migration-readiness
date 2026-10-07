@@ -88,7 +88,7 @@ public final class MarkdownReportWriter {
             md.append("- `")
                     .append(skipped.path().replace("`", "\\`"))
                     .append("` — ")
-                    .append(skipped.reason().replace("`", "\\`"))
+                    .append(escapeMarkdownReason(skipped.reason()))
                     .append('\n');
         }
 
@@ -100,6 +100,13 @@ public final class MarkdownReportWriter {
         } else {
             md.append('\n');
         }
+    }
+
+    private static String escapeMarkdownReason(String reason) {
+        return reason.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("`", "\\`");
     }
 
     private void appendMigrationPlan(StringBuilder md, ReadinessReport report) {

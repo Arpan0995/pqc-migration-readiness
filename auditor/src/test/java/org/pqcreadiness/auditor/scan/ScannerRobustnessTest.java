@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.AccessDeniedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -84,5 +85,16 @@ class ScannerRobustnessTest {
         assertEquals(1, result.findings().size());
         assertEquals("JCA-KPG-RSA", result.findings().get(0).ruleId());
         assertEquals(0, result.skippedFiles().size());
+    }
+
+    @Test
+    void fileSystemExceptionReasonDoesNotExposeAbsolutePath() {
+        String absolutePath = root.resolve("Bad.java").toAbsolutePath().toString();
+        AccessDeniedException exception = new AccessDeniedException(absolutePath, null, "Access denied");
+
+        String reason = Scanner.exceptionReason(exception, "Bad.java");
+
+        assertEquals("AccessDeniedException: Access denied", reason);
+        assertFalse(reason.contains(absolutePath));
     }
 }
