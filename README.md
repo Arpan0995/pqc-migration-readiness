@@ -70,6 +70,8 @@ heuristics, not validated predictions (see
 `docs/research/03-difficulty-scoring-model.md` §8.1). The same plan is embedded
 in the JSON report as the additive `migrationPlan` node, assumptions included.
 
+The JSON report also includes a `skippedFiles` array with paths and diagnostic reasons for files that could not be parsed.
+
 ![First screen of the Markdown readiness report for Eclipse Californium 3.14.0: the migration plan with six ordered steps, sites per step, modules touched and an effort range per step](docs/assets/readiness-report-example.png)
 
 *The first screen of `readiness-report.md` for Eclipse Californium 3.14.0, one of

@@ -55,7 +55,8 @@ public final class ScoringEngine {
                 Instant.now().toString(),
                 scan.findings().size(),
                 scan.fileLineCounts().size(),
-                scan.unparseableFiles().size(),
+                scan.skippedFiles().size(),
+                scan.skippedFiles(),
                 modules);
     }
 

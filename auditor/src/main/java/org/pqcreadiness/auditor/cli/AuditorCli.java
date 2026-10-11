@@ -9,6 +9,7 @@ import org.pqcreadiness.auditor.scan.ScanResult;
 import org.pqcreadiness.auditor.scan.Scanner;
 import org.pqcreadiness.auditor.score.ModuleResolver;
 import org.pqcreadiness.auditor.score.ScoringEngine;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,6 +31,7 @@ import java.util.Set;
 public final class AuditorCli {
 
     private static final String VERSION = "1.4.0";
+    private static final int MAX_SKIPPED_FILES_TO_PRINT = 5;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0 || isHelp(args[0])) {
@@ -86,6 +88,7 @@ public final class AuditorCli {
         System.out.printf("Scanned %d files (%d skipped), %d findings across %d module(s).%n",
                 report.filesScanned(), report.filesSkipped(), report.totalFindings(),
                 report.modules().size());
+        printSkippedFiles(report.skippedFiles());
         MigrationPlan plan = MigrationPlan.of(report);
         if (plan.isEmpty()) {
             System.out.println("No quantum-vulnerable production findings; "
@@ -106,6 +109,23 @@ public final class AuditorCli {
 
     /** Build-output directory names skipped unless {@code --exclude} overrides them. */
     private static final List<String> DEFAULT_EXCLUDES = List.of("target", "build", "out", "bin");
+
+    private static void printSkippedFiles(List<SkippedFile> skippedFiles) {
+        int shown = Math.min(skippedFiles.size(), MAX_SKIPPED_FILES_TO_PRINT);
+
+        for (int i = 0; i < shown; i++) {
+            SkippedFile skipped = skippedFiles.get(i);
+            System.err.printf(
+                    "Skipped source file %s: %s%n",
+                    skipped.path(),
+                    skipped.reason());
+        }
+
+        int remaining = skippedFiles.size() - shown;
+        if (remaining > 0) {
+            System.err.printf("%d more skipped file(s) not shown.%n", remaining);
+        }
+    }
 
     private static String requireValue(String[] args, int index, String option) {
         if (index >= args.length) {

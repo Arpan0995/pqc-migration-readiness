@@ -14,6 +14,7 @@ import org.pqcreadiness.auditor.scan.ScanResult;
 import org.pqcreadiness.auditor.scan.Scanner;
 import org.pqcreadiness.auditor.score.ModuleResolver;
 import org.pqcreadiness.auditor.score.ScoringEngine;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,6 +103,8 @@ public class AuditMojo extends AbstractMojo {
                 report.filesScanned(), report.filesSkipped(), report.totalFindings(),
                 report.modules().size()));
 
+        logSkippedFiles(report.skippedFiles());
+
         MigrationPlan plan = MigrationPlan.of(report);
         if (plan.isEmpty()) {
             getLog().info("No quantum-vulnerable production findings; "
@@ -118,5 +121,23 @@ public class AuditMojo extends AbstractMojo {
         }
 
         getLog().info("Readiness reports written to " + out.toAbsolutePath());
+    }
+
+    private void logSkippedFiles(List<SkippedFile> skippedFiles) {
+        int maxToLog = 5;
+        int shown = Math.min(skippedFiles.size(), maxToLog);
+
+        for (int i = 0; i < shown; i++) {
+            SkippedFile skipped = skippedFiles.get(i);
+            getLog().warn(String.format(
+                    "Skipped source file %s: %s",
+                    skipped.path(),
+                    skipped.reason()));
+        }
+
+        int remaining = skippedFiles.size() - shown;
+        if (remaining > 0) {
+            getLog().warn(remaining + " more skipped file(s) not shown.");
+        }
     }
 }
