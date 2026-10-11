@@ -75,6 +75,9 @@ class SarifReportWriterTest {
         assertTrue(invocation.path("executionSuccessful").asBoolean());
 
         JsonNode notifications = invocation.path("toolExecutionNotifications");
+        assertEquals(1, notifications.size());
+        assertEquals("warning", notifications.get(0).path("level").asText());
+        assertFalse(notifications.get(0).path("message").path("text").asText().isBlank());
 
         String skippedUri = notifications.get(0).path("locations").get(0)
                         .path("physicalLocation").path("artifactLocation").path("uri").asText();
