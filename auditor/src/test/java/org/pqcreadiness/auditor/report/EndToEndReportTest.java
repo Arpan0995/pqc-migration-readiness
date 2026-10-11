@@ -13,6 +13,7 @@ import org.pqcreadiness.auditor.model.EffortTier;
 import org.pqcreadiness.auditor.model.FileReport;
 import org.pqcreadiness.auditor.model.Finding;
 import org.pqcreadiness.auditor.model.ModuleReport;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
 import java.util.List;
 
@@ -77,6 +78,26 @@ class EndToEndReportTest {
         assertTrue(Files.exists(out.resolve("r.md")));
     }
 
+        @Test
+        void limitsSkippedFilesInMarkdown() {
+            List<SkippedFile> skippedFiles = java.util.stream.IntStream.rangeClosed(1, 22)
+                    .mapToObj(index -> new SkippedFile("Broken" + index + ".java", "parse error"))
+                    .toList();
+
+            ReadinessReport report = new ReadinessReport(
+                    "fixture", "test", "v0", "now",
+                    0, 0, skippedFiles.size(), skippedFiles, List.of());
+
+            String markdown = new MarkdownReportWriter().toMarkdown(report);
+
+            long listedFiles = markdown.lines()
+                    .filter(line -> line.startsWith("- `Broken"))
+                    .count();
+
+            assertEquals(20L, listedFiles);
+            assertTrue(markdown.contains("+2 more skipped file(s) not shown."));
+        }
+
     @Test
     void ranksExpensiveHotspotBeforeApplyingCap() throws IOException {
         Files.writeString(root.resolve("pom.xml"), "<project/>");
@@ -131,6 +152,56 @@ class EndToEndReportTest {
                 "The highest-difficulty finding must come first: " + rows.get(0));
         assertTrue(md.contains("_2 more finding(s) not shown._"));
     }
+
+        @Test
+        void excludesSyntaxErrorFileFromScannedFilesAndModuleLoc() throws IOException {
+                Files.writeString(root.resolve("pom.xml"), "<project/>");
+                Path src = Files.createDirectories(root.resolve("src/main/java/demo"));
+
+                Files.writeString(src.resolve("Good.java"), """
+                                package demo;
+                                import java.security.KeyPairGenerator;
+                                class Good {
+                                    void generate() throws Exception {
+                                        KeyPairGenerator.getInstance("RSA");
+                                    }
+                                }
+                                """);
+
+                Files.writeString(src.resolve("Broken.java"), """
+                                package demo;
+                                class Broken {
+                                    void incomplete() {
+                                """);
+
+                ScanResult scan = new Scanner().scan(root);
+                ReadinessReport report = new ScoringEngine("test")
+                                .score("fixture", scan, new ModuleResolver(root));
+
+                assertEquals(1, report.filesScanned());
+                assertEquals(1, report.filesSkipped());
+                assertEquals(1, report.modules().size());
+                assertEquals("src/main/java/demo/Broken.java", report.skippedFiles().get(0).path());
+                assertEquals(7, report.modules().get(0).loc());
+
+                assertEquals(1, scan.skippedFiles().size());
+                assertEquals("src/main/java/demo/Broken.java", scan.skippedFiles().get(0).path());
+
+            String reason = scan.skippedFiles().get(0).reason();
+            assertTrue(reason.startsWith("Parse error"), reason);
+            assertTrue(reason.contains("<EOF>"), reason);
+
+                String markdown = new MarkdownReportWriter().toMarkdown(report);
+                assertTrue(markdown.contains("## Files that could not be parsed"));
+                assertTrue(markdown.contains("`src/main/java/demo/Broken.java`"));
+
+            String escapedReason = reason.replace("&", "&amp;")
+                            .replace("<", "&lt;")
+                            .replace(">", "&gt;")
+                            .replace("`", "\\`");
+            assertTrue(markdown.contains(escapedReason));
+            assertTrue(markdown.contains("&lt;EOF&gt;"));
+        }
 
     @Test
     void ordersEqualDifficultyHotspotsByPathLineAndColumn() {

@@ -14,6 +14,7 @@ import java.util.List;
  * @param totalFindings  total findings across all modules
  * @param filesScanned   number of source files parsed
  * @param filesSkipped   number of files that failed to parse
+ * @param skippedFiles   skipped files with their root-relative paths and reasons
  * @param modules        module reports, ranked by descending score
  */
 public record ReadinessReport(
@@ -24,9 +25,25 @@ public record ReadinessReport(
         int totalFindings,
         int filesScanned,
         int filesSkipped,
+        List<SkippedFile> skippedFiles,
         List<ModuleReport> modules) {
 
     public ReadinessReport {
+        skippedFiles = List.copyOf(skippedFiles);
         modules = List.copyOf(modules);
+    }
+
+    /** Keeps the previous constructor available for existing report callers. */
+    public ReadinessReport(
+            String codebase,
+            String auditorVersion,
+            String scoreModel,
+            String generatedAt,
+            int totalFindings,
+            int filesScanned,
+            int filesSkipped,
+            List<ModuleReport> modules) {
+        this(codebase, auditorVersion, scoreModel, generatedAt, totalFindings,
+                filesScanned, filesSkipped, List.of(), modules);
     }
 }

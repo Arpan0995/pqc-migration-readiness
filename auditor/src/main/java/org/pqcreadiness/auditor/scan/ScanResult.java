@@ -1,8 +1,8 @@
 package org.pqcreadiness.auditor.scan;
 
 import org.pqcreadiness.auditor.model.Finding;
+import org.pqcreadiness.auditor.model.SkippedFile;
 
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +13,10 @@ import java.util.Map;
  *
  * @param findings          findings in file order
  * @param fileLineCounts    relative source path -> non-blank line count
- * @param unparseableFiles  files skipped because they could not be parsed
+ * @param skippedFiles   files skipped during scanning, with path and reason
  */
 public record ScanResult(
         List<Finding> findings,
         Map<String, Integer> fileLineCounts,
-        List<Path> unparseableFiles) {
+        List<SkippedFile> skippedFiles) {
 }
