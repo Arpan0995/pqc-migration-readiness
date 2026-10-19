@@ -42,7 +42,9 @@ public final class VulnerableAlgorithms {
             "DSAPublicKey", "DSAPrivateKey", "DSAKey",
             "ECPublicKey", "ECPrivateKey", "ECKey",
             "DHPublicKey", "DHPrivateKey", "DHKey",
-            "EdECPublicKey", "EdECPrivateKey", "XECPublicKey", "XECPrivateKey");
+            "EdECPublicKey", "EdECPrivateKey", "EdECKey",
+            "XECPublicKey", "XECPrivateKey", "XECKey",
+            "RSAMultiPrimePrivateCrtKey");
 
     /** Normalise a raw algorithm string to its comparable token. */
     public static String normalize(String raw) {
