@@ -120,23 +120,44 @@ class Wave2DetectionTest {
     }
 
     @Test
+    void flagsConcreteKeyTypeCoupling() throws IOException {
+        List<Finding> f = scanClass("TC", """
+                package fixture;
+                import java.security.interfaces.RSAPublicKey;
+                class TC {
+                    RSAPublicKey field;
+                    RSAPublicKey use(RSAPublicKey in) { return in; }
+                }
+                """);
+        // field type + parameter type + return type = 3 occurrences
+        assertEquals(3, f.size());
+        assertTrue(f.stream().allMatch(x -> x.ruleId().equals("FRAG-F4-RSAPublicKey")));
+        assertTrue(f.stream().allMatch(x -> x.fragility().contains("F4")));
+        assertTrue(f.stream().allMatch(x -> x.category() == Category.TYPE_COUPLING));
+    }
+
+    @Test
     void flagsAdditionalConcreteKeyTypeCoupling() throws IOException {
-    List<Finding> f = scanClass("TC2", """
-            package fixture;
-            import java.security.interfaces.EdECKey;
-            import java.security.interfaces.XECKey;
-            import java.security.interfaces.RSAMultiPrimePrivateCrtKey;
-            class TC2 {
-                EdECKey edField;
-                XECKey xecField;
-                RSAMultiPrimePrivateCrtKey rsaField;
-            }
-            """);
-    assertEquals(3, f.size());
-    assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-EdECKey")));
-    assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-XECKey")));
-    assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-RSAMultiPrimePrivateCrtKey")));
-}
+        List<Finding> f = scanClass("TC2", """
+                package fixture;
+                import java.security.interfaces.EdECKey;
+                import java.security.interfaces.XECKey;
+                import java.security.interfaces.RSAMultiPrimePrivateCrtKey;
+                class TC2 {
+                    EdECKey edField;
+                    XECKey xecField;
+                    RSAMultiPrimePrivateCrtKey rsaField;
+                }
+                """);
+        assertEquals(3, f.size());
+        assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-EdECKey")));
+        assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-XECKey")));
+        assertTrue(f.stream().anyMatch(x -> x.ruleId().equals("FRAG-F4-RSAMultiPrimePrivateCrtKey")));
+        assertTrue(f.stream().allMatch(x -> x.fragility().contains("F4")));
+        assertTrue(f.stream().allMatch(x -> x.category() == Category.TYPE_COUPLING));
+    }
+
+
 
     @Test
     void doesNotFlagMacOrDigest() throws IOException {
