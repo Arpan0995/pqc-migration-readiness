@@ -157,8 +157,6 @@ class Wave2DetectionTest {
         assertTrue(f.stream().allMatch(x -> x.category() == Category.TYPE_COUPLING));
     }
 
-
-
     @Test
     void doesNotFlagMacOrDigest() throws IOException {
         List<Finding> f = scanClass("N", """

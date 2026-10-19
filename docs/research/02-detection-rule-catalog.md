@@ -40,7 +40,7 @@ Sentinel constants for fragility detection: `32, 64, 65, 70, 72, 91, 128, 256, 2
 | `AlgorithmParameters` / spec classes | `RSAKeyGenParameterSpec`, `ECGenParameterSpec`, `DHParameterSpec`, `DSAParameterSpec`, `PSSParameterSpec`, `NamedParameterSpec.{X25519,X448,ED25519,ED448}`, BC `ECNamedCurveParameterSpec` |
 | TLS surface | `setEnabledCipherSuites` with `TLS_ECDHE_*`/`TLS_RSA_*` literals; `jdk.tls.namedGroups` values; `SSLContext.getInstance("TLSv1.x")` (pinning signal, see F3) |
 | JOSE/JWT (RFC 7518 `alg`) | `RS256/384/512`, `ES256/384/512`, `ES256K`, `PS256/384/512`, `EdDSA` (jjwt, auth0 java-jwt, nimbus-jose), while `HS*` is fine |
-| Concrete key interfaces | `java.security.interfaces.{RSAPublicKey, RSAPrivateKey, RSAKey, ECPublicKey, ECPrivateKey, ECKey, DSAPublicKey, DSAPrivateKey, EdECPublicKey, EdECPrivateKey, XECPublicKey, XECPrivateKey}`, `javax.crypto.interfaces.{DHPublicKey, DHPrivateKey}`, in casts, `instanceof`, fields, and method signatures |
+| Concrete key interfaces | `java.security.interfaces.{RSAPublicKey, RSAPrivateKey, RSAPrivateCrtKey, RSAMultiPrimePrivateCrtKey, RSAKey, ECPublicKey, ECPrivateKey, ECKey, DSAPublicKey, DSAPrivateKey, DSAKey, EdECPublicKey, EdECPrivateKey, EdECKey, XECPublicKey, XECPrivateKey, XECKey}`, `javax.crypto.interfaces.{DHPublicKey, DHPrivateKey, DHKey}`, in casts, `instanceof`, fields, and method signatures |
 | Informational only (not "vulnerable") | `AES-128` key sizes, `SHA-1`, `3DES`, `MD5`, reported at INFO severity for completeness |
 
 ## 4. Wave 3: structural fragility indicators (the novel signal)
