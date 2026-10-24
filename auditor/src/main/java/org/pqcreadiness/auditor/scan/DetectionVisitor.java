@@ -3,6 +3,7 @@ package org.pqcreadiness.auditor.scan;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.FieldAccessExpr;
 import com.github.javaparser.ast.expr.IntegerLiteralExpr;
+import com.github.javaparser.ast.expr.InstanceOfExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
@@ -117,6 +118,16 @@ final class DetectionVisitor extends VoidVisitorAdapter<ScanContext> {
         if (FragilityRules.KEY_SPEC_TYPES.contains(creation.getType().getNameAsString())) {
             ctx.addSignal("F6", Scopes.keyFor(creation));
         }
+    }
+
+    /** A type-test pattern and its instanceof expression share the same type node. */
+    @Override
+    public void visit(InstanceOfExpr expression, ScanContext ctx) {
+        expression.getExpression().accept(this, ctx);
+        expression.getPattern().ifPresentOrElse(
+                pattern -> pattern.accept(this, ctx),
+                () -> expression.getType().accept(this, ctx));
+        expression.getComment().ifPresent(comment -> comment.accept(this, ctx));
     }
 
     /** F4: concrete key interface type used in a type position (field/param/return/local). */

@@ -2,6 +2,8 @@ package org.pqcreadiness.auditor.scan;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.pqcreadiness.auditor.model.Category;
 import org.pqcreadiness.auditor.model.Finding;
 
@@ -134,6 +136,45 @@ class Wave2DetectionTest {
         assertTrue(f.stream().allMatch(x -> x.ruleId().equals("FRAG-F4-RSAPublicKey")));
         assertTrue(f.stream().allMatch(x -> x.fragility().contains("F4")));
         assertTrue(f.stream().allMatch(x -> x.category() == Category.TYPE_COUPLING));
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @CsvSource(delimiter = '|', value = {
+            "plain instanceof | k instanceof RSAPublicKey | RSAPublicKey",
+            "type-test pattern | k instanceof RSAPublicKey r | RSAPublicKey",
+            "final type-test pattern | k instanceof final ECPrivateKey e | ECPrivateKey",
+            "switch pattern | switch (k) { case RSAPublicKey r -> true; default -> false; } | RSAPublicKey",
+            "record pattern | k instanceof Holder(RSAPublicKey r) | RSAPublicKey"
+    })
+    void reportsConcreteKeyTypeOncePerPatternSite(String scenario, String expression, String keyType) throws IOException {
+        List<Finding> f = scanClass("KeyPattern", """
+                package fixture;
+                import java.security.interfaces.RSAPublicKey;
+                import java.security.interfaces.ECPrivateKey;
+                class KeyPattern {
+                    record Holder(Object key) {}
+                    boolean test(Object k) { return %s; }
+                }
+                """.formatted(expression));
+        assertEquals(1, f.size(), scenario);
+        assertEquals("FRAG-F4-" + keyType, f.get(0).ruleId());
+    }
+
+    @Test
+    void visitsTheTestedExpressionOfAnInstanceofPattern() throws IOException {
+        List<Finding> f = scanClass("KeyExpression", """
+                package fixture;
+                import java.security.KeyFactory;
+                import java.security.interfaces.RSAPublicKey;
+                class KeyExpression {
+                    boolean test() throws Exception {
+                        return KeyFactory.getInstance("RSA").generatePublic(null) instanceof RSAPublicKey r;
+                    }
+                }
+                """);
+        assertEquals(2, f.size());
+        assertEquals(1, f.stream().filter(x -> x.ruleId().equals("JCA-KF-RSA")).count());
+        assertEquals(1, f.stream().filter(x -> x.ruleId().equals("FRAG-F4-RSAPublicKey")).count());
     }
 
     @Test
