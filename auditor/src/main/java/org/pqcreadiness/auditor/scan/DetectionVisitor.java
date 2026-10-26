@@ -120,7 +120,7 @@ final class DetectionVisitor extends VoidVisitorAdapter<ScanContext> {
         }
     }
 
-    /** A type-test pattern and its instanceof expression share the same type node. */
+    /** A pattern (type-test or record) and its instanceof expression share the same type node: visit it once. */
     @Override
     public void visit(InstanceOfExpr expression, ScanContext ctx) {
         expression.getExpression().accept(this, ctx);

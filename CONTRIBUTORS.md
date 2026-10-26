@@ -14,6 +14,7 @@ records what a contributor added; follow the pull request for the detail.
 - [@darkyellowcat](https://github.com/darkyellowcat): Markdown hotspots ranked by difficulty before the 15-row cap, with `file:line:column` sites ([#68](https://github.com/Arpan0995/pqc-migration-readiness/pull/68))
 - [@GladusLenijaAJ](https://github.com/GladusLenijaAJ): the negotiator fails closed when `onNoIntersection` is null and rejects unknown or wrong-intent preferred suites ([#70](https://github.com/Arpan0995/pqc-migration-readiness/pull/70))
 - [@dhaanu2410](https://github.com/dhaanu2410): F4 type-coupling detection for `EdECKey`, `XECKey` and `RSAMultiPrimePrivateCrtKey` ([#76](https://github.com/Arpan0995/pqc-migration-readiness/pull/76))
+- [@BryanOnKeys](https://github.com/BryanOnKeys): `instanceof` patterns no longer report the same key-type finding twice ([#78](https://github.com/Arpan0995/pqc-migration-readiness/pull/78))
 
 Contributions of any size are welcome, from a test fixture to a new detection
 rule. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and the open
