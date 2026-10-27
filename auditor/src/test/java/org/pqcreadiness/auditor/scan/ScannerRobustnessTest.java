@@ -50,6 +50,16 @@ class ScannerRobustnessTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
+    void keepsTheDeprecatedUnparseableFilesAccessor() throws IOException {
+        Files.writeString(root.resolve("Broken.java"), "class Broken {");
+
+        ScanResult result = new Scanner().scan(root);
+
+        assertEquals(java.util.List.of(Path.of("Broken.java")), result.unparseableFiles());
+    }
+
+    @Test
     void checkVersion() throws IOException {
         Files.writeString(root.resolve("Good.java"), """
                 import module java.base;

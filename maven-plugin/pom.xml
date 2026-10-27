@@ -78,6 +78,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
         <version>${maven-plugin-tools.version}</version>
+        <configuration>
+          <!-- Otherwise derived from maven-plugin-api; the plugin runs on Maven 3.9. -->
+          <requiredMavenVersion>3.9.9</requiredMavenVersion>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
