@@ -13,7 +13,7 @@ cd "$(dirname "$0")"
 
 TARGET="${1:-case-studies/jjwt/repo}"
 NAME="${2:-$(basename "$TARGET")}"
-VERSION="1.4.0"
+VERSION="1.5.0"
 JAR="auditor/target/pqc-readiness-auditor-${VERSION}-all.jar"
 
 if [ "$TARGET" = "case-studies/jjwt/repo" ] && [ ! -e "$TARGET/pom.xml" ]; then

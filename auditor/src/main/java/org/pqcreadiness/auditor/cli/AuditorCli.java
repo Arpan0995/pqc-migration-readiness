@@ -30,7 +30,7 @@ import java.util.Set;
  */
 public final class AuditorCli {
 
-    private static final String VERSION = "1.4.0";
+    private static final String VERSION = "1.5.0";
     private static final int MAX_SKIPPED_FILES_TO_PRINT = 5;
 
     public static void main(String[] args) throws IOException {

@@ -18,7 +18,7 @@ is the place for anything that is not yet a concrete bug or task:
 - ideas for new detection rules or for the agility layer;
 - pointers to related tools, papers, or standards activity.
 
-Mention the auditor version (1.4.0, for example) and the JDK you used, and paste
+Mention the auditor version (1.5.0, for example) and the JDK you used, and paste
 the relevant part of `readiness-report.md` if it helps make the point.
 
 ### Raise an Issue
