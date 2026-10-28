@@ -3,7 +3,6 @@ package org.pqcreadiness.agility.crypto;
 import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.generators.HKDFBytesGenerator;
 import org.bouncycastle.crypto.params.HKDFParameters;
-import org.bouncycastle.jcajce.spec.MLKEMParameterSpec;
 import org.pqcreadiness.agility.CryptoSuite;
 
 import javax.crypto.KEM;
@@ -15,6 +14,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.NamedParameterSpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,17 +112,8 @@ public final class HybridKeyEstablishment {
 
     private static KeyPair newPqc(CryptoSuite suite) throws Exception {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("ML-KEM", Providers.BC);
-        kpg.initialize(mlkemSpec(suite.pqcAlgorithm()));
+        kpg.initialize(new NamedParameterSpec(suite.pqcAlgorithm()));
         return kpg.generateKeyPair();
-    }
-
-    private static MLKEMParameterSpec mlkemSpec(String algorithm) {
-        return switch (algorithm) {
-            case "ML-KEM-512" -> MLKEMParameterSpec.ml_kem_512;
-            case "ML-KEM-768" -> MLKEMParameterSpec.ml_kem_768;
-            case "ML-KEM-1024" -> MLKEMParameterSpec.ml_kem_1024;
-            default -> throw new IllegalArgumentException("Unsupported ML-KEM parameter set: " + algorithm);
-        };
     }
 
     /** HKDF-SHA256 over the concatenated component secrets. */

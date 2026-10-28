@@ -1,6 +1,5 @@
 package org.pqcreadiness.agility.crypto;
 
-import org.bouncycastle.jcajce.spec.MLDSAParameterSpec;
 import org.pqcreadiness.agility.CryptoSuite;
 
 import java.security.KeyPair;
@@ -9,6 +8,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.ECGenParameterSpec;
+import java.security.spec.NamedParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,16 +102,7 @@ public final class DualSignature {
 
     private static KeyPair newPqc(CryptoSuite suite) throws Exception {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("ML-DSA", Providers.BC);
-        kpg.initialize(mldsaSpec(suite.pqcAlgorithm()));
+        kpg.initialize(new NamedParameterSpec(suite.pqcAlgorithm()));
         return kpg.generateKeyPair();
-    }
-
-    private static MLDSAParameterSpec mldsaSpec(String algorithm) {
-        return switch (algorithm) {
-            case "ML-DSA-44" -> MLDSAParameterSpec.ml_dsa_44;
-            case "ML-DSA-65" -> MLDSAParameterSpec.ml_dsa_65;
-            case "ML-DSA-87" -> MLDSAParameterSpec.ml_dsa_87;
-            default -> throw new IllegalArgumentException("Unsupported ML-DSA parameter set: " + algorithm);
-        };
     }
 }
