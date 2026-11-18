@@ -124,7 +124,7 @@ algorithm selection.
 
 ## 8. Key facts / conventions
 
-- **JDK 21 LTS**, Maven multi-module. Crypto via Bouncy Castle `bcprov-jdk18on:1.84`.
+- **JDK 21 LTS**, Maven multi-module. Crypto via Bouncy Castle `bcprov-jdk18on:1.87`.
 - Canonical remote: `github.com/Arpan0995/pqc-migration-readiness` (push only here).
 - Case studies are pinned git submodules under `case-studies/<name>/repo` (`repo/`, not
   `target/`, which is gitignored); the repo stores pointers, not the external source.
